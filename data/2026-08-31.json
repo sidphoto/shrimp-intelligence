@@ -1,0 +1,4 @@
+{
+  "$ref":"./latest.json",
+  "note":"MVP archive pointer. Publisher will write full immutable daily snapshots in production."
+}
