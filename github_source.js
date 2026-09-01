@@ -2,6 +2,7 @@ import { getLocale } from './i18n.js';
 
 const REPO_URL = 'https://github.com/sidphoto/shrimp-intelligence';
 const REPO_NAME = 'sidphoto/shrimp-intelligence';
+const GITHUB_MARK_URL = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png';
 
 const COPY = {
   'zh-TW': {
@@ -35,7 +36,9 @@ function mount() {
   block.innerHTML = `
     <div class="sidebar-github-label">${c.label}</div>
     <a class="sidebar-github-link" href="${REPO_URL}" target="_blank" rel="noopener noreferrer" aria-label="GitHub ${REPO_NAME}">
-      <span class="sidebar-github-icon" aria-hidden="true">GH</span>
+      <span class="sidebar-github-icon" aria-hidden="true">
+        <img src="${GITHUB_MARK_URL}" alt="" width="24" height="24" decoding="async">
+      </span>
       <span class="sidebar-github-copy">
         <strong>${REPO_NAME}</strong>
         <small>${c.hint} ↗</small>
