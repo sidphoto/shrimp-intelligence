@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from pathlib import Path
 
 import build_report as core
@@ -64,7 +65,7 @@ def _clean_product_copy(report: dict) -> None:
 
 
 def enrich_report(report: dict) -> dict:
-    report_date = core.date.fromisoformat(report["date"])
+    report_date = date.fromisoformat(report["date"])
     _, cutoff = core.build_window(report_date)
     _clean_product_copy(report)
 
@@ -72,11 +73,13 @@ def enrich_report(report: dict) -> dict:
     if market:
         report["market"] = market
     else:
+        # Keep the product UI neutral when a valid pre-cutoff snapshot does not exist.
+        # Do not query live prices after 06:00 merely to fill the card.
         report["market"] = [
             {
                 "name": name,
                 "value": "—",
-                "change": "等待 05:55 市場快照",
+                "change": "",
                 "direction": "flat",
                 "as_of": None,
                 "source": None,
