@@ -35,6 +35,7 @@ jobs:
           node --check quick_filters.js
           node --check topic_catalog.js
           node --check exploration.js
+          node --check insight_widgets.js
       - name: Test personal radar matching
         run: node tests/test_personalization.mjs
       - name: Test quick severity filters
@@ -59,6 +60,8 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Build emerging signals and impact chains
+        run: python scripts/apply_intelligence_extensions.py
       - name: Prepare reader-facing report artifact
         run: python scripts/enrich_report.py
       - name: Validate deploy artifact
