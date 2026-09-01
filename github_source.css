@@ -1,0 +1,63 @@
+.sidebar-github-source{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+}
+.sidebar-github-label{
+  margin:0 0 9px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.sidebar-github-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 11px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  text-decoration:none;
+  transition:border-color .16s ease,transform .16s ease,background .16s ease;
+}
+.sidebar-github-link:hover{
+  border-color:color-mix(in srgb,var(--blue) 55%,var(--line));
+  background:color-mix(in srgb,var(--blue) 6%,var(--surface));
+  transform:translateY(-1px);
+}
+.sidebar-github-link:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:2px;
+}
+.sidebar-github-icon{
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:var(--ink);
+  color:var(--paper);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:-.03em;
+}
+.sidebar-github-copy{
+  min-width:0;
+  display:grid;
+  gap:2px;
+}
+.sidebar-github-copy strong{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:10px;
+  line-height:1.35;
+}
+.sidebar-github-copy small{
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.35;
+}
