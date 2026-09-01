@@ -12,6 +12,10 @@ on:
         description: "Optional report date in Asia/Taipei (YYYY-MM-DD) for a backfill"
         required: false
         type: string
+  push:
+    branches: [main]
+    paths:
+      - "ops/rerun-trigger.txt"
 
 permissions:
   contents: write
@@ -88,10 +92,13 @@ jobs:
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
 
+      - name: Refresh independent live market snapshot
+        run: python scripts/market_live.py
+
       - name: Generate intelligence report
         run: python scripts/run_daily_radar.py
 
-      - name: Apply reader-facing summary and pre-cutoff market snapshot
+      - name: Apply reader-facing summary and market snapshot
         run: python scripts/enrich_report.py
 
       - name: Validate generated report
@@ -139,6 +146,7 @@ jobs:
               print(f"- Engine: **{r.get('engine_version', 'n/a')}**")
               print(f"- Signals: **{len(r.get('signals', []))}**")
               print(f"- Top 5: **{len(r.get('top5_ids', []))}**")
+              print(f"- Market mode: **{r.get('market_meta', {}).get('mode', 'n/a')}**")
               print(f"- Market metrics populated: **{market_ready}/{len(r.get('market', []))}**")
               print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")
               print(f"- Window: `{r.get('window', {}).get('start')}` → `{r.get('window', {}).get('end')}` Asia/Taipei")

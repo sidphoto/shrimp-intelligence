@@ -5,6 +5,7 @@ from datetime import date
 from pathlib import Path
 
 import build_report as core
+from market_live import LIVE_PATH
 from market_snapshot import load_market_for_report
 
 CATEGORY_LABELS = {
@@ -64,30 +65,65 @@ def _clean_product_copy(report: dict) -> None:
             signal["quality_note"] = "已依來源等級、時間窗與事件去重規則整理。"
 
 
+def _load_live_market(report_date: date, path: Path = LIVE_PATH) -> tuple[list[dict], dict]:
+    if not path.exists():
+        return [], {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return [], {}
+    if payload.get("report_date") != report_date.isoformat():
+        return [], {}
+    market = payload.get("market")
+    if not isinstance(market, list):
+        return [], {}
+    return market, {
+        "mode": "live",
+        "captured_at": payload.get("captured_at"),
+        "timezone": payload.get("timezone", "Asia/Taipei"),
+        "note": "市場快覽為獨立即時快照，不改變新聞情報 06:00 截止視窗。",
+    }
+
+
 def enrich_report(report: dict) -> dict:
     report_date = date.fromisoformat(report["date"])
     _, cutoff = core.build_window(report_date)
     _clean_product_copy(report)
 
-    market = load_market_for_report(report_date, cutoff)
-    if market:
-        report["market"] = market
+    live_market, live_meta = _load_live_market(report_date)
+    if live_market:
+        report["market"] = live_market
+        report["market_meta"] = live_meta
     else:
-        # Keep the product UI neutral when a valid pre-cutoff snapshot does not exist.
-        # Do not query live prices after 06:00 merely to fill the card.
-        report["market"] = [
-            {
-                "name": name,
-                "value": "—",
-                "change": "",
-                "direction": "flat",
-                "as_of": None,
-                "source": None,
-                "source_url": None,
+        market = load_market_for_report(report_date, cutoff)
+        if market:
+            report["market"] = market
+            report["market_meta"] = {
+                "mode": "pre_cutoff",
+                "captured_at": None,
+                "timezone": "Asia/Taipei",
+                "note": "市場快覽使用 06:00 前保存的市場快照。",
             }
-            for name in ["S&P 500", "NASDAQ", "USD / TWD", "Brent Oil", "Gold", "US 30Y"]
-        ]
-    report["engine_version"] = "m2.5-tavily-market-snapshot-v1"
+        else:
+            report["market"] = [
+                {
+                    "name": name,
+                    "value": "—",
+                    "change": "",
+                    "direction": "flat",
+                    "as_of": None,
+                    "source": None,
+                    "source_url": None,
+                }
+                for name in ["S&P 500", "NASDAQ", "USD / TWD", "Brent Oil", "Gold", "US 30Y"]
+            ]
+            report["market_meta"] = {
+                "mode": "missing",
+                "captured_at": None,
+                "timezone": "Asia/Taipei",
+                "note": "目前無可用市場快照。",
+            }
+    report["engine_version"] = "m2.6-tavily-live-market-v1"
     return report
 
 
