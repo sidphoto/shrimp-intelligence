@@ -93,6 +93,10 @@ jobs:
         run: |
           node --check app.js
           node --check i18n.js
+          node --check personalization.js
+
+      - name: Test personal radar matching
+        run: node tests/test_personalization.mjs
 
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
@@ -119,6 +123,9 @@ jobs:
         id: generate_report
         continue-on-error: true
         run: python scripts/run_daily_radar.py
+
+      - name: Enrich signal region tags
+        run: python scripts/enrich_regions.py
 
       # Even when the report gate blocks, enrich the last-known-good report with
       # the independently captured live market snapshot for the website artifact.
@@ -174,6 +181,7 @@ jobs:
               print(f"- Engine: **{r.get('engine_version', 'n/a')}**")
               print(f"- Signals: **{len(r.get('signals', []))}**")
               print(f"- Top 5: **{len(r.get('top5_ids', []))}**")
+              print(f"- Region tagging: **{r.get('region_tagging_version', 'n/a')}**")
               print(f"- Market mode: **{r.get('market_meta', {}).get('mode', 'n/a')}**")
               print(f"- Market metrics populated: **{market_ready}/{len(r.get('market', []))}**")
               print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")

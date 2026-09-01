@@ -26,6 +26,9 @@ jobs:
         run: |
           node --check app.js
           node --check i18n.js
+          node --check personalization.js
+      - name: Test personal radar matching
+        run: node tests/test_personalization.mjs
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
       - name: Validate multilingual contract
