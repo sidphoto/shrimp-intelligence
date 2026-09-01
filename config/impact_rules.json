@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "max_chains": 3,
+  "rules": [
+    {
+      "id": "middle-east-energy",
+      "priority": 100,
+      "title": {
+        "zh-TW": "中東衝突 → 能源 → 通膨與市場",
+        "en": "Middle East Conflict → Energy → Inflation & Markets",
+        "vi-VN": "Xung đột Trung Đông → Năng lượng → Lạm phát & Thị trường"
+      },
+      "trigger": {
+        "all_groups": [
+          ["iran", "iranian", "hormuz", "伊朗", "霍爾木茲"],
+          ["strike", "attack", "rocket", "oil", "energy", "攻擊", "火箭", "原油", "能源"]
+        ],
+        "any_phrases": ["strait of hormuz", "霍爾木茲海峽"]
+      },
+      "nodes": [
+        {"id":"middle-east-conflict","icon":"⚠️","type":"event","labels":{"zh-TW":"中東衝突升高","en":"Middle East conflict escalation","vi-VN":"Xung đột Trung Đông leo thang"}},
+        {"id":"energy-risk","icon":"🛢️","type":"risk","labels":{"zh-TW":"能源供應風險","en":"Energy supply risk","vi-VN":"Rủi ro nguồn cung năng lượng"}},
+        {"id":"oil-pressure","icon":"📈","type":"market","labels":{"zh-TW":"油價壓力","en":"Oil-price pressure","vi-VN":"Áp lực giá dầu"}},
+        {"id":"inflation-rates","icon":"🏦","type":"macro","labels":{"zh-TW":"通膨與利率預期","en":"Inflation & rate expectations","vi-VN":"Kỳ vọng lạm phát và lãi suất"}},
+        {"id":"asia-taiwan-market","icon":"🌏","type":"impact","labels":{"zh-TW":"亞洲與台灣市場","en":"Asia & Taiwan markets","vi-VN":"Thị trường châu Á và Đài Loan"}}
+      ]
+    },
+    {
+      "id": "japan-yen-rates",
+      "priority": 90,
+      "title": {
+        "zh-TW": "日本政策 → 日圓 → 亞洲資金流",
+        "en": "Japan Policy → Yen → Asian Capital Flows",
+        "vi-VN": "Chính sách Nhật Bản → Đồng yên → Dòng vốn châu Á"
+      },
+      "trigger": {
+        "all_groups": [
+          ["japan", "japanese", "bank of japan", "boj", "日本", "日銀", "日本央行"],
+          ["yen", "rate", "hike", "currency", "日圓", "利率", "升息", "匯率"]
+        ],
+        "any_phrases": ["bank of japan", "日本央行"]
+      },
+      "nodes": [
+        {"id":"japan-policy","icon":"🏦","type":"event","labels":{"zh-TW":"日本政策轉向","en":"Japan policy shift","vi-VN":"Chuyển hướng chính sách Nhật Bản"}},
+        {"id":"yen","icon":"💴","type":"market","labels":{"zh-TW":"日圓走勢","en":"Yen movement","vi-VN":"Biến động đồng yên"}},
+        {"id":"asia-capital","icon":"💹","type":"market","labels":{"zh-TW":"亞洲資金流","en":"Asian capital flows","vi-VN":"Dòng vốn châu Á"}},
+        {"id":"exporters","icon":"🏭","type":"industry","labels":{"zh-TW":"出口產業競爭力","en":"Exporter competitiveness","vi-VN":"Năng lực cạnh tranh xuất khẩu"}},
+        {"id":"taiwan","icon":"🇹🇼","type":"impact","labels":{"zh-TW":"台灣匯率與科技股","en":"Taiwan FX & tech stocks","vi-VN":"Tỷ giá và cổ phiếu công nghệ Đài Loan"}}
+      ]
+    },
+    {
+      "id": "china-trade-supply-chain",
+      "priority": 85,
+      "title": {
+        "zh-TW": "中國貿易摩擦 → 供應鏈 → 台灣出口",
+        "en": "China Trade Friction → Supply Chains → Taiwan Exports",
+        "vi-VN": "Căng thẳng thương mại Trung Quốc → Chuỗi cung ứng → Xuất khẩu Đài Loan"
+      },
+      "trigger": {
+        "all_groups": [
+          ["china", "chinese", "中國", "中方"],
+          ["trade", "tariff", "barrier", "export", "貿易", "關稅", "壁壘", "出口"]
+        ],
+        "any_phrases": ["trade barriers with china", "對中國貿易壁壘"]
+      },
+      "nodes": [
+        {"id":"trade-friction","icon":"🚧","type":"event","labels":{"zh-TW":"貿易摩擦升高","en":"Trade friction rises","vi-VN":"Căng thẳng thương mại gia tăng"}},
+        {"id":"supply-chain","icon":"🔗","type":"industry","labels":{"zh-TW":"供應鏈重新配置","en":"Supply-chain reallocation","vi-VN":"Tái bố trí chuỗi cung ứng"}},
+        {"id":"costs","icon":"🏭","type":"industry","labels":{"zh-TW":"製造與採購成本","en":"Manufacturing & sourcing costs","vi-VN":"Chi phí sản xuất và thu mua"}},
+        {"id":"trade-flow","icon":"🚢","type":"macro","labels":{"zh-TW":"亞洲貿易流向","en":"Asian trade flows","vi-VN":"Dòng chảy thương mại châu Á"}},
+        {"id":"taiwan-export","icon":"🇹🇼","type":"impact","labels":{"zh-TW":"台灣出口與供應鏈","en":"Taiwan exports & supply chains","vi-VN":"Xuất khẩu và chuỗi cung ứng Đài Loan"}}
+      ]
+    },
+    {
+      "id": "fed-rates-markets",
+      "priority": 80,
+      "title": {
+        "zh-TW": "Fed 政策 → 利率 → 全球估值",
+        "en": "Fed Policy → Rates → Global Valuations",
+        "vi-VN": "Chính sách Fed → Lãi suất → Định giá toàn cầu"
+      },
+      "trigger": {
+        "all_groups": [
+          ["federal reserve", "fed", "fomc", "聯準會", "美國央行"],
+          ["rate", "inflation", "yield", "hike", "cut", "利率", "通膨", "殖利率", "升息", "降息"]
+        ],
+        "any_phrases": ["federal reserve", "聯準會"]
+      },
+      "nodes": [
+        {"id":"fed-policy","icon":"🏦","type":"event","labels":{"zh-TW":"Fed 政策預期","en":"Fed policy expectations","vi-VN":"Kỳ vọng chính sách Fed"}},
+        {"id":"rates","icon":"📊","type":"macro","labels":{"zh-TW":"美元利率與殖利率","en":"Dollar rates & yields","vi-VN":"Lãi suất và lợi suất USD"}},
+        {"id":"valuation","icon":"💹","type":"market","labels":{"zh-TW":"全球資產估值","en":"Global asset valuations","vi-VN":"Định giá tài sản toàn cầu"}},
+        {"id":"capital","icon":"💵","type":"market","labels":{"zh-TW":"跨境資金流","en":"Cross-border capital flows","vi-VN":"Dòng vốn xuyên biên giới"}},
+        {"id":"taiwan-tech","icon":"🇹🇼","type":"impact","labels":{"zh-TW":"台灣科技股與匯率","en":"Taiwan tech stocks & FX","vi-VN":"Cổ phiếu công nghệ và tỷ giá Đài Loan"}}
+      ]
+    },
+    {
+      "id": "ai-macro-valuation",
+      "priority": 70,
+      "title": {
+        "zh-TW": "AI 變革 → 生產力 → 政策與估值",
+        "en": "AI Shift → Productivity → Policy & Valuation",
+        "vi-VN": "Chuyển dịch AI → Năng suất → Chính sách & Định giá"
+      },
+      "trigger": {
+        "all_groups": [
+          ["artificial intelligence", "ai future", "ai risk", " AI ", "人工智慧", "AI"],
+          ["central bank", "policy", "productivity", "labor", "economy", "央行", "政策", "生產力", "勞動", "經濟"]
+        ],
+        "any_phrases": ["dystopian ai", "ai productivity"]
+      },
+      "nodes": [
+        {"id":"ai-shift","icon":"🧠","type":"event","labels":{"zh-TW":"AI 結構性變革","en":"Structural AI shift","vi-VN":"Chuyển dịch cấu trúc do AI"}},
+        {"id":"productivity-labor","icon":"⚙️","type":"macro","labels":{"zh-TW":"生產力與勞動市場","en":"Productivity & labor markets","vi-VN":"Năng suất và thị trường lao động"}},
+        {"id":"policy","icon":"🏛️","type":"macro","labels":{"zh-TW":"政策與利率假設","en":"Policy & rate assumptions","vi-VN":"Giả định chính sách và lãi suất"}},
+        {"id":"capex","icon":"💻","type":"industry","labels":{"zh-TW":"AI 資本支出與估值","en":"AI capex & valuations","vi-VN":"Capex AI và định giá"}},
+        {"id":"taiwan-ai","icon":"🇹🇼","type":"impact","labels":{"zh-TW":"台灣 AI 與半導體鏈","en":"Taiwan AI & semiconductor chain","vi-VN":"Chuỗi AI và bán dẫn Đài Loan"}}
+      ]
+    }
+  ]
+}
