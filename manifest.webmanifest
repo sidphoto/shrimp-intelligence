@@ -1,10 +1,10 @@
 {
-  "name":"Shrimp Intelligence 全球情報雷達",
-  "short_name":"Shrimp Radar",
-  "start_url":"./#/today",
-  "display":"standalone",
-  "background_color":"#fbfaf6",
-  "theme_color":"#fbfaf6",
-  "description":"每日全球重要訊號、事件影響鏈與台灣關聯。",
-  "icons":[]
+  "name": "SharBo Globo｜蝦報全球",
+  "short_name": "SharBo Globo",
+  "start_url": "./#/today",
+  "display": "standalone",
+  "background_color": "#fbfaf6",
+  "theme_color": "#fbfaf6",
+  "description": "全球重要訊號、事件影響鏈、市場快覽與台灣關聯。",
+  "icons": []
 }
