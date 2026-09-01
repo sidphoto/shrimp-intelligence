@@ -1,0 +1,11 @@
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.locale-control{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:0 9px;min-height:38px;box-shadow:0 4px 14px rgba(50,80,110,.03)}
+.locale-control select{appearance:none;border:0;background:transparent;outline:none;padding:8px 18px 8px 2px;max-width:140px;font-size:12px;font-weight:750;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 9px) 50%,calc(100% - 5px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+.locale-fallback{max-width:260px;padding:5px 8px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);font-size:9px;line-height:1.2}
+.flat{color:var(--muted)}
+html[lang="en"] .nav button,html[lang="vi-VN"] .nav button{line-height:1.25}
+html[lang="vi-VN"] body{line-height:1.45}
+.mobile-nav button{min-width:0;overflow-wrap:anywhere;line-height:1.15}
+@media(max-width:1100px){.top-meta{min-width:0}.locale-fallback{display:none}}
+@media(max-width:900px){.top-actions{gap:5px}.locale-control{padding:0 7px}.locale-control select{max-width:110px}.top-meta .date{white-space:nowrap}}
+@media(max-width:540px){.locale-control select{max-width:92px;font-size:11px}.topbar{gap:8px}.top-meta{gap:7px}.top-actions{margin-left:auto}.mobile-nav button{font-size:8px;padding:7px 2px}}

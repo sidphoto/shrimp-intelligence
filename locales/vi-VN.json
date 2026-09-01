@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "title": "SharBo Globo | Radar thông tin toàn cầu",
+    "description": "SharBo Globo tổng hợp các tín hiệu toàn cầu quan trọng, chuỗi tác động, bối cảnh thị trường và mức độ liên quan đến Đài Loan mỗi ngày."
+  },
+  "brand": {
+    "name": "SharBo Globo",
+    "subtitle": "Radar thông tin toàn cầu"
+  },
+  "language": {
+    "label": "Ngôn ngữ",
+    "zh-TW": "繁體中文",
+    "en": "English",
+    "vi-VN": "Tiếng Việt"
+  },
+  "nav": {
+    "today": "Tổng quan hôm nay",
+    "radar": "Radar toàn cầu",
+    "emerging": "Tín hiệu mới nổi",
+    "business": "Chuyển đổi kinh doanh",
+    "myRadar": "Radar của tôi",
+    "archive": "Lưu trữ"
+  },
+  "common": {
+    "viewAll": "Xem tất cả →",
+    "signals": "tín hiệu",
+    "yes": "Có",
+    "no": "Không",
+    "unavailable": "—",
+    "backRadar": "← Quay lại Radar toàn cầu",
+    "bookmark": "Lưu",
+    "loadingErrorTitle": "Không thể tải dữ liệu",
+    "loadingErrorHelp": "Hãy mở trang bằng HTTP server hoặc GitHub Pages, không mở trực tiếp index.html bằng file://.",
+    "sourceFallback": "Đang hiển thị nội dung gốc bằng tiếng Hoa phồn thể"
+  },
+  "quick": {
+    "title": "Bộ lọc nhanh"
+  },
+  "window": {
+    "title": "Khung dữ liệu (Asia/Taipei)",
+    "verified": "Đã xác minh: {value}",
+    "dataWindow": "Khung dữ liệu: {start} → {end}",
+    "cutoff": "Mốc chốt dữ liệu: 06:00 (giờ Đài Bắc)"
+  },
+  "footer": {
+    "disclaimer": "SharBo Globo · Thông tin chỉ hỗ trợ đánh giá và không thay thế thông báo chính thức hay tư vấn tài chính, pháp lý chuyên nghiệp."
+  },
+  "hero": {
+    "eyeline": "Thế giới trong một câu",
+    "title": "Radar thông tin toàn cầu",
+    "mapAria": "Minh họa radar thông tin toàn cầu theo phong cách màu nước nhẹ"
+  },
+  "severity": {
+    "critical": "Quan trọng nhất",
+    "important": "Quan trọng",
+    "emerging": "Mới nổi"
+  },
+  "emerging": {
+    "title": "Tín hiệu mới nổi",
+    "subtitle": "Tăng tốc bất thường trong 7 ngày qua",
+    "description": "Phát hiện các chủ đề tăng nhiệt trong nhiều ngày mà không nhầm một bài viết nổi tiếng đơn lẻ thành xu hướng."
+  },
+  "impact": {
+    "title": "Chuỗi tác động",
+    "subtitle": "Cách một sự kiện lan truyền ảnh hưởng",
+    "chain": "Chuỗi tác động"
+  },
+  "top5": {
+    "title": "Top 5 tín hiệu toàn cầu"
+  },
+  "topics": {
+    "title": "Khám phá chủ đề",
+    "count": "{count} tín hiệu →",
+    "World News": "Tin thế giới",
+    "Geopolitics": "Địa chính trị",
+    "Economy & Markets": "Kinh tế & Thị trường",
+    "AI Models": "Mô hình AI",
+    "Dev & Open Source": "Phát triển & Mã nguồn mở",
+    "Tech & Semiconductor": "Công nghệ & Chất bán dẫn",
+    "Supply Chain": "Chuỗi cung ứng",
+    "Research & Science": "Nghiên cứu & Khoa học",
+    "Business Transformation": "Chuyển đổi kinh doanh",
+    "Taiwan": "Đài Loan"
+  },
+  "focus": {
+    "title": "Sự kiện trọng tâm hôm nay",
+    "readFull": "Đọc phân tích đầy đủ →",
+    "windowVerified": "Đã xác minh khung dữ liệu"
+  },
+  "market": {
+    "title": "Tổng quan thị trường",
+    "subtitle": "Mức đóng cửa / chỉ báo gần nhất có thể xác minh",
+    "asOf": "Cập nhật lúc {time}",
+    "vsPrevious": "so với kỳ trước",
+    "vsOpen": "so với giá mở cửa",
+    "S&P 500": "S&P 500",
+    "NASDAQ": "NASDAQ",
+    "USD / TWD": "USD / TWD",
+    "Brent Oil": "Dầu Brent",
+    "Gold": "Vàng",
+    "US 30Y": "Lợi suất TPCP Mỹ 30 năm"
+  },
+  "taiwan": {
+    "title": "Radar Đài Loan",
+    "subtitle": "Lan truyền rủi ro từ bên ngoài"
+  },
+  "radar": {
+    "title": "Radar toàn cầu",
+    "description": "Thu hẹp phạm vi theo chủ đề, khu vực, mức độ quan trọng và từ khóa.",
+    "searchPlaceholder": "Tìm OpenAI, Fed, Đài Loan, Hormuz…",
+    "allTopics": "Tất cả chủ đề",
+    "allRegions": "Tất cả khu vực",
+    "allSeverity": "Mọi mức độ quan trọng",
+    "empty": "Không có tín hiệu phù hợp với bộ lọc."
+  },
+  "business": {
+    "title": "Chuyển đổi kinh doanh",
+    "description": "Chuyển tin tức thành vấn đề → thay đổi → kết quả → bài học quản trị có thể áp dụng.",
+    "problem": "Vấn đề",
+    "change": "Thay đổi",
+    "result": "Kết quả",
+    "lesson": "Bài học"
+  },
+  "myRadar": {
+    "title": "Radar của tôi",
+    "description": "Thiết lập được lưu trong LocalStorage của trình duyệt và không cần đăng nhập.",
+    "topics": "Chủ đề theo dõi",
+    "regions": "Khu vực theo dõi",
+    "minScore": "Điểm thông tin tối thiểu",
+    "summary": "Tóm tắt của tôi",
+    "empty": "Hiện chưa có tín hiệu phù hợp với thiết lập radar của bạn."
+  },
+  "archive": {
+    "title": "Lưu trữ",
+    "description": "Mỗi khung dữ liệu hằng ngày được đóng cố định để có thể xem lại những gì đã biết tại thời điểm đó, thay vì bổ sung thông tin về sau."
+  },
+  "detail": {
+    "whatHappened": "Điều gì đã xảy ra",
+    "whyNow": "Vì sao là lúc này",
+    "whyImportant": "Vì sao điều này quan trọng",
+    "winnersLosers": "Ai hưởng lợi / ai chịu thiệt",
+    "taiwanImpact": "Tác động đối với Đài Loan",
+    "whatNext": "Cần theo dõi gì tiếp theo"
+  },
+  "source": {
+    "title": "Nguồn & Xác minh",
+    "published": "Thời gian công bố",
+    "timeUncertain": "Chưa xác định thời gian",
+    "PRIMARY": "Nguồn sơ cấp",
+    "CONFIRMED": "Đã xác nhận",
+    "ANALYSIS": "Phân tích",
+    "COMMUNITY": "Khám phá từ cộng đồng",
+    "UNVERIFIED": "Chưa xác minh"
+  },
+  "quality": {
+    "title": "Chất lượng dữ liệu",
+    "windowVerified": "Xác minh khung dữ liệu",
+    "sourceClass": "Cấp nguồn"
+  },
+  "category": {
+    "world": "Thế giới",
+    "global": "Toàn cầu",
+    "politics": "Chính trị",
+    "policy": "Chính sách",
+    "geopolitics": "Địa chính trị",
+    "defense": "Quốc phòng",
+    "security": "An ninh",
+    "military": "Quân sự",
+    "economy": "Kinh tế",
+    "markets": "Thị trường",
+    "finance": "Tài chính",
+    "trade": "Thương mại",
+    "ai": "AI",
+    "ai-model": "Mô hình AI",
+    "models": "Mô hình",
+    "agent": "Agent",
+    "developer": "Phát triển",
+    "github": "GitHub",
+    "open-source": "Mã nguồn mở",
+    "technology": "Công nghệ",
+    "semiconductor": "Chất bán dẫn",
+    "ai-infrastructure": "Hạ tầng AI",
+    "industry": "Công nghiệp",
+    "supply-chain": "Chuỗi cung ứng",
+    "logistics": "Logistics",
+    "science": "Khoa học",
+    "research": "Nghiên cứu",
+    "business": "Kinh doanh",
+    "automation": "Tự động hóa",
+    "productivity": "Năng suất",
+    "taiwan": "Đài Loan"
+  },
+  "region": {
+    "global": "Toàn cầu",
+    "taiwan": "Đài Loan",
+    "us": "Hoa Kỳ",
+    "usa": "Hoa Kỳ",
+    "china": "Trung Quốc",
+    "japan": "Nhật Bản",
+    "europe": "Châu Âu",
+    "eu": "Liên minh Châu Âu",
+    "asia": "Châu Á",
+    "middle-east": "Trung Đông",
+    "vietnam": "Việt Nam"
+  }
+}

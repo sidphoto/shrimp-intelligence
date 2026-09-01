@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "title": "SharBo Globo | Global Intelligence Radar",
+    "description": "SharBo Globo tracks the most important global signals, impact chains, market context, and Taiwan relevance each day."
+  },
+  "brand": {
+    "name": "SharBo Globo",
+    "subtitle": "Global Intelligence Radar"
+  },
+  "language": {
+    "label": "Language",
+    "zh-TW": "繁體中文",
+    "en": "English",
+    "vi-VN": "Tiếng Việt"
+  },
+  "nav": {
+    "today": "Today",
+    "radar": "Global Radar",
+    "emerging": "Emerging Signals",
+    "business": "Business Transformation",
+    "myRadar": "My Radar",
+    "archive": "Archive"
+  },
+  "common": {
+    "viewAll": "View all →",
+    "signals": "signals",
+    "yes": "Yes",
+    "no": "No",
+    "unavailable": "—",
+    "backRadar": "← Back to Global Radar",
+    "bookmark": "Bookmark",
+    "loadingErrorTitle": "Unable to load data",
+    "loadingErrorHelp": "Open this site through an HTTP server or GitHub Pages instead of opening index.html directly with file://.",
+    "sourceFallback": "Showing canonical Traditional Chinese content"
+  },
+  "quick": {
+    "title": "Quick filters"
+  },
+  "window": {
+    "title": "Data window (Asia/Taipei)",
+    "verified": "Verified: {value}",
+    "dataWindow": "Data window: {start} → {end}",
+    "cutoff": "Data cutoff: 06:00 Asia/Taipei"
+  },
+  "footer": {
+    "disclaimer": "SharBo Globo · Intelligence is decision support and does not replace official notices or professional financial or legal advice."
+  },
+  "hero": {
+    "eyeline": "World in one line",
+    "title": "Global Intelligence Radar",
+    "mapAria": "Soft watercolor-style global intelligence illustration"
+  },
+  "severity": {
+    "critical": "Critical",
+    "important": "Important",
+    "emerging": "Emerging"
+  },
+  "emerging": {
+    "title": "Emerging Signals",
+    "subtitle": "Unusual acceleration over the past 7 days",
+    "description": "Detects topics gaining momentum across multiple days without mistaking one viral article for a trend."
+  },
+  "impact": {
+    "title": "Impact Chain",
+    "subtitle": "How one event propagates",
+    "chain": "Impact chain"
+  },
+  "top5": {
+    "title": "Global Top 5 Signals"
+  },
+  "topics": {
+    "title": "Explore Topics",
+    "count": "{count} signals →",
+    "World News": "World News",
+    "Geopolitics": "Geopolitics",
+    "Economy & Markets": "Economy & Markets",
+    "AI Models": "AI Models",
+    "Dev & Open Source": "Dev & Open Source",
+    "Tech & Semiconductor": "Tech & Semiconductor",
+    "Supply Chain": "Supply Chain",
+    "Research & Science": "Research & Science",
+    "Business Transformation": "Business Transformation",
+    "Taiwan": "Taiwan"
+  },
+  "focus": {
+    "title": "Top Story Today",
+    "readFull": "Read full analysis →",
+    "windowVerified": "Window verified"
+  },
+  "market": {
+    "title": "Market Snapshot",
+    "subtitle": "Latest verifiable close / indicator",
+    "asOf": "As of {time}",
+    "vsPrevious": "vs previous",
+    "vsOpen": "vs open",
+    "S&P 500": "S&P 500",
+    "NASDAQ": "NASDAQ",
+    "USD / TWD": "USD / TWD",
+    "Brent Oil": "Brent Oil",
+    "Gold": "Gold",
+    "US 30Y": "US 30Y Treasury Yield"
+  },
+  "taiwan": {
+    "title": "Taiwan Radar",
+    "subtitle": "External risk transmission"
+  },
+  "radar": {
+    "title": "Global Radar",
+    "description": "Narrow the world by topic, region, importance, and keyword.",
+    "searchPlaceholder": "Search OpenAI, Fed, Taiwan, Hormuz…",
+    "allTopics": "All topics",
+    "allRegions": "All regions",
+    "allSeverity": "All importance levels",
+    "empty": "No signals match these filters."
+  },
+  "business": {
+    "title": "Business Transformation",
+    "description": "Turns news into problem → change → result → transferable management lesson.",
+    "problem": "Problem",
+    "change": "Change",
+    "result": "Result",
+    "lesson": "Lesson"
+  },
+  "myRadar": {
+    "title": "My Radar",
+    "description": "Preferences are stored in this browser with LocalStorage; no account is required.",
+    "topics": "Topics to watch",
+    "regions": "Regions to watch",
+    "minScore": "Minimum intelligence score",
+    "summary": "My Brief",
+    "empty": "No current signals match your radar settings."
+  },
+  "archive": {
+    "title": "Archive",
+    "description": "Each daily window is frozen so you can revisit what was knowable at the time instead of backfilling later information."
+  },
+  "detail": {
+    "whatHappened": "What happened",
+    "whyNow": "Why now",
+    "whyImportant": "Why it matters",
+    "winnersLosers": "Who wins / loses",
+    "taiwanImpact": "Why it matters for Taiwan",
+    "whatNext": "What to watch next"
+  },
+  "source": {
+    "title": "Sources & Verification",
+    "published": "Published",
+    "timeUncertain": "Time uncertain",
+    "PRIMARY": "Primary source",
+    "CONFIRMED": "Confirmed",
+    "ANALYSIS": "Analysis",
+    "COMMUNITY": "Community discovery",
+    "UNVERIFIED": "Unverified"
+  },
+  "quality": {
+    "title": "Data Quality",
+    "windowVerified": "Window verified",
+    "sourceClass": "Source class"
+  },
+  "category": {
+    "world": "World",
+    "global": "Global",
+    "politics": "Politics",
+    "policy": "Policy",
+    "geopolitics": "Geopolitics",
+    "defense": "Defense",
+    "security": "Security",
+    "military": "Military",
+    "economy": "Economy",
+    "markets": "Markets",
+    "finance": "Finance",
+    "trade": "Trade",
+    "ai": "AI",
+    "ai-model": "AI Model",
+    "models": "Models",
+    "agent": "Agent",
+    "developer": "Developer",
+    "github": "GitHub",
+    "open-source": "Open Source",
+    "technology": "Technology",
+    "semiconductor": "Semiconductor",
+    "ai-infrastructure": "AI Infrastructure",
+    "industry": "Industry",
+    "supply-chain": "Supply Chain",
+    "logistics": "Logistics",
+    "science": "Science",
+    "research": "Research",
+    "business": "Business",
+    "automation": "Automation",
+    "productivity": "Productivity",
+    "taiwan": "Taiwan"
+  },
+  "region": {
+    "global": "Global",
+    "taiwan": "Taiwan",
+    "us": "United States",
+    "usa": "United States",
+    "china": "China",
+    "japan": "Japan",
+    "europe": "Europe",
+    "eu": "European Union",
+    "asia": "Asia",
+    "middle-east": "Middle East",
+    "vietnam": "Vietnam"
+  }
+}
