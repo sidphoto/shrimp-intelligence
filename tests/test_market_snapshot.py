@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from enrich_report import enrich_report  # noqa: E402
+from enrich_report import _load_live_market, enrich_report  # noqa: E402
 from market_snapshot import (  # noqa: E402
     build_snapshot,
     load_market_for_report,
@@ -72,6 +72,28 @@ class MarketSnapshotTests(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual(load_market_for_report(date(2026, 9, 1), cutoff, path), [])
+
+    def test_live_market_is_same_day_only_and_keeps_own_timestamp(self):
+        market = [{"name": "Gold", "value": "2,500.00", "change": "+0.20%", "direction": "up"}]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "market-live.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "report_date": "2026-09-01",
+                        "captured_at": "2026-09-01T10:30:00+08:00",
+                        "timezone": "Asia/Taipei",
+                        "market": market,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            loaded, meta = _load_live_market(date(2026, 9, 1), path)
+            self.assertEqual(loaded, market)
+            self.assertEqual(meta["mode"], "live")
+            self.assertEqual(meta["captured_at"], "2026-09-01T10:30:00+08:00")
+            other, _ = _load_live_market(date(2026, 9, 2), path)
+            self.assertEqual(other, [])
 
     def test_reader_summary_hides_engine_implementation(self):
         report = {
