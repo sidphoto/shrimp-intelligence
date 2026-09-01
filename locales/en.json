@@ -34,7 +34,10 @@
     "sourceFallback": "Showing canonical Traditional Chinese content"
   },
   "quick": {
-    "title": "Quick filters"
+    "title": "Quick filters",
+    "all": "All",
+    "showing": "Showing {shown} / {total} signals",
+    "empty": "No signals match the current quick filters."
   },
   "window": {
     "title": "Data window (Asia/Taipei)",
@@ -111,6 +114,7 @@
     "allTopics": "All topics",
     "allRegions": "All regions",
     "allSeverity": "All importance levels",
+    "customSeverity": "Custom importance levels",
     "empty": "No signals match these filters."
   },
   "business": {
