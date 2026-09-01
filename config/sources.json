@@ -1,6 +1,14 @@
 {
-  "version": 1,
+  "version": 2,
   "timezone": "Asia/Taipei",
+  "tavily": {
+    "discovery_depth": "basic",
+    "verification_depth": "basic",
+    "discovery_max_results": 12,
+    "verification_max_results": 8,
+    "min_relevance_score": 0.2,
+    "notes": "Tavily is the retrieval layer only. Relevance scores are not credibility scores; SharBo source classification and cutoff validation remain authoritative."
+  },
   "blocked_domains": [
     "reddit.com",
     "x.com",
