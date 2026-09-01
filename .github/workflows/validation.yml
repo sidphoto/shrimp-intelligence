@@ -39,6 +39,8 @@ jobs:
         run: node tests/test_topics.mjs
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
+      - name: Smoke-build emerging signals and impact chains
+        run: python scripts/apply_intelligence_extensions.py
       - name: Validate multilingual contract
         run: python scripts/validate_i18n.py
       - name: Validate latest report contract
