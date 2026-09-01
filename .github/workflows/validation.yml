@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   validate:
-    name: Contract and cutoff validation
+    name: Contract, cutoff and i18n validation
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -22,8 +22,14 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Compile Python
         run: python -m compileall -q scripts tests
+      - name: Check frontend JavaScript syntax
+        run: |
+          node --check app.js
+          node --check i18n.js
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
+      - name: Validate multilingual contract
+        run: python scripts/validate_i18n.py
       - name: Validate latest report contract
         run: python scripts/validate_report.py data/latest.json
       - name: Validate JSON syntax
@@ -31,7 +37,16 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          for path in [Path('config/sources.json'), Path('config/editorial_profile.json'), Path('data/index.json'), Path('data/latest.json')]:
+          paths = [
+              Path('config/sources.json'),
+              Path('config/editorial_profile.json'),
+              Path('data/index.json'),
+              Path('data/latest.json'),
+              Path('locales/zh-TW.json'),
+              Path('locales/en.json'),
+              Path('locales/vi-VN.json'),
+          ]
+          for path in paths:
               json.loads(path.read_text(encoding='utf-8'))
               print(f'OK JSON: {path}')
           PY
