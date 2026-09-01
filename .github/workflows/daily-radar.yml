@@ -89,8 +89,16 @@ jobs:
       - name: Compile Python
         run: python -m compileall -q scripts tests
 
+      - name: Check frontend JavaScript syntax
+        run: |
+          node --check app.js
+          node --check i18n.js
+
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
+
+      - name: Validate multilingual contract
+        run: python scripts/validate_i18n.py
 
       - name: Refresh independent live market snapshot
         run: python scripts/market_live.py
@@ -118,7 +126,9 @@ jobs:
         run: python scripts/enrich_report.py
 
       - name: Validate deploy artifact
-        run: python scripts/validate_report.py data/latest.json
+        run: |
+          python scripts/validate_i18n.py
+          python scripts/validate_report.py data/latest.json
 
       - name: Commit successful report data
         if: steps.generate_report.outcome == 'success'
