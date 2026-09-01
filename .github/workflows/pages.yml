@@ -1,17 +1,38 @@
-name: Deploy static site to Pages
+name: Deploy SharBo Globo to Pages
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: true
+
 jobs:
+  validate:
+    name: Validation gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m compileall -q scripts tests
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/validate_report.py data/latest.json
+
   deploy:
+    name: Deploy
+    needs: validate
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -1,4 +1,4 @@
-name: Generate daily global intelligence radar
+name: SharBo Globo — Generate daily global intelligence radar
 
 on:
   schedule:
@@ -37,60 +37,49 @@ jobs:
       REPORT_DATE: ${{ inputs.report_date }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
+      - run: pip install -r requirements.txt
+      - name: Compile Python
+        run: python -m compileall -q scripts tests
+      - name: Run cutoff regression tests
+        run: python -m unittest discover -s tests -v
       - name: Generate intelligence report
         run: python scripts/build_report.py
-
       - name: Validate generated report
         if: ${{ env.OPENAI_API_KEY != '' }}
         run: python scripts/validate_report.py data/latest.json
-
       - name: Commit report data
         run: |
-          git config user.name "Shrimp Intelligence Bot"
+          git config user.name "SharBo Globo Bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/
           if git diff --cached --quiet; then
             echo "No report changes to commit. Existing latest.json remains in place."
             exit 0
           fi
-          git commit -m "data: daily global radar $(date +%F)"
+          git commit -m "data: daily SharBo Globo radar $(date +%F)"
           git push origin main
-
-
-      # Commits made with GITHUB_TOKEN do not normally trigger another push workflow.
-      # Deploy from this same run so the site is refreshed immediately.
       - name: Configure GitHub Pages
         if: ${{ env.OPENAI_API_KEY != '' }}
         uses: actions/configure-pages@v5
-
       - name: Upload Pages artifact
         if: ${{ env.OPENAI_API_KEY != '' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-
       - name: Deploy updated site
         if: ${{ env.OPENAI_API_KEY != '' }}
         id: deployment
         uses: actions/deploy-pages@v4
-
       - name: Job summary
         run: |
-          echo "## Shrimp Intelligence daily run" >> "$GITHUB_STEP_SUMMARY"
+          echo "## SharBo Globo daily run" >> "$GITHUB_STEP_SUMMARY"
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "OPENAI_API_KEY is not configured, so the run safely skipped generation and preserved the previous report." >> "$GITHUB_STEP_SUMMARY"
+            echo "OPENAI_API_KEY is not configured, so generation was skipped and the previous report was preserved." >> "$GITHUB_STEP_SUMMARY"
           else
             python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
@@ -100,6 +89,7 @@ jobs:
               r=json.loads(p.read_text())
               print(f"- Report date: **{r.get('date')}**")
               print(f"- Signals: **{len(r.get('signals', []))}**")
+              print(f"- Top 5: **{len(r.get('top5_ids', []))}**")
               print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")
               print(f"- Window: `{r.get('window', {}).get('start')}` → `{r.get('window', {}).get('end')}` Asia/Taipei")
           PY

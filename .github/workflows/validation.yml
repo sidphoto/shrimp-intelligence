@@ -1,0 +1,37 @@
+name: SharBo Globo Validation Gate
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Contract and cutoff validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compile Python
+        run: python -m compileall -q scripts tests
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate latest report contract
+        run: python scripts/validate_report.py data/latest.json
+      - name: Validate JSON syntax
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in [Path('config/sources.json'), Path('config/editorial_profile.json'), Path('data/index.json'), Path('data/latest.json')]:
+              json.loads(path.read_text(encoding='utf-8'))
+              print(f'OK JSON: {path}')
+          PY
