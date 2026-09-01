@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "title": "SharBo Globo｜蝦報全球",
+    "description": "SharBo Globo 蝦報全球：每日全球重要訊號、事件影響鏈、市場快覽與台灣關聯。"
+  },
+  "brand": {
+    "name": "SharBo Globo",
+    "subtitle": "蝦報全球 · 全球情報雷達"
+  },
+  "language": {
+    "label": "語言",
+    "zh-TW": "繁體中文",
+    "en": "English",
+    "vi-VN": "Tiếng Việt"
+  },
+  "nav": {
+    "today": "今日總覽",
+    "radar": "全球雷達",
+    "emerging": "新興訊號",
+    "business": "商業變革",
+    "myRadar": "我的雷達",
+    "archive": "歷史存檔"
+  },
+  "common": {
+    "viewAll": "查看全部 →",
+    "signals": "項訊號",
+    "yes": "是",
+    "no": "否",
+    "unavailable": "—",
+    "backRadar": "← 回全球雷達",
+    "bookmark": "收藏",
+    "loadingErrorTitle": "資料載入失敗",
+    "loadingErrorHelp": "請使用 HTTP server 或 GitHub Pages 開啟，不要直接以 file:// 雙擊 index.html。",
+    "sourceFallback": "目前使用繁體中文原始內容"
+  },
+  "quick": {
+    "title": "快速篩選"
+  },
+  "window": {
+    "title": "資料視窗（Asia/Taipei）",
+    "verified": "已驗證：{value}",
+    "dataWindow": "資料視窗：{start} → {end}",
+    "cutoff": "資料截止：06:00（台北時間）"
+  },
+  "footer": {
+    "disclaimer": "SharBo Globo · 情報為輔助判讀，不取代官方公告、專業財務或法律意見。"
+  },
+  "hero": {
+    "eyeline": "一句話世界總結",
+    "title": "全球情報雷達",
+    "mapAria": "柔和水彩風全球情報示意圖"
+  },
+  "severity": {
+    "critical": "關鍵",
+    "important": "重要",
+    "emerging": "新興"
+  },
+  "emerging": {
+    "title": "新興訊號",
+    "subtitle": "過去 7 日異常升溫",
+    "description": "偵測最近數日明顯升溫的議題，不把單篇熱門文章誤判成趨勢。"
+  },
+  "impact": {
+    "title": "影響鏈",
+    "subtitle": "事件連鎖影響",
+    "chain": "影響鏈"
+  },
+  "top5": {
+    "title": "全球 Top 5 Signals"
+  },
+  "topics": {
+    "title": "探索主題",
+    "count": "{count} 項訊號 →",
+    "World News": "全球要聞",
+    "Geopolitics": "地緣政治",
+    "Economy & Markets": "經濟與市場",
+    "AI Models": "AI 模型",
+    "Dev & Open Source": "開發與開源",
+    "Tech & Semiconductor": "科技與半導體",
+    "Supply Chain": "產業與供應鏈",
+    "Research & Science": "研究與科學",
+    "Business Transformation": "商業變革",
+    "Taiwan": "台灣"
+  },
+  "focus": {
+    "title": "今日重點事件",
+    "readFull": "閱讀完整分析 →",
+    "windowVerified": "資料窗已驗證"
+  },
+  "market": {
+    "title": "市場快覽",
+    "subtitle": "最近可驗證收盤 / 指標",
+    "asOf": "市場快照：{time}",
+    "vsPrevious": "較前值",
+    "vsOpen": "較開盤",
+    "S&P 500": "S&P 500",
+    "NASDAQ": "NASDAQ",
+    "USD / TWD": "美元 / 新台幣",
+    "Brent Oil": "布蘭特原油",
+    "Gold": "黃金",
+    "US 30Y": "美國 30 年期公債殖利率"
+  },
+  "taiwan": {
+    "title": "台灣雷達",
+    "subtitle": "外部風險傳導"
+  },
+  "radar": {
+    "title": "全球雷達",
+    "description": "用主題、地區、重要程度與關鍵字縮小世界。",
+    "searchPlaceholder": "搜尋 OpenAI、Fed、台灣、Hormuz…",
+    "allTopics": "全部主題",
+    "allRegions": "全部地區",
+    "allSeverity": "全部重要度",
+    "empty": "沒有符合條件的訊號。"
+  },
+  "business": {
+    "title": "Business Transformation",
+    "description": "把新聞抽象成「問題 → 改造 → 結果 → 可轉用的管理原則」。",
+    "problem": "問題",
+    "change": "改造",
+    "result": "結果",
+    "lesson": "管理原則"
+  },
+  "myRadar": {
+    "title": "我的雷達",
+    "description": "設定存在你的瀏覽器 LocalStorage，不登入也能保留。",
+    "topics": "關注主題",
+    "regions": "關注地區",
+    "minScore": "最低情報分數",
+    "summary": "我的摘要",
+    "empty": "目前沒有符合你的雷達設定。"
+  },
+  "archive": {
+    "title": "歷史存檔",
+    "description": "每日資料窗固定封存，方便回查當時可觀察到的世界，而不是用事後資訊回填。"
+  },
+  "detail": {
+    "whatHappened": "發生什麼事",
+    "whyNow": "為什麼是現在",
+    "whyImportant": "為什麼重要",
+    "winnersLosers": "誰受益 / 誰受損",
+    "taiwanImpact": "對台灣的影響",
+    "whatNext": "接下來看什麼"
+  },
+  "source": {
+    "title": "來源與驗證",
+    "published": "發布時間",
+    "timeUncertain": "時間未確認",
+    "PRIMARY": "第一手來源",
+    "CONFIRMED": "已確認",
+    "ANALYSIS": "分析",
+    "COMMUNITY": "社群探索",
+    "UNVERIFIED": "未驗證"
+  },
+  "quality": {
+    "title": "資料品質",
+    "windowVerified": "資料窗驗證",
+    "sourceClass": "來源等級"
+  },
+  "category": {
+    "world": "全球",
+    "global": "全球",
+    "politics": "政治",
+    "policy": "政策",
+    "geopolitics": "地緣政治",
+    "defense": "國防",
+    "security": "安全",
+    "military": "軍事",
+    "economy": "經濟",
+    "markets": "市場",
+    "finance": "金融",
+    "trade": "貿易",
+    "ai": "AI",
+    "ai-model": "AI 模型",
+    "models": "模型",
+    "agent": "Agent",
+    "developer": "開發者",
+    "github": "GitHub",
+    "open-source": "開源",
+    "technology": "科技",
+    "semiconductor": "半導體",
+    "ai-infrastructure": "AI 基礎設施",
+    "industry": "產業",
+    "supply-chain": "供應鏈",
+    "logistics": "物流",
+    "science": "科學",
+    "research": "研究",
+    "business": "商業",
+    "automation": "自動化",
+    "productivity": "生產力",
+    "taiwan": "台灣"
+  },
+  "region": {
+    "global": "全球",
+    "taiwan": "台灣",
+    "us": "美國",
+    "usa": "美國",
+    "china": "中國",
+    "japan": "日本",
+    "europe": "歐洲",
+    "eu": "歐盟",
+    "asia": "亞洲",
+    "middle-east": "中東",
+    "vietnam": "越南"
+  }
+}
