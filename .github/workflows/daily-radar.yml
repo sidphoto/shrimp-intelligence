@@ -108,15 +108,20 @@ jobs:
           fi
 
       - name: Generate intelligence report
+        id: generate_report
+        continue-on-error: true
         run: python scripts/run_daily_radar.py
 
+      # Even when the report gate blocks, enrich the last-known-good report with
+      # the independently captured live market snapshot for the website artifact.
       - name: Apply reader-facing summary and market snapshot
         run: python scripts/enrich_report.py
 
-      - name: Validate generated report
+      - name: Validate deploy artifact
         run: python scripts/validate_report.py data/latest.json
 
-      - name: Commit report data
+      - name: Commit successful report data
+        if: steps.generate_report.outcome == 'success'
         run: |
           git config user.name "SharBo Globo Bot"
           git config user.email "actions@users.noreply.github.com"
@@ -128,8 +133,8 @@ jobs:
           git commit -m "data: daily SharBo Globo radar $(date +%F)"
           git push origin main
 
-      # Commits made with GITHUB_TOKEN do not normally trigger another push workflow.
-      # Deploy from this same run so the site is refreshed immediately.
+      # Deploy from this same run. This also allows a fresh market snapshot to
+      # reach the dashboard when intelligence generation is blocked by its gate.
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
@@ -147,6 +152,7 @@ jobs:
           echo "## SharBo Globo daily run" >> "$GITHUB_STEP_SUMMARY"
           echo "- Discovery provider: **Tavily**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Intelligence mode: **${INTELLIGENCE_MODE}**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Report generation outcome: **${{ steps.generate_report.outcome }}**" >> "$GITHUB_STEP_SUMMARY"
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           from pathlib import Path
@@ -163,3 +169,9 @@ jobs:
               print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")
               print(f"- Window: `{r.get('window', {}).get('start')}` → `{r.get('window', {}).get('end')}` Asia/Taipei")
           PY
+
+      - name: Preserve report gate failure status
+        if: steps.generate_report.outcome != 'success'
+        run: |
+          echo "Intelligence generation was blocked; last-known-good report was preserved while market snapshot was deployed."
+          exit 1
