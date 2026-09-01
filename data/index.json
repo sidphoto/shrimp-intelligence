@@ -1,24 +1,9 @@
 {
   "reports": [
     {
-      "date": "2026-09-01",
-      "signals": 15,
-      "summary": "今日全球焦點集中於經濟與市場、金融；重大事件均以可驗證來源整理，並持續追蹤後續政策、產業與台灣影響。"
-    },
-    {
-      "date": "2026-08-31",
-      "signals": 8,
-      "summary": "能源、戰爭、債務與 AI 資本成本交錯。"
-    },
-    {
-      "date": "2026-08-30",
-      "signals": 10,
-      "summary": "俄烏後方能力、日圓風險與中國記憶體成為焦點。"
-    },
-    {
-      "date": "2026-08-29",
-      "signals": 11,
-      "summary": "Fed、霍爾木茲與 AI ROI 審查期升溫。"
+      "date": "2026-01-15",
+      "signals": 5,
+      "summary": "Synthetic public demo fixture. No production source metadata is included."
     }
   ]
 }
