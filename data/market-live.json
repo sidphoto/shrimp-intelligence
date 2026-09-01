@@ -1,7 +1,7 @@
 {
   "kind": "live_market_snapshot",
   "report_date": "2026-09-01",
-  "captured_at": "2026-09-01T10:28:31+08:00",
+  "captured_at": "2026-09-01T10:31:26+08:00",
   "timezone": "Asia/Taipei",
   "note": "Independent market snapshot. It does not change the intelligence report 06:00 cutoff.",
   "market": [
@@ -25,10 +25,10 @@
     },
     {
       "name": "USD / TWD",
-      "value": "31.6000",
+      "value": "31.6010",
       "change": "較前值 -0.76%",
       "direction": "down",
-      "as_of": "2026-09-01T10:28:20+08:00",
+      "as_of": "2026-09-01T10:31:25+08:00",
       "source": "Yahoo Finance chart snapshot",
       "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?range=5d&interval=1d&includePrePost=false"
     },
@@ -43,10 +43,10 @@
     },
     {
       "name": "Gold",
-      "value": "4,494.40",
-      "change": "較前值 -2.26%",
+      "value": "4,496.10",
+      "change": "較前值 -2.22%",
       "direction": "down",
-      "as_of": "2026-09-01T10:18:29+08:00",
+      "as_of": "2026-09-01T10:21:25+08:00",
       "source": "Yahoo Finance chart snapshot",
       "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?range=5d&interval=1d&includePrePost=false"
     },
