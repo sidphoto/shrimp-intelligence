@@ -1,44 +1,38 @@
-# SharBo Globo Agent Operating Rules
+# SharBo Globo Public Repository Agent Rules
 
-This repository powers **SharBo Globo｜蝦報全球**, a static-first global intelligence morning brief for a Taiwan-based reader.
+This repository is the **source-available public edition** of SharBo Globo.
 
-## Non-negotiable data contract
+## Public repository boundary
+- Public data must be synthetic demo data only.
+- Never commit production source names, source URLs, article excerpts, source registries, trust weights, verification-domain lists, discovery queries, candidate pools, evidence bundles, production archives, or credentials.
+- Public fixture URLs must use `https://example.invalid/...`.
+- Production source intelligence and production deployment configuration live outside this repository.
+- Do not recreate or infer a private source registry from product output.
+
+## Public data contract
 - Timezone: `Asia/Taipei`.
-- Daily report window: previous calendar day `00:00` through report day `06:00`.
-- Anything first available after `06:00` is look-ahead contamination and must not enter that report.
-- Timestamps used for cutoff decisions must include an explicit timezone offset. Timezone-naive timestamps fail closed.
-- `data/latest.json` must contain 5–20 verified signals.
-- `top5_ids` must contain exactly 5 existing signal IDs.
-- Every Top 5 signal must be `window_verified=true` and have at least one `PRIMARY` or `CONFIRMED` source.
-- Source classes: `PRIMARY`, `CONFIRMED`, `ANALYSIS`, `COMMUNITY`, `UNVERIFIED` only.
-- `COMMUNITY` is discovery-only and cannot independently support a major factual claim.
-- Do not track or include `三商壽 × 玉山金換股價差` unless the owner explicitly removes this exclusion.
-- If generation or validation fails, preserve the last known-good `data/latest.json`.
-
-## Editorial rules
-- Prefer official/primary sources, governments, central banks, company announcements, research papers, then Reuters/AP/AFP and high-quality specialist sources.
-- Keep roughly 10–20 genuinely useful signals; do not pad.
-- Major signals should answer when supported: What happened, Why now, Why important, Who wins/loses, connections, Taiwan impact, What next.
-- Build event chains rather than isolated headlines.
-- Emerging Signal requires evidence of acceleration across recent days or multiple independent sources.
-- Business Transformation: problem → change → measurable outcome → transferable lesson. Never invent metrics.
+- Daily report window model: previous calendar day `00:00` through report day `06:00`.
+- Timezone-naive timestamps fail closed.
+- Demo `data/latest.json` contains 5–20 synthetic signals.
+- `top5_ids` contains exactly 5 existing signal IDs.
+- Every Top 5 signal is `window_verified=true` and has at least one synthetic `PRIMARY` or `CONFIRMED` source.
+- Source classes are `PRIMARY`, `CONFIRMED`, `ANALYSIS`, `COMMUNITY`, `UNVERIFIED`.
 
 ## Engineering boundaries
-- Preserve the existing front-end visual direction unless explicitly asked to change UI.
-- Never weaken cutoff, source-authority, Top 5, or fail-safe validators to make tests pass.
-- Never hardcode API keys, tokens, or credentials.
-- Use repository secrets/variables for runtime credentials and model configuration.
+- Preserve source-authority, cutoff and fail-safe validation semantics.
+- Never weaken validation to make tests pass.
+- Never hardcode API keys, tokens or credentials.
+- Public provider adapters must be generic and must not encode SharBo production source selection or verification strategy.
 
 ## Required validation
 Before reporting a change as complete, run:
+
 ```bash
 python -m unittest discover -s tests -v
+python scripts/validate_public_repo.py
+python scripts/validate_i18n.py
 python scripts/validate_report.py data/latest.json
 ```
 
-## Agent handoff
-`Collector → Intelligence → Sentinel → Publisher`
-- Collector gathers bounded evidence only.
-- Intelligence synthesizes, scores, links impacts, and proposes Top 5.
-- Sentinel performs adversarial validation and may block publication.
-- Publisher publishes only validated output and must not bypass Sentinel/CI gates.
+## Product architecture
+The public repository exposes reusable contracts, UI, deterministic trend/impact logic, localization and validators. Production collection, source intelligence, historical corpus and commercial configuration are proprietary and are not distributed here.

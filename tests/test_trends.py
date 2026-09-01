@@ -16,15 +16,15 @@ def signal(signal_id, title, source_class="CONFIRMED"):
         "title": title,
         "score": 88,
         "source_class": source_class,
-        "source_label": "reuters.com",
+        "source_label": "Example Source",
         "categories": ["geopolitics", "markets"],
         "regions": ["global"],
         "what_happened": title,
         "sources": [
             {
                 "class": source_class,
-                "name": "reuters.com",
-                "url": f"https://www.reuters.com/{signal_id}",
+                "name": "Example Source",
+                "url": f"https://example.invalid/{signal_id}",
             }
         ],
         "emerging_signal": False,
@@ -41,11 +41,11 @@ class TrendEngineTests(unittest.TestCase):
             "max_emerging_signals": 4,
             "entities": [
                 {
-                    "id": "iran-energy-risk",
-                    "icon": "oil",
-                    "labels": {"zh-TW": "伊朗與能源風險", "en": "Iran energy"},
-                    "all_groups": [["iran"], ["oil", "strike"]],
-                    "any_phrases": ["hormuz"],
+                    "id": "alpha-energy-risk",
+                    "icon": "energy",
+                    "labels": {"zh-TW": "示範能源風險", "en": "Demo energy risk"},
+                    "all_groups": [["alpha"], ["energy", "constraint"]],
+                    "any_phrases": ["corridor"],
                 }
             ],
         }
@@ -57,8 +57,8 @@ class TrendEngineTests(unittest.TestCase):
             config = tmp / "trend.json"
             self.config(config)
             report = {
-                "date": "2026-09-01",
-                "signals": [signal("a", "Iran oil risk rises"), signal("b", "Iran strike raises oil concern")],
+                "date": "2026-01-15",
+                "signals": [signal("a", "Alpha energy risk rises"), signal("b", "Alpha constraint raises energy concern")],
             }
             build_emerging_signals(report, data_dir=tmp, config_path=config)
             self.assertEqual(report["emerging_signals"], [])
@@ -71,16 +71,16 @@ class TrendEngineTests(unittest.TestCase):
             config = tmp / "trend.json"
             self.config(config)
             prior = {
-                "date": "2026-08-31",
-                "signals": [signal("prior", "Iran oil risk")],
+                "date": "2026-01-14",
+                "signals": [signal("prior", "Alpha energy risk")],
             }
-            (tmp / "2026-08-31.json").write_text(json.dumps(prior), encoding="utf-8")
+            (tmp / "2026-01-14.json").write_text(json.dumps(prior), encoding="utf-8")
             current = {
-                "date": "2026-09-01",
+                "date": "2026-01-15",
                 "signals": [
-                    signal("a", "Iran oil risk rises"),
-                    signal("b", "Iran strike raises oil concern"),
-                    signal("c", "Hormuz shipping risk grows"),
+                    signal("a", "Alpha energy risk rises"),
+                    signal("b", "Alpha constraint raises energy concern"),
+                    signal("c", "Corridor energy risk grows"),
                 ],
             }
             build_emerging_signals(current, data_dir=tmp, config_path=config)
@@ -96,8 +96,8 @@ class TrendEngineTests(unittest.TestCase):
             tmp = Path(tmp)
             config = tmp / "trend.json"
             self.config(config)
-            (tmp / "2026-08-31.json").write_text(json.dumps({"$ref": "./latest.json"}), encoding="utf-8")
-            current = {"date": "2026-09-01", "signals": [signal("a", "Iran oil risk rises")]}
+            (tmp / "2026-01-14.json").write_text(json.dumps({"$ref": "./latest.json"}), encoding="utf-8")
+            current = {"date": "2026-01-15", "signals": [signal("a", "Alpha energy risk rises")]}
             build_emerging_signals(current, data_dir=tmp, config_path=config)
             self.assertEqual(current["trend_meta"]["available_history_days"], 1)
 

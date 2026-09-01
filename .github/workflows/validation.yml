@@ -1,4 +1,4 @@
-name: SharBo Globo Validation Gate
+name: SharBo Globo Public Validation Gate
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   validate:
-    name: Contract, cutoff and i18n validation
+    name: Public contract, leak and i18n validation
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -32,21 +32,20 @@ jobs:
           node --check exploration.js
           node --check insight_widgets.js
           node --check github_source.js
-      - name: Test personal radar matching
-        run: node tests/test_personalization.mjs
-      - name: Test quick severity filters
-        run: node tests/test_quick_filters.mjs
-      - name: Test topic drilldown classification
-        run: node tests/test_topics.mjs
-      - name: Run regression tests
+      - name: Run JavaScript regressions
+        run: |
+          node tests/test_personalization.mjs
+          node tests/test_quick_filters.mjs
+          node tests/test_topics.mjs
+      - name: Run Python regressions
         run: python -m unittest discover -s tests -v
-      - name: Smoke-build emerging signals and impact chains
-        run: python scripts/apply_intelligence_extensions.py
+      - name: Public repository leak gate
+        run: python scripts/validate_public_repo.py
       - name: Validate multilingual contract
         run: python scripts/validate_i18n.py
-      - name: Validate latest report contract
+      - name: Validate demo report contract
         run: python scripts/validate_report.py data/latest.json
-      - name: Validate JSON syntax
+      - name: Validate public JSON syntax
         run: |
           python - <<'PY'
           import json
@@ -58,6 +57,7 @@ jobs:
               Path('config/impact_rules.json'),
               Path('data/index.json'),
               Path('data/latest.json'),
+              Path('data/market-live.json'),
               Path('locales/zh-TW.json'),
               Path('locales/en.json'),
               Path('locales/vi-VN.json'),

@@ -22,12 +22,12 @@ class ImpactChainTests(unittest.TestCase):
                         "max_chains": 3,
                         "rules": [
                             {
-                                "id": "iran-energy",
+                                "id": "alpha-energy",
                                 "priority": 100,
-                                "title": {"zh-TW": "伊朗能源鏈", "en": "Iran energy chain"},
+                                "title": {"zh-TW": "示範能源鏈", "en": "Demo energy chain"},
                                 "trigger": {
-                                    "all_groups": [["iran"], ["oil", "strike"]],
-                                    "any_phrases": ["hormuz"],
+                                    "all_groups": [["alpha"], ["energy", "constraint"]],
+                                    "any_phrases": ["corridor"],
                                 },
                                 "nodes": [
                                     {"id": "event", "icon": "1", "type": "event", "labels": {"zh-TW": "事件", "en": "Event"}},
@@ -44,11 +44,11 @@ class ImpactChainTests(unittest.TestCase):
                 "signals": [
                     {
                         "id": "s1",
-                        "title": "Iran strike pushes oil risk higher",
-                        "what_happened": "Iran strike and oil supply concerns",
+                        "title": "Alpha constraint pushes energy risk higher",
+                        "what_happened": "Alpha corridor constraint and energy supply concerns",
                         "score": 90,
                         "source_class": "CONFIRMED",
-                        "sources": [{"class": "CONFIRMED", "url": "https://reuters.com/a"}],
+                        "sources": [{"class": "CONFIRMED", "url": "https://example.invalid/a"}],
                     }
                 ]
             }
@@ -58,7 +58,7 @@ class ImpactChainTests(unittest.TestCase):
             self.assertEqual(chain["edges"][0]["relation"], "SUPPORTED")
             self.assertEqual(chain["edges"][1]["relation"], "POTENTIAL")
             self.assertEqual(chain["edges"][0]["evidence_signal_ids"], ["s1"])
-            self.assertEqual(report["featured_impact_chain_id"], "iran-energy")
+            self.assertEqual(report["featured_impact_chain_id"], "alpha-energy")
             self.assertEqual(report["impact_chain"][0]["label"], "事件")
             self.assertGreater(chain["confidence"], 0.7)
 
@@ -72,10 +72,10 @@ class ImpactChainTests(unittest.TestCase):
                         "max_chains": 3,
                         "rules": [
                             {
-                                "id": "iran",
+                                "id": "alpha",
                                 "priority": 1,
-                                "title": {"zh-TW": "伊朗"},
-                                "trigger": {"all_groups": [["iran"], ["oil"]]},
+                                "title": {"zh-TW": "示範"},
+                                "trigger": {"all_groups": [["alpha"], ["energy"]]},
                                 "nodes": [
                                     {"id": "a", "labels": {"zh-TW": "A"}},
                                     {"id": "b", "labels": {"zh-TW": "B"}},
@@ -86,7 +86,7 @@ class ImpactChainTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
-            report = {"signals": [{"id": "x", "title": "Japan rate outlook", "score": 88, "source_class": "CONFIRMED"}]}
+            report = {"signals": [{"id": "x", "title": "Example unrelated outlook", "score": 88, "source_class": "CONFIRMED"}]}
             build_impact_chains(report, config_path=config)
             self.assertEqual(report["impact_chains"], [])
             self.assertEqual(report["impact_chain"], [])

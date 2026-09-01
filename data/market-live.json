@@ -1,63 +1,15 @@
 {
-  "kind": "live_market_snapshot",
-  "report_date": "2026-09-01",
-  "captured_at": "2026-09-01T10:31:26+08:00",
+  "kind": "demo_market_snapshot",
+  "report_date": "2026-01-15",
+  "captured_at": "2026-01-15T05:30:00+08:00",
   "timezone": "Asia/Taipei",
-  "note": "Independent market snapshot. It does not change the intelligence report 06:00 cutoff.",
+  "note": "Synthetic public demo fixture. No production market source metadata is included.",
   "market": [
-    {
-      "name": "S&P 500",
-      "value": "7,686.14",
-      "change": "較前值 +0.43%",
-      "direction": "up",
-      "as_of": "2026-09-01T05:09:33+08:00",
-      "source": "Yahoo Finance chart snapshot",
-      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=5d&interval=1d&includePrePost=false"
-    },
-    {
-      "name": "NASDAQ",
-      "value": "26,370.89",
-      "change": "較前值 +1.50%",
-      "direction": "up",
-      "as_of": "2026-09-01T05:15:59+08:00",
-      "source": "Yahoo Finance chart snapshot",
-      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?range=5d&interval=1d&includePrePost=false"
-    },
-    {
-      "name": "USD / TWD",
-      "value": "31.6010",
-      "change": "較前值 -0.76%",
-      "direction": "down",
-      "as_of": "2026-09-01T10:31:25+08:00",
-      "source": "Yahoo Finance chart snapshot",
-      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?range=5d&interval=1d&includePrePost=false"
-    },
-    {
-      "name": "Brent Oil",
-      "value": "88.73",
-      "change": "較前值 +1.01%",
-      "direction": "up",
-      "as_of": "2026-09-01T10:13:47+08:00",
-      "source": "Yahoo Finance chart snapshot",
-      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BZ%3DF?range=5d&interval=1d&includePrePost=false"
-    },
-    {
-      "name": "Gold",
-      "value": "4,496.10",
-      "change": "較前值 -2.22%",
-      "direction": "down",
-      "as_of": "2026-09-01T10:21:25+08:00",
-      "source": "Yahoo Finance chart snapshot",
-      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?range=5d&interval=1d&includePrePost=false"
-    },
-    {
-      "name": "US 30Y",
-      "value": "5.22%",
-      "change": "較前值 +3 bp",
-      "direction": "up",
-      "as_of": "2026-08-28",
-      "source": "Federal Reserve H.15 via FRED",
-      "source_url": "https://fred.stlouisfed.org/series/DGS30"
-    }
+    {"name":"S&P 500","value":"7,100.00","change":"Demo","direction":"flat","as_of":"2026-01-15T05:30:00+08:00","source":"Synthetic Market Feed","source_url":"https://example.invalid/market/1"},
+    {"name":"NASDAQ","value":"23,500.00","change":"Demo","direction":"flat","as_of":"2026-01-15T05:30:00+08:00","source":"Synthetic Market Feed","source_url":"https://example.invalid/market/2"},
+    {"name":"USD / TWD","value":"32.0000","change":"Demo","direction":"flat","as_of":"2026-01-15T05:30:00+08:00","source":"Synthetic Market Feed","source_url":"https://example.invalid/market/3"},
+    {"name":"Brent Oil","value":"80.00","change":"Demo","direction":"flat","as_of":"2026-01-15T05:30:00+08:00","source":"Synthetic Market Feed","source_url":"https://example.invalid/market/4"},
+    {"name":"Gold","value":"3,000.00","change":"Demo","direction":"flat","as_of":"2026-01-15T05:30:00+08:00","source":"Synthetic Market Feed","source_url":"https://example.invalid/market/5"},
+    {"name":"US 30Y","value":"4.50%","change":"Demo","direction":"flat","as_of":"2026-01-15T05:30:00+08:00","source":"Synthetic Market Feed","source_url":"https://example.invalid/market/6"}
   ]
 }
