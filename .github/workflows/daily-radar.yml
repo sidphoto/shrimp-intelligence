@@ -1,9 +1,10 @@
-name: SharBo Globo — Generate daily global intelligence radar
+name: SharBo Globo — Daily intelligence radar
 
 on:
   schedule:
-    # 06:15 Asia/Taipei = 22:15 UTC on the previous calendar day.
-    # The intelligence cutoff remains fixed at 06:00 Asia/Taipei.
+    # 05:55 Asia/Taipei: capture market snapshot before the strict 06:00 cutoff.
+    - cron: "55 21 * * *"
+    # 06:15 Asia/Taipei: collect, verify, generate and publish the daily radar.
     - cron: "15 22 * * *"
   workflow_dispatch:
     inputs:
@@ -22,7 +23,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  market-snapshot:
+    if: github.event_name == 'schedule' && github.event.schedule == '55 21 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TZ: Asia/Taipei
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install python-dateutil
+      - name: Capture cutoff-safe market snapshot
+        run: python scripts/market_snapshot.py
+      - name: Commit market snapshot
+        run: |
+          git config user.name "SharBo Globo Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/market-snapshot.json
+          if git diff --cached --quiet; then
+            echo "No market snapshot changes."
+            exit 0
+          fi
+          git commit -m "data: pre-cutoff market snapshot $(date +%F)"
+          git push origin main
+
   generate:
+    if: github.event_name != 'schedule' || github.event.schedule == '15 22 * * *'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment:
@@ -62,6 +90,9 @@ jobs:
 
       - name: Generate intelligence report
         run: python scripts/run_daily_radar.py
+
+      - name: Apply reader-facing summary and pre-cutoff market snapshot
+        run: python scripts/enrich_report.py
 
       - name: Validate generated report
         run: python scripts/validate_report.py data/latest.json
@@ -103,10 +134,12 @@ jobs:
           p=Path('data/latest.json')
           if p.exists():
               r=json.loads(p.read_text())
+              market_ready=sum(1 for x in r.get('market', []) if x.get('value') not in (None, '', '—'))
               print(f"- Report date: **{r.get('date')}**")
               print(f"- Engine: **{r.get('engine_version', 'n/a')}**")
               print(f"- Signals: **{len(r.get('signals', []))}**")
               print(f"- Top 5: **{len(r.get('top5_ids', []))}**")
+              print(f"- Market metrics populated: **{market_ready}/{len(r.get('market', []))}**")
               print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")
               print(f"- Window: `{r.get('window', {}).get('start')}` → `{r.get('window', {}).get('end')}` Asia/Taipei")
           PY
