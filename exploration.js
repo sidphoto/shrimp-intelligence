@@ -1,6 +1,6 @@
 import {
   applyLocalizedOverlay,
-  formatDateTime,
+  categoryLabel,
   getLocale,
   loadLocalizedOverlay,
   regionLabel,
@@ -41,6 +41,27 @@ const COPY = {
   }
 };
 
+const TOPIC_LABELS = {
+  'zh-TW': {
+    'world-news':'全球要聞','geopolitics':'地緣政治','economy-markets':'經濟與市場','ai-models':'AI 模型',
+    'dev-open-source':'開發與開源','tech-semiconductor':'科技與半導體','supply-chain':'產業與供應鏈',
+    'energy-commodities':'能源與原物料','science-climate':'科學與氣候','business-transform':'商業變革',
+    'society':'社會趨勢','taiwan':'台灣相關'
+  },
+  en: {
+    'world-news':'World News','geopolitics':'Geopolitics','economy-markets':'Economy & Markets','ai-models':'AI Models',
+    'dev-open-source':'Dev & Open Source','tech-semiconductor':'Tech & Semiconductor','supply-chain':'Supply Chain',
+    'energy-commodities':'Energy & Commodities','science-climate':'Science & Climate','business-transform':'Business Transformation',
+    'society':'Society','taiwan':'Taiwan'
+  },
+  'vi-VN': {
+    'world-news':'Tin thế giới','geopolitics':'Địa chính trị','economy-markets':'Kinh tế & Thị trường','ai-models':'Mô hình AI',
+    'dev-open-source':'Phát triển & Mã nguồn mở','tech-semiconductor':'Công nghệ & Chất bán dẫn','supply-chain':'Công nghiệp & Chuỗi cung ứng',
+    'energy-commodities':'Năng lượng & Hàng hóa','science-climate':'Khoa học & Khí hậu','business-transform':'Chuyển đổi kinh doanh',
+    'society':'Xu hướng xã hội','taiwan':'Đài Loan'
+  }
+};
+
 const REGION_PATTERNS = {
   taiwan:[/\btaiwan\b/i,/taipei/i,/tsmc/i,/台灣|臺灣|台北|臺北|台積電|đài loan/i],
   us:[/\bu\.?s\.?\b/i,/united states/i,/america(?:n)?/i,/washington/i,/federal reserve/i,/\bfed\b/i,/美國|美方|hoa kỳ/i],
@@ -60,6 +81,7 @@ function copy(){ return COPY[getLocale()] || COPY['zh-TW']; }
 function fmt(template, values){ return template.replace(/\{(\w+)\}/g,(_,key)=>values[key] ?? ''); }
 function esc(value=''){ return String(value).replace(/[&<>\"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[ch])); }
 function scoreClass(score){ return Number(score)>=95?'critical':Number(score)>=85?'important':'emerging'; }
+function localizedTopicName(topic){ return TOPIC_LABELS[getLocale()]?.[topic?.slug] || topicName(topic); }
 
 function currentQuickSeverities(){
   try { return normalizeQuickSeverities(JSON.parse(localStorage.getItem('sharbo:quick-severities'))); }
@@ -116,10 +138,13 @@ function enhanceTopicCards(report){
   cards.forEach((card,index)=>{
     const topic=topics[index];
     if (!topic || card.dataset.topicSlug) return;
+    const label=localizedTopicName(topic);
     card.dataset.topicSlug=topic.slug;
     card.setAttribute('role','button');
     card.setAttribute('tabindex','0');
-    card.setAttribute('aria-label',`${topicName(topic)} · ${fmt(c.count,{count:topic.count})}`);
+    card.setAttribute('aria-label',`${label} · ${fmt(c.count,{count:topic.count})}`);
+    const title=card.querySelector('.topic-head b');
+    if(title) title.textContent=label;
     const count=card.querySelector('.topic-count');
     if(count) count.textContent=fmt(c.count,{count:topic.count});
     const open=()=>{ location.hash=`#/topic/${topic.slug}`; };
@@ -132,7 +157,7 @@ function statPill(label,value){ return `<div class="topic-stat"><span>${esc(labe
 
 function topicSignalCard(signal){
   const regions=focusRegions(signal).slice(0,3);
-  return `<article class="radar-card topic-signal-card" data-explore-signal="${esc(signal.id)}"><div class="radar-top"><span class="severity ${scoreClass(signal.score)}">${esc(severityLabel(scoreClass(signal.score)))} · ${signal.score}</span><span class="quality">${esc(sourceClassLabel(signal.source_class))}</span></div><h3>${esc(signal.title)}</h3><p>${esc(signal.why_important || signal.what_happened || '')}</p><div class="tags">${(signal.categories||[]).slice(0,4).map(x=>`<span class="tag">${esc(x)}</span>`).join('')}${regions.map(x=>`<span class="tag">${esc(regionLabel(x))}</span>`).join('')}</div></article>`;
+  return `<article class="radar-card topic-signal-card" data-explore-signal="${esc(signal.id)}"><div class="radar-top"><span class="severity ${scoreClass(signal.score)}">${esc(severityLabel(scoreClass(signal.score)))} · ${signal.score}</span><span class="quality">${esc(sourceClassLabel(signal.source_class))}</span></div><h3>${esc(signal.title)}</h3><p>${esc(signal.why_important || signal.what_happened || '')}</p><div class="tags">${(signal.categories||[]).slice(0,4).map(x=>`<span class="tag">${esc(categoryLabel(x))}</span>`).join('')}${regions.map(x=>`<span class="tag">${esc(regionLabel(x))}</span>`).join('')}</div></article>`;
 }
 
 function renderTopicPage(report,slug){
@@ -149,7 +174,7 @@ function renderTopicPage(report,slug){
   const sourceText=breakdown.sources.slice(0,4).map(([source,count])=>`${sourceClassLabel(source)} ${count}`).join(' · ') || '—';
   const importance=`${severityLabel('critical')} ${breakdown.severity.critical} · ${severityLabel('important')} ${breakdown.severity.important} · ${severityLabel('emerging')} ${breakdown.severity.emerging}`;
   const footer=content.querySelector('.footer')?.outerHTML || '';
-  content.innerHTML=`<div class="topic-detail" data-topic-page="${esc(slug)}"><button class="pill-btn topic-back">${esc(c.topicBack)}</button><div class="topic-detail-hero" style="--accent:${esc(topic.color)}"><div class="topic-detail-icon">${topic.icon}</div><div><div class="eyeline">${esc(c.topicSignals)}</div><h1>${esc(topicName(topic))}</h1><p>${esc(c.topicDescription)}</p><small>${esc(fmt(c.quickFiltered,{shown:visible.length,total:all.length}))}</small></div></div><div class="topic-stats">${statPill(c.total,String(visible.length))}${statPill(c.importance,importance)}${statPill(c.regions,regionText)}${statPill(c.sources,sourceText)}</div><div class="radar-grid topic-results">${visible.map(topicSignalCard).join('') || `<div class="card empty">${esc(c.empty)}</div>`}</div></div>${footer}`;
+  content.innerHTML=`<div class="topic-detail" data-topic-page="${esc(slug)}"><button class="pill-btn topic-back">${esc(c.topicBack)}</button><div class="topic-detail-hero" style="--accent:${esc(topic.color)}"><div class="topic-detail-icon">${topic.icon}</div><div><div class="eyeline">${esc(c.topicSignals)}</div><h1>${esc(localizedTopicName(topic))}</h1><p>${esc(c.topicDescription)}</p><small>${esc(fmt(c.quickFiltered,{shown:visible.length,total:all.length}))}</small></div></div><div class="topic-stats">${statPill(c.total,String(visible.length))}${statPill(c.importance,importance)}${statPill(c.regions,regionText)}${statPill(c.sources,sourceText)}</div><div class="radar-grid topic-results">${visible.map(topicSignalCard).join('') || `<div class="card empty">${esc(c.empty)}</div>`}</div></div>${footer}`;
   content.querySelector('.topic-back').onclick=()=>{location.hash='#/today';};
   content.querySelectorAll('[data-explore-signal]').forEach(card=>card.onclick=()=>{location.hash=`#/signal/${card.dataset.exploreSignal}`;});
 }
