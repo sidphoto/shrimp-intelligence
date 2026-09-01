@@ -123,7 +123,10 @@ def enrich_report(report: dict) -> dict:
                 "timezone": "Asia/Taipei",
                 "note": "目前無可用市場快照。",
             }
-    report["engine_version"] = "m2.6-tavily-live-market-v1"
+    # Market enrichment is a separate data layer. Do not overwrite the
+    # intelligence-engine identity produced upstream.
+    report.setdefault("engine_version", "m2.6-tavily-deterministic-v1")
+    report["market_engine_version"] = "m2.6-live-market-v1"
     return report
 
 
