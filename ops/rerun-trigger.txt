@@ -1,2 +1,2 @@
-M2.6.1 rerun after resilient market provider fallback.
-Reason: refresh 2026-09-01 live market overview first, then rerun the complete Tavily verification pipeline.
+M2.6.2 final rerun with market deploy fail-safe enabled.
+Reason: deploy today's 6/6 live market snapshot and rerun the full Tavily verification pipeline without weakening the report gate.
