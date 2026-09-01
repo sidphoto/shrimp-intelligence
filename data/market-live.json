@@ -1,0 +1,63 @@
+{
+  "kind": "live_market_snapshot",
+  "report_date": "2026-09-01",
+  "captured_at": "2026-09-01T10:28:31+08:00",
+  "timezone": "Asia/Taipei",
+  "note": "Independent market snapshot. It does not change the intelligence report 06:00 cutoff.",
+  "market": [
+    {
+      "name": "S&P 500",
+      "value": "7,686.14",
+      "change": "較前值 +0.43%",
+      "direction": "up",
+      "as_of": "2026-09-01T05:09:33+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=5d&interval=1d&includePrePost=false"
+    },
+    {
+      "name": "NASDAQ",
+      "value": "26,370.89",
+      "change": "較前值 +1.50%",
+      "direction": "up",
+      "as_of": "2026-09-01T05:15:59+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?range=5d&interval=1d&includePrePost=false"
+    },
+    {
+      "name": "USD / TWD",
+      "value": "31.6000",
+      "change": "較前值 -0.76%",
+      "direction": "down",
+      "as_of": "2026-09-01T10:28:20+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?range=5d&interval=1d&includePrePost=false"
+    },
+    {
+      "name": "Brent Oil",
+      "value": "88.73",
+      "change": "較前值 +1.01%",
+      "direction": "up",
+      "as_of": "2026-09-01T10:13:47+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BZ%3DF?range=5d&interval=1d&includePrePost=false"
+    },
+    {
+      "name": "Gold",
+      "value": "4,494.40",
+      "change": "較前值 -2.26%",
+      "direction": "down",
+      "as_of": "2026-09-01T10:18:29+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?range=5d&interval=1d&includePrePost=false"
+    },
+    {
+      "name": "US 30Y",
+      "value": "5.22%",
+      "change": "較前值 +3 bp",
+      "direction": "up",
+      "as_of": "2026-08-28",
+      "source": "Federal Reserve H.15 via FRED",
+      "source_url": "https://fred.stlouisfed.org/series/DGS30"
+    }
+  ]
+}
