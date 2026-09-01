@@ -1,7 +1,24 @@
 {
-  "reports":[
-    {"date":"2026-08-31","signals":8,"summary":"能源、戰爭、債務與 AI 資本成本交錯。"},
-    {"date":"2026-08-30","signals":10,"summary":"俄烏後方能力、日圓風險與中國記憶體成為焦點。"},
-    {"date":"2026-08-29","signals":11,"summary":"Fed、霍爾木茲與 AI ROI 審查期升溫。"}
+  "reports": [
+    {
+      "date": "2026-09-01",
+      "signals": 16,
+      "summary": "本期以 Tavily 廣域搜尋與既有可信來源驗證後，彙整 16 項事件；Top 5 主要集中於 economy, taiwan。此版本採 deterministic 模式，不使用 OpenAI API。"
+    },
+    {
+      "date": "2026-08-31",
+      "signals": 8,
+      "summary": "能源、戰爭、債務與 AI 資本成本交錯。"
+    },
+    {
+      "date": "2026-08-30",
+      "signals": 10,
+      "summary": "俄烏後方能力、日圓風險與中國記憶體成為焦點。"
+    },
+    {
+      "date": "2026-08-29",
+      "signals": 11,
+      "summary": "Fed、霍爾木茲與 AI ROI 審查期升溫。"
+    }
   ]
 }
