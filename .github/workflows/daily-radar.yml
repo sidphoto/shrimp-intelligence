@@ -94,9 +94,19 @@ jobs:
           node --check app.js
           node --check i18n.js
           node --check personalization.js
+          node --check quick_filters.js
+          node --check topic_catalog.js
+          node --check exploration.js
+          node --check insight_widgets.js
 
       - name: Test personal radar matching
         run: node tests/test_personalization.mjs
+
+      - name: Test quick severity filters
+        run: node tests/test_quick_filters.mjs
+
+      - name: Test topic drilldown classification
+        run: node tests/test_topics.mjs
 
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
@@ -126,6 +136,9 @@ jobs:
 
       - name: Enrich signal region tags
         run: python scripts/enrich_regions.py
+
+      - name: Build emerging signals and impact chains
+        run: python scripts/apply_intelligence_extensions.py
 
       # Even when the report gate blocks, enrich the last-known-good report with
       # the independently captured live market snapshot for the website artifact.
@@ -179,8 +192,12 @@ jobs:
               market_ready=sum(1 for x in r.get('market', []) if x.get('value') not in (None, '', '—'))
               print(f"- Report date: **{r.get('date')}**")
               print(f"- Engine: **{r.get('engine_version', 'n/a')}**")
+              print(f"- Intelligence extensions: **{r.get('intelligence_extensions_version', 'n/a')}**")
               print(f"- Signals: **{len(r.get('signals', []))}**")
               print(f"- Top 5: **{len(r.get('top5_ids', []))}**")
+              print(f"- Emerging signals: **{len(r.get('emerging_signals', []))}**")
+              print(f"- Trend history days: **{r.get('trend_meta', {}).get('available_history_days', 0)}**")
+              print(f"- Impact chains: **{len(r.get('impact_chains', []))}**")
               print(f"- Region tagging: **{r.get('region_tagging_version', 'n/a')}**")
               print(f"- Market mode: **{r.get('market_meta', {}).get('mode', 'n/a')}**")
               print(f"- Market metrics populated: **{market_ready}/{len(r.get('market', []))}**")
