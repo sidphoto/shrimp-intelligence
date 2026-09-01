@@ -2,19 +2,27 @@
 
 ## Default architecture
 
-The default open-source runtime no longer requires an OpenAI API key.
+The default open-source runtime does not require an OpenAI API key.
 
-`Tavily broad discovery -> trusted-source verification sweep -> Source Registry classification -> exact cutoff gate -> event clustering -> deterministic ranking/summary -> Sentinel/validator -> data/YYYY-MM-DD.json + data/latest.json + data/index.json -> GitHub Pages`
+`Tavily discovery -> trusted-source verification -> Source Registry -> exact cutoff gate -> event clustering -> deterministic ranking -> reader-facing enrichment -> Sentinel/validator -> data/*.json -> GitHub Pages`
 
 Tavily is a **retrieval/discovery provider**, not a truth authority. Its relevance score is never used as credibility. SharBo assigns authority from the source URL/domain and retains PRIMARY / CONFIRMED / ANALYSIS / COMMUNITY / UNVERIFIED.
 
 ## Schedule
 
-The workflow runs at **06:15 Asia/Taipei** every day. The content cutoff remains strictly fixed at **06:00 Asia/Taipei**.
+SharBo now has two coordinated daily checkpoints in the same workflow:
 
 ```yaml
+# 05:55 Asia/Taipei — capture market values before the strict cutoff
+- cron: "55 21 * * *"
+
+# 06:15 Asia/Taipei — generate and publish the intelligence report
 - cron: "15 22 * * *"
 ```
+
+The intelligence cutoff remains strictly **06:00 Asia/Taipei**.
+
+The 05:55 snapshot prevents look-ahead contamination for instruments that continue trading after 06:00 Taiwan time. The 06:15 report may use only a snapshot captured at or before the cutoff and matching that report date.
 
 ## Required secret
 
@@ -23,6 +31,25 @@ Repository -> Settings -> Secrets and variables -> Actions -> New repository sec
 - `TAVILY_API_KEY` — the only required API secret in the default deterministic mode.
 
 Secrets are never committed to the public repository. Fork users bring their own Tavily key (BYOK).
+
+## Market overview
+
+Market data is separate from news/RSS retrieval. RSS and Tavily remain suitable for news and official-release discovery; numeric market cards use a cutoff-safe structured snapshot instead.
+
+Default no-key sources:
+
+- S&P 500 — Stooq quote snapshot (`^SPX`)
+- NASDAQ Composite — Stooq quote snapshot (`^NDQ`)
+- USD / TWD — Stooq quote snapshot (`USDTWD`)
+- Brent Oil — Stooq continuous Brent quote (`CB.F`)
+- Gold — Stooq XAU/USD quote (`XAUUSD`)
+- US 30Y — Federal Reserve H.15 data via FRED (`DGS30`)
+
+Stooq quote changes are shown versus the quote's session open. SharBo does not pretend this is a previous-close return. US 30Y uses the latest available official daily observation and change versus the prior available observation.
+
+The snapshot is stored in `data/market-snapshot.json` with `captured_at`. The report loader rejects the file if the report date does not match or if `captured_at` is after 06:00 Asia/Taipei.
+
+If a source is unavailable, that individual metric remains blank; the news report itself can still publish. SharBo never queries live post-cutoff prices merely to fill an empty card.
 
 ## OpenAI is optional
 
@@ -38,7 +65,7 @@ A future/optional enhanced mode may set:
 - `INTELLIGENCE_MODE=openai`
 - `OPENAI_API_KEY=<user supplied key>`
 
-OpenAI is therefore an optional enhancement, not a runtime dependency for the default SharBo report.
+OpenAI is an optional enhancement, not a runtime dependency for the default report.
 
 ## Optional repository variables
 
@@ -57,31 +84,25 @@ Repository -> Settings -> Secrets and variables -> Actions -> Variables
 For each sector SharBo performs:
 
 1. **Broad discovery** — Tavily `topic=news`, without trusted-domain restriction, while community/blocklisted domains are excluded.
-2. **Trusted verification sweep** — a second search constrained to each sector's existing `allowed_domains`, including Reuters/AP, governments, central banks, company announcements, research sources, and Taiwan official sources.
-3. URL deduplication merges the same result found by both passes and records the collection modes.
+2. **Trusted verification sweep** — a second search constrained to each sector's `allowed_domains`, including Reuters/AP, governments, central banks, company announcements, research sources, and Taiwan official sources.
+3. URL deduplication merges the same result found by both passes and records collection modes.
 4. Source credibility is classified independently from Tavily relevance.
 5. Tavily date filtering is only a coarse retrieval guard. Exact Asia/Taipei cutoff logic remains local and authoritative.
 6. Exact post-06:00 timestamps are rejected. Timezone-naive/date-only metadata is never promoted to an invented exact timestamp.
-7. Deterministic event clustering groups similar headlines and preserves up to six supporting source URLs per event.
+7. Deterministic event clustering groups similar headlines and preserves supporting source URLs per event.
 8. Top 5 requires at least one PRIMARY or CONFIRMED in-window source. ANALYSIS-only events cannot enter Top 5.
 
-## What deterministic mode does and does not do
+## Reader-facing output
 
-It does:
-
-- collect and verify sources;
-- deduplicate and cluster events;
-- rank by source authority, independent-domain corroboration and Tavily retrieval relevance;
-- generate the website JSON contract;
-- enforce the 06:00 cutoff and Top 5 authority rules.
-
-It deliberately does **not** invent unsupported causal analysis, winners/losers, or quantitative market claims. Those fields are conservative until separate structured data providers or an optional LLM intelligence layer are added.
+Implementation details belong in logs and repository documentation, not the homepage. The enrichment step removes strings such as `Tavily`, `deterministic`, and `OpenAI API` from the hero summary and replaces them with a reader-facing world-focus sentence derived from the verified Top 5 categories.
 
 ## Manual run / backfill
 
-Actions -> SharBo Globo — Generate daily global intelligence radar -> Run workflow.
+Actions -> SharBo Globo — Daily intelligence radar -> Run workflow.
 
-You can optionally set `report_date` to `YYYY-MM-DD` to regenerate a historical window.
+A manual report run does **not** create a retroactive market snapshot. If no valid pre-06:00 snapshot exists for that date, market cards remain neutral/blank rather than using later prices.
+
+You can optionally set `report_date` to `YYYY-MM-DD` to regenerate a historical intelligence window.
 
 ## Fail-safe behavior
 
@@ -95,4 +116,4 @@ The generator refuses to overwrite `latest.json` when:
 - the excluded 三商壽 × 玉山金換股價差 topic appears;
 - retrieval or deterministic validation fails.
 
-The previous successful report remains online.
+Market-source failure does not weaken those rules. The previous successful intelligence report remains online on a blocking failure.
