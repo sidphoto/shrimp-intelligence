@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-09-01",
-      "signals": 16,
-      "summary": "本期以 Tavily 廣域搜尋與既有可信來源驗證後，彙整 16 項事件；Top 5 主要集中於 economy, taiwan。此版本採 deterministic 模式，不使用 OpenAI API。"
+      "signals": 13,
+      "summary": "今日全球焦點集中於經濟與市場、金融；重大事件均以可驗證來源整理，並持續追蹤後續政策、產業與台灣影響。"
     },
     {
       "date": "2026-08-31",

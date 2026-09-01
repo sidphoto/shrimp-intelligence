@@ -1,25 +1,24 @@
 {
   "date": "2026-09-01",
-  "generated_at": "2026-09-01T09:49:13+08:00",
-  "engine_version": "m2.4-tavily-deterministic-v1",
+  "generated_at": "2026-09-01T10:29:03+08:00",
+  "engine_version": "m2.6-tavily-live-market-v1",
   "window": {
     "start": "2026-08-31 00:00",
     "end": "2026-09-01 06:00",
     "timezone": "Asia/Taipei"
   },
-  "world_summary": "本期以 Tavily 廣域搜尋與既有可信來源驗證後，彙整 16 項事件；Top 5 主要集中於 economy, taiwan。此版本採 deterministic 模式，不使用 OpenAI API。",
+  "world_summary": "今日全球焦點集中於經濟與市場、金融；重大事件均以可驗證來源整理，並持續追蹤後續政策、產業與台灣影響。",
   "counts": {
     "critical": 0,
-    "important": 9,
+    "important": 5,
     "emerging": 0
   },
   "quality": {
     "window_verified": true,
     "grade": "B",
     "notes": [
-      "Tavily is retrieval/discovery; credibility is assigned by SharBo source rules.",
-      "No OpenAI API was used for synthesis.",
-      "Top 5 requires PRIMARY/CONFIRMED in-window support."
+      "Top 5 均具 PRIMARY 或 CONFIRMED 來源支持。",
+      "資料時間窗已依 Asia/Taipei 06:00 截止規則檢查。"
     ]
   },
   "top5_ids": [
@@ -27,13 +26,13 @@
     "20260901-a4a272975",
     "20260901-6e268cfe2",
     "20260901-e106a34dc",
-    "20260901-1f681a94b"
+    "20260901-5df92efe2"
   ],
   "signals": [
     {
       "id": "20260901-07d7552c1",
       "title": "At Jackson Hole, global central bankers glimpse dystopian AI future - Reuters",
-      "score": 90,
+      "score": 89,
       "source_class": "CONFIRMED",
       "source_label": "www.reuters.com",
       "categories": [
@@ -48,7 +47,7 @@
       "what_happened": "Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. ## Browse Business. ## Browse Markets. Item 1 of 2 U.S. Federal Reserve Chairman Kevin Warsh holds a press conference following a two-day meeting of the Federal Open Market Committee (FOMC), as the Federal Reserve holds interest rates steady, at the Federal Reserve, in Washington, D.C., U.S. July 29, 2026. **[1/2]**U.S. Federal Reserve Chairman Kevin Warsh holds a press conference following a two-da…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -66,12 +65,12 @@
       "window_verified": true,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-a4a272975",
       "title": "Trump says Exxon is 'going in' to Venezuela as US pushes oil deals - Reuters",
-      "score": 89,
+      "score": 88,
       "source_class": "CONFIRMED",
       "source_label": "www.reuters.com",
       "categories": [
@@ -86,7 +85,7 @@
       "what_happened": "Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. ## Browse Business. HOUSTON, Aug 31 (Reuters) - U.S. President Donald Trump said Monday that ExxonMobil (XOM.N), opens new tab, the largest U.S. oil major, was among a group of companies ​planning to do business in Venezuela. \"We have Exxon going ⁠in, we have Chevron (CVX.N), opens new tab going in, we have our big oil companies ​going in, and everybody's bidding,\" Trump said at a press event in ​th…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -104,12 +103,12 @@
       "window_verified": true,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-6e268cfe2",
       "title": "Bessent expects Japan to take action to boost yen, signals BOJ rate-hike chance - Reuters",
-      "score": 89,
+      "score": 88,
       "source_class": "CONFIRMED",
       "source_label": "www.reuters.com",
       "categories": [
@@ -124,7 +123,7 @@
       "what_happened": "## Browse World. ## Browse Markets. ASHEVILLE, North Carolina, Aug 31 (Reuters) - U.S. Treasury Secretary Scott Bessent said he believes Japan's government and central bank will take action that leads to a stronger yen, CNBC reported on Monday, signaling a strong chance of a Bank of Japan interest rate hike in September. \"I have information that the market doesn't have, and it's my belief that the Japanese government ⁠and the BOJ will do the things that will lead to a stronger yen,\" Bessent told CNBC in an inter…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -142,12 +141,12 @@
       "window_verified": true,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-e106a34dc",
       "title": "G20 countries should consider more trade barriers with China to cut imbalances, Bessent says - Reuters",
-      "score": 89,
+      "score": 88,
       "source_class": "CONFIRMED",
       "source_label": "www.reuters.com",
       "categories": [
@@ -162,7 +161,7 @@
       "what_happened": "Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. ## Browse Business. ## Browse Markets. Image 3: Finance ministers and central bank governors from G20 countries to meet in Asheville. Treasury Secretary Scott Bessent and Federal Reserve Chair Kevin Warsh talk before entering a motorcade upon arrival in Asheville, before finance ministers and central bank governors from G20 countries meet in Asheville, North Carolina, U.S., August 30, 2026. ASHEVILL…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -180,157 +179,7 @@
       "window_verified": true,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
-    },
-    {
-      "id": "20260901-1f681a94b",
-      "title": "US-Taiwan ties 'never been stronger', top diplomat in Taipei says - Reuters",
-      "score": 89,
-      "source_class": "CONFIRMED",
-      "source_label": "www.reuters.com",
-      "categories": [
-        "taiwan",
-        "policy"
-      ],
-      "regions": [
-        "taiwan"
-      ],
-      "what_happened": "## Browse World. ## Browse Business. TAIPEI, Aug 31 (Reuters) - The U.S.-Taiwan relationship has \"never been stronger\" and Taiwan is helping to re-industrialise the United States with its tech investments, the top ​American diplomat in Taipei said on Monday. Taiwanese companies have been investing billions of dollars ​in the U.S., led by TSMC's (2330.TW), opens new tab $265 billion investment in the state ​of Arizona. Speaking at an event ahead of this week's SEMICON chip ⁠trade show in Taipei, to be attended by…",
-      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
-      "why_important": "此事件直接涉及台灣政策、經濟、科技、安全或產業環境。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
-      "taiwan_impact": "此事件直接列入 Taiwan Radar，後續以官方公告與獨立可靠來源持續驗證。",
-      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
-      "impact_chain": [],
-      "sources": [
-        {
-          "class": "CONFIRMED",
-          "name": "www.reuters.com",
-          "url": "https://www.reuters.com/world/china/us-taiwan-ties-never-been-stronger-top-diplomat-taipei-says-2026-08-31/",
-          "published_at": "2026-08-31T11:19:33+08:00",
-          "cutoff_status": "within",
-          "note": "Tavily discovery + trusted-source verification"
-        }
-      ],
-      "observed_at": null,
-      "window_verified": true,
-      "emerging_signal": false,
-      "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
-    },
-    {
-      "id": "20260901-7e32ff75a",
-      "title": "UAE, Egyptian central banks say they are coordinating on Banque Misr after US Treasury notice - Reuters",
-      "score": 89,
-      "source_class": "CONFIRMED",
-      "source_label": "www.reuters.com",
-      "categories": [
-        "economy",
-        "markets",
-        "finance"
-      ],
-      "regions": [
-        "global",
-        "taiwan"
-      ],
-      "what_happened": "Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. * Ukraine and Russia at War. ## Browse Business. Image 3: A general view of the new headquarters of the Banque Misr of Egypt, in the New Administrative Capital (NAC) east of Cairo. A general view of the new headquarters of the Banque Misr of Egypt, in the New Administrative Capital (NAC) east of Cairo, Egypt, December 26, 2023. Aug 30 (Reuters) - The United Arab Emirates and ​Egyptian central banks…",
-      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
-      "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
-      "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
-      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
-      "impact_chain": [],
-      "sources": [
-        {
-          "class": "CONFIRMED",
-          "name": "www.reuters.com",
-          "url": "https://www.reuters.com/world/middle-east/uae-egyptian-central-banks-say-they-are-coordinating-banque-misr-after-us-2026-08-30/",
-          "published_at": "2026-08-31T00:49:41+08:00",
-          "cutoff_status": "within",
-          "note": "Tavily discovery + trusted-source verification"
-        }
-      ],
-      "observed_at": null,
-      "window_verified": true,
-      "emerging_signal": false,
-      "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
-    },
-    {
-      "id": "20260901-4bdf44dcd",
-      "title": "US expected to approve expanded biofuel waivers as early as Monday, sources say - Reuters",
-      "score": 89,
-      "source_class": "CONFIRMED",
-      "source_label": "www.reuters.com",
-      "categories": [
-        "economy",
-        "markets",
-        "finance"
-      ],
-      "regions": [
-        "global",
-        "taiwan"
-      ],
-      "what_happened": "Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. Aug 31 (Reuters) - The Trump administration ​is expected as early as Monday to approve an expanded volume of exemptions for U.S. oil refiners ‌from biofuel blending requirements, according to two people familiar with the matter, as part of efforts to ease upward pressure on gas prices. The Environmental Protection Agency ⁠is expected to issue waivers for the latest year to a group of small refinerie…",
-      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
-      "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
-      "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
-      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
-      "impact_chain": [],
-      "sources": [
-        {
-          "class": "CONFIRMED",
-          "name": "www.reuters.com",
-          "url": "https://www.reuters.com/legal/litigation/us-expected-approve-expanded-biofuel-waivers-early-monday-sources-say-2026-08-31/",
-          "published_at": "2026-08-31T19:39:45+08:00",
-          "cutoff_status": "within",
-          "note": "Tavily discovery + trusted-source verification"
-        }
-      ],
-      "observed_at": null,
-      "window_verified": true,
-      "emerging_signal": false,
-      "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
-    },
-    {
-      "id": "20260901-8a9ad9bd3",
-      "title": "CIA-backed investor helped top German drones firm break into U.S. - Reuters",
-      "score": 89,
-      "source_class": "CONFIRMED",
-      "source_label": "www.reuters.com",
-      "categories": [
-        "economy",
-        "markets",
-        "finance"
-      ],
-      "regions": [
-        "global",
-        "taiwan"
-      ],
-      "what_happened": "Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. * Israel and Hamas at War. * Ukraine and Russia at War. ## Browse Business. Image 1: CIA-backed investor helped top German drones firm break into US. * ### Image 2: CIA-backed investor helped top German drones firm break into US Now Playing CIA-backed investor helped top German drones firm break into US. * ### Image 3: Market Talk: oil gets volatile, and rates in focus 05:15 Market Talk: oil gets vo…",
-      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 1 筆來自既有可信來源名單的驗證搜尋。",
-      "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
-      "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
-      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
-      "impact_chain": [],
-      "sources": [
-        {
-          "class": "CONFIRMED",
-          "name": "www.reuters.com",
-          "url": "https://www.reuters.com/video/watch/idRW904431082026RP1/",
-          "published_at": "2026-08-31T16:59:17+08:00",
-          "cutoff_status": "within",
-          "note": "Tavily discovery + trusted-source verification"
-        }
-      ],
-      "observed_at": null,
-      "window_verified": true,
-      "emerging_signal": false,
-      "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-5df92efe2",
@@ -350,7 +199,7 @@
       "what_happened": "Founded in 1846, AP today remains the most trusted source of fast, accurate, unbiased news in all formats and the essential provider of the technology and services vital to the news business. Markets in Asia fell following a speech Friday by Fed Chairman Kevin Warsh that reinforced expectations the U.S. central bank will do what is needed, such as raising rates, to bring inflation down despite possible short-term pain for the economy. In what is seen as a big move for the bond market, the yield on the two-year T…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -368,7 +217,7 @@
       "window_verified": true,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-8d73c2ba3",
@@ -382,13 +231,12 @@
         "policy"
       ],
       "regions": [
-        "global",
-        "taiwan"
+        "global"
       ],
       "what_happened": "Taiwan's parliament passed a long-stalled drone bill to support its 'hedgehog' defence strategy, legislating investment in the unmanned systems central to making the island costly to invade. The bill operationalises the Ukraine war's clearest lesson — that cheap, numerous drones can offset a larger adversary's conventional mass — into Taiwan's asymmetric-deterrence posture against China, and its passage after delay signals hardening political resolve. It parallels the drone-and-autonomy [...] China Orders Milita…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "可能影響跨國政策、資本流向或全球風險偏好。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "若事件進一步影響貿易、能源、金融或科技供應鏈，台灣需持續追蹤其外溢效果。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -406,7 +254,46 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
+    },
+    {
+      "id": "20260901-292613a1d",
+      "title": "Tencent’s AI Strategy: Dominating AI as Frontier AI Lab with Hunyuan Ecosystem [In-Depth Analysis, 2026]",
+      "score": 70,
+      "source_class": "ANALYSIS",
+      "source_label": "www.klover.ai",
+      "categories": [
+        "ai",
+        "technology",
+        "semiconductor",
+        "developer"
+      ],
+      "regions": [
+        "global",
+        "taiwan"
+      ],
+      "what_happened": "While maintaining a dominant open-source presence in the United States and Europe via developer platforms like Hugging Face and OpenRouter, Tencent is executing a highly targeted commercial expansion across the fastest-growing digital economies in Asia. This localized approach allows Tencent to embed its AI agents and cloud infrastructure deeply into the core operations of massive international conglomerates, establishing an insurmountable commercial moat before Western competitors can adapt. [...] ## Conclusion…",
+      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
+      "why_important": "AI、開發工具與半導體變化可能改變算力需求、軟體生產力與供應鏈競爭。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
+      "taiwan_impact": "台灣位於全球半導體與 AI 硬體供應鏈核心，需關注需求、產能與技術路線變化。",
+      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
+      "impact_chain": [],
+      "sources": [
+        {
+          "class": "ANALYSIS",
+          "name": "www.klover.ai",
+          "url": "https://www.klover.ai/tencents_ai_strategy_dominating_ai_as_frontier_ai_lab_with_hunyuan_ecosystem_indpeth_analysis_2026",
+          "published_at": "2026-08-31T10:13:56+08:00",
+          "cutoff_status": "within",
+          "note": "Tavily discovery"
+        }
+      ],
+      "observed_at": null,
+      "window_verified": false,
+      "emerging_signal": false,
+      "emerging_reason": "",
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-cfcfa9792",
@@ -425,7 +312,7 @@
       "what_happened": "Meanwhile, in Africa, Beijing has ratcheted up its campaign to isolate Taiwan. The tiny kingdom of Eswatini, Taiwan’s last African diplomatic ally, is now under intense pressure after Beijing urged its citizens to leave and warned others not to visit (Bloomberg, 2026, “Next Africa: Squeezing Taiwan”). In April, Taiwanese president Lai Ching-te’s flight to Eswatini to celebrate King Mswati III’s birthday was blocked by African governments refusing overflight; he eventually arrived on the [...] (Stimson Center, in…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "可能影響跨國政策、資本流向或全球風險偏好。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "若事件進一步影響貿易、能源、金融或科技供應鏈，台灣需持續追蹤其外溢效果。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -443,7 +330,7 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-381df87dc",
@@ -463,7 +350,7 @@
       "what_happened": "# Recent rate decisions reveals that Fed might be targeting 3%, not 2% inflation: Economist. Ilian Mihov, Professor of Economics at INSEAD, shares his insights on Kevin Warsh's inaugural speech at the Jackson Hole economic symposium and what it may indicate about the direction of future Fed policy. He also discusses the state of the U.S. labor market, impact of AI, and the recent bond market intervention. Inside Lynas Rare Earths and the race to build supply chains beyond China. Fmr. IMF Chief Economist Rajan: F…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -481,37 +368,35 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
-      "id": "20260901-66c7695ef",
-      "title": "AI Stack Wars: Chips, Models and Developer Control - Debug",
-      "score": 69,
+      "id": "20260901-5658c6aae",
+      "title": "Hew Strachan: Arms Races and the Decision to go to War",
+      "score": 68,
       "source_class": "ANALYSIS",
-      "source_label": "debuglies.com",
+      "source_label": "ssi.armywarcollege.edu",
       "categories": [
-        "ai",
-        "technology",
-        "semiconductor",
-        "developer"
+        "world",
+        "global",
+        "policy"
       ],
       "regions": [
-        "global",
-        "taiwan"
+        "global"
       ],
-      "what_happened": "OpenAI subsequently notified SpaceX that it intended to wind down model access through Cursor, proposing 12 November 2026 as the shutoff date. Our decision on Cursor following its acquisition by SpaceX – OpenAI – August 2026 The alleged USD 60 billion valuation, June signing, early-August closing and Anthropic capacity commitment are not supported by the verified primary record and are excluded. [...] > Artificial Intelligence and the Evolution of Strategic Stability: Geopolitical Risks, Nuclear Integration and…",
+      "what_happened": "### The 2024 Carlisle Conference on the PLA: Protracted War Against the PRC ### If China Attacks Taiwan: The Consequences for China of \"Minor Conflict\" ... ### How Maduro’s capture went down – a military strategist explains what goe... ### Parameters | Winter 2025–26 ### Security Implications of the China-Russia-North Korea Triangle ### Meet the New CLSC Director: A Conversation on Korea ### China’s Foreign Police Training: A Global Footprint [...] ### Systems Over Steel: How China is Redefining Amphibious Armor…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
-      "why_important": "AI、開發工具與半導體變化可能改變算力需求、軟體生產力與供應鏈競爭。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
-      "taiwan_impact": "台灣位於全球半導體與 AI 硬體供應鏈核心，需關注需求、產能與技術路線變化。",
+      "why_important": "可能影響跨國政策、資本流向或全球風險偏好。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
+      "taiwan_impact": "若事件進一步影響貿易、能源、金融或科技供應鏈，台灣需持續追蹤其外溢效果。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
       "sources": [
         {
           "class": "ANALYSIS",
-          "name": "debuglies.com",
-          "url": "https://debuglies.com/2026/08/31/ai-stack-wars-chips-models-and-developer-control",
-          "published_at": "2026-08-31T20:41:12+08:00",
+          "name": "ssi.armywarcollege.edu",
+          "url": "https://ssi.armywarcollege.edu/SSI-Media/Recent-Publications/Article/4587089/hew-strachan-arms-races-and-the-decision-to-go-to-war",
+          "published_at": "2026-08-31T08:00:00+08:00",
           "cutoff_status": "within",
           "note": "Tavily discovery"
         }
@@ -520,7 +405,7 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-e3ffcbda3",
@@ -540,7 +425,7 @@
       "what_happened": "# Warsh's hawish tone at Jackson Hole offsets treasury's bond intervention: Strategist. Eric Robertsen, Global Head of Research and Chief Strategist at Standard Chartered Bank, says the U.S. bond market is not facing a crisis yet, but warns of higher funding costs. He also expects Asia FX to underperform its emerging market peers. Inside Lynas Rare Earths and the race to build supply chains beyond China. Fmr. IMF Chief Economist Rajan: Fed might have to act because it's been too long. Harvard's Ken Rogoff on gro…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -558,7 +443,7 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-76831905d",
@@ -578,7 +463,7 @@
       "what_happened": "# News Update – Market Open. CNBC brings you fast, accurate, and actionable business news and market updates. Treasury Secretary Bessent: We will get on the other side of the Iran conflict. The markets could rally 'very strongly' if the Fed holds rates in September: Fundstrat's Tom Lee. SMBC's Joe Lavorgna: I believe the Fed will, and needs to, raise rates in September. Aon CEO Greg Case: $17B USI deal 'establishes the premier U.S. middle-market platform'. Inside Lynas Rare Earths and the race to build supply ch…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -596,7 +481,7 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
       "id": "20260901-3551f7b45",
@@ -616,7 +501,7 @@
       "what_happened": "# Jeff Klingelhofer: This Fed will have a different reaction function. Jeff Klingelhofer, Portfolio Manager at Aristotle Pacific Capital, says the Fed could stay on hold as inflation risks persist, with supply shocks potentially forcing it to slow the economy. Inside Lynas Rare Earths and the race to build supply chains beyond China. Fmr. IMF Chief Economist Rajan: Fed might have to act because it's been too long. Harvard's Ken Rogoff on growing U.S. deficit: We will have some kind of debt crisis. Affirm CEO Max…",
       "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
       "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
-      "winners_losers": "Deterministic 模式不對受益者或受損者做未經來源支持的推論。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
       "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
       "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
       "impact_chain": [],
@@ -634,7 +519,7 @@
       "window_verified": false,
       "emerging_signal": false,
       "emerging_reason": "",
-      "quality_note": "Tavily-only deterministic mode; relevance score is not treated as credibility. event_sources=1"
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     }
   ],
   "emerging_signals": [],
@@ -644,7 +529,7 @@
       "zh": "全球要聞",
       "en": "World News",
       "icon": "🌐",
-      "count": 16,
+      "count": 13,
       "color": "#2f86dd"
     },
     {
@@ -658,7 +543,7 @@
       "zh": "經濟與市場",
       "en": "Economy & Markets",
       "icon": "📈",
-      "count": 12,
+      "count": 9,
       "color": "#2ea66f"
     },
     {
@@ -721,53 +606,75 @@
       "zh": "台灣相關",
       "en": "Taiwan",
       "icon": "🇹🇼",
-      "count": 15,
+      "count": 10,
       "color": "#22a8bc"
     }
   ],
   "market": [
     {
       "name": "S&P 500",
-      "value": "—",
-      "change": "未接結構化市場資料 API",
-      "direction": "flat"
+      "value": "7,686.14",
+      "change": "較前值 +0.43%",
+      "direction": "up",
+      "as_of": "2026-09-01T05:09:33+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=5d&interval=1d&includePrePost=false"
     },
     {
       "name": "NASDAQ",
-      "value": "—",
-      "change": "未接結構化市場資料 API",
-      "direction": "flat"
+      "value": "26,370.89",
+      "change": "較前值 +1.50%",
+      "direction": "up",
+      "as_of": "2026-09-01T05:15:59+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?range=5d&interval=1d&includePrePost=false"
     },
     {
       "name": "USD / TWD",
-      "value": "—",
-      "change": "未接結構化市場資料 API",
-      "direction": "flat"
+      "value": "31.6000",
+      "change": "較前值 -0.76%",
+      "direction": "down",
+      "as_of": "2026-09-01T10:28:20+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?range=5d&interval=1d&includePrePost=false"
     },
     {
       "name": "Brent Oil",
-      "value": "—",
-      "change": "未接結構化市場資料 API",
-      "direction": "flat"
+      "value": "88.73",
+      "change": "較前值 +1.01%",
+      "direction": "up",
+      "as_of": "2026-09-01T10:13:47+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BZ%3DF?range=5d&interval=1d&includePrePost=false"
     },
     {
       "name": "Gold",
-      "value": "—",
-      "change": "未接結構化市場資料 API",
-      "direction": "flat"
+      "value": "4,494.40",
+      "change": "較前值 -2.26%",
+      "direction": "down",
+      "as_of": "2026-09-01T10:18:29+08:00",
+      "source": "Yahoo Finance chart snapshot",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?range=5d&interval=1d&includePrePost=false"
     },
     {
       "name": "US 30Y",
-      "value": "—",
-      "change": "未接結構化市場資料 API",
-      "direction": "flat"
+      "value": "5.22%",
+      "change": "較前值 +3 bp",
+      "direction": "up",
+      "as_of": "2026-08-28",
+      "source": "Federal Reserve H.15 via FRED",
+      "source_url": "https://fred.stlouisfed.org/series/DGS30"
     }
   ],
   "taiwan_radar": [
     "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
-    "此事件直接列入 Taiwan Radar，後續以官方公告與獨立可靠來源持續驗證。",
-    "若事件進一步影響貿易、能源、金融或科技供應鏈，台灣需持續追蹤其外溢效果。",
     "台灣位於全球半導體與 AI 硬體供應鏈核心，需關注需求、產能與技術路線變化。"
   ],
-  "business_cases": []
+  "business_cases": [],
+  "market_meta": {
+    "mode": "live",
+    "captured_at": "2026-09-01T10:28:31+08:00",
+    "timezone": "Asia/Taipei",
+    "note": "市場快覽為獨立即時快照，不改變新聞情報 06:00 截止視窗。"
+  }
 }
