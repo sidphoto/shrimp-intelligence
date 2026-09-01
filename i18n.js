@@ -191,7 +191,6 @@ async function fetchOptionalJSON(url) {
 
 export async function loadLocalizedOverlay(locale, reportDate) {
   const normalized = resolveLocale(locale);
-  if (normalized === DEFAULT_LOCALE) return null;
   if (reportDate) {
     const dated = await fetchOptionalJSON(`./data/localized/${normalized}/${reportDate}.json`);
     if (dated) return dated;
@@ -202,6 +201,7 @@ export async function loadLocalizedOverlay(locale, reportDate) {
 export function applyLocalizedOverlay(baseReport, overlay) {
   const report = structuredClone(baseReport);
   if (!overlay || typeof overlay !== 'object') return report;
+  if (overlay.date && baseReport?.date && overlay.date !== baseReport.date) return report;
 
   if (typeof overlay.world_summary === 'string') report.world_summary = overlay.world_summary;
 
