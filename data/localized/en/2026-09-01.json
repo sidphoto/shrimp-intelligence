@@ -1,0 +1,157 @@
+{
+  "locale": "en",
+  "date": "2026-09-01",
+  "world_summary": "Today’s global focus is on central-bank policy, currencies, energy and geopolitical risk. Markets are also watching the longer-term economic impact of AI and policy shifts involving the United States, Japan, China and the Middle East.",
+  "signals": {
+    "20260901-07d7552c1": {
+      "title": "Global central bankers at Jackson Hole confront dystopian risks from AI",
+      "what_happened": "Reuters focused on discussions among global central bankers at Jackson Hole about the economic, employment and policy risks that could accompany rapid AI development. Because the captured source text included page navigation and unrelated material, this localized summary preserves only the clearly supported core theme.",
+      "why_now": "The event falls within this report window and is supported by a trusted-source verification result.",
+      "why_important": "Macroeconomic, interest-rate and market shifts can directly affect funding costs, valuations and corporate investment decisions.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Potential transmission channels to Taiwan include exchange rates, interest rates, export demand and technology-sector valuations.",
+      "what_next": "Watch for primary-source follow-up, a second independent reliable source and measurable policy or market data.",
+      "quality_note": "Organized using source authority, time-window and event-deduplication rules."
+    },
+    "20260901-a4a272975": {
+      "title": "Trump says Exxon will enter Venezuela as U.S. pushes oil investment deals",
+      "what_happened": "U.S. President Donald Trump said ExxonMobil is among major U.S. oil companies planning to do business in Venezuela and also cited Chevron. The comments point to an effort by Washington to encourage renewed energy-sector investment in Venezuela.",
+      "why_now": "The event falls within this report window and is supported by a trusted-source verification result.",
+      "why_important": "Energy investment and supply changes can affect oil markets, inflation expectations and cross-border capital allocation.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan may feel indirect effects through energy import costs, inflation expectations and global market sentiment.",
+      "what_next": "Watch for company announcements, sanctions or licensing changes, and verified investment commitments.",
+      "quality_note": "Organized using source authority, time-window and event-deduplication rules."
+    },
+    "20260901-6e268cfe2": {
+      "title": "Bessent expects Japan to support a stronger yen, raising BOJ hike expectations",
+      "what_happened": "U.S. Treasury Secretary Scott Bessent said he believes Japan’s government and central bank will take steps that lead to a stronger yen. Markets interpreted the remarks as increasing the perceived chance of a Bank of Japan rate hike in September.",
+      "why_now": "The event falls within this report window and is supported by a trusted-source verification result.",
+      "why_important": "Shifts in Japanese monetary policy and the yen can move Asian currencies, bond yields and capital flows.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "A stronger yen or higher Japanese rates could influence regional currencies, portfolio flows and exporter competitiveness in Taiwan.",
+      "what_next": "Watch BOJ guidance, Japanese government comments and moves in the yen and JGB yields.",
+      "quality_note": "Organized using source authority, time-window and event-deduplication rules."
+    },
+    "20260901-e106a34dc": {
+      "title": "Bessent says G20 should consider more trade barriers against China to reduce imbalances",
+      "what_happened": "U.S. Treasury Secretary Scott Bessent said G20 countries should consider additional trade restrictions on China to address global trade and capacity imbalances. Wider adoption of this view could reshape tariffs, supply chains and manufacturing investment.",
+      "why_now": "The event falls within this report window and is supported by a trusted-source verification result.",
+      "why_important": "Broader trade barriers could alter global supply chains, investment incentives and export demand.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan could be affected through electronics supply chains, trade diversion and changes in U.S.-China industrial policy.",
+      "what_next": "Watch for G20 policy statements, new tariffs, trade-remedy actions and corporate supply-chain responses.",
+      "quality_note": "Organized using source authority, time-window and event-deduplication rules."
+    },
+    "20260901-5df92efe2": {
+      "title": "Asian shares and U.S. futures fall while oil surges after U.S. strike on Iranian rocket launchers",
+      "what_happened": "AP reported that Asian equities and U.S. stock futures weakened while oil prices rose after a U.S. strike on Iranian rocket launchers. Markets were simultaneously digesting tighter Federal Reserve signals, lifting both risk and inflation concerns.",
+      "why_now": "The event falls within this report window and is supported by a confirmed news source.",
+      "why_important": "A geopolitical shock that moves energy prices can quickly affect inflation expectations, risk appetite and corporate costs.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan is exposed through imported energy costs, shipping risk and global technology-market sentiment.",
+      "what_next": "Watch military escalation, oil-price persistence, shipping disruptions and central-bank responses.",
+      "quality_note": "Organized using source authority, time-window and event-deduplication rules."
+    },
+    "20260901-8d73c2ba3": {
+      "title": "Global security brief: Taiwan drone legislation and asymmetric defense in focus",
+      "what_happened": "An analysis highlighted Taiwan’s passage of long-delayed drone legislation intended to strengthen asymmetric defense through numerous lower-cost unmanned systems. The article links the approach to lessons from the war in Ukraine and Taiwan’s broader hedgehog-defense concept.",
+      "why_now": "The item appeared inside the report window but is analysis rather than a primary event source.",
+      "why_important": "Changes in Taiwan’s defense posture can affect procurement, deterrence planning and regional security expectations.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "The issue directly concerns Taiwan’s defense investment, domestic drone ecosystem and asymmetric deterrence strategy.",
+      "what_next": "Watch official legislation, procurement plans, budget allocations and primary government statements.",
+      "quality_note": "Analysis signal; treat conclusions as interpretation rather than confirmed primary fact."
+    },
+    "20260901-cfcfa9792": {
+      "title": "The Taiwan Strait, wealth and power: Beijing intensifies pressure on Taiwan’s diplomatic space",
+      "what_happened": "The analysis argues that China is continuing to narrow Taiwan’s diplomatic space in Africa, using Eswatini as an example of pressure on one of Taiwan’s remaining diplomatic partners. It also discusses reported travel and overflight constraints affecting senior Taiwanese officials.",
+      "why_now": "The item appeared inside the report window but is analysis rather than a primary event source.",
+      "why_important": "Diplomatic pressure can shape Taiwan’s international access, political signaling and cross-strait risk perceptions.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "The issue directly affects Taiwan’s diplomatic relationships and external political space.",
+      "what_next": "Watch official statements from Taiwan, China and affected governments, and seek independent confirmation of specific incidents.",
+      "quality_note": "Analysis signal; treat conclusions as interpretation rather than confirmed primary fact."
+    },
+    "20260901-381df87dc": {
+      "title": "Economist says recent Fed decisions may imply tolerance for inflation closer to 3%",
+      "what_happened": "INSEAD economics professor Ilian Mihov discussed Kevin Warsh’s Jackson Hole speech and recent rate decisions, arguing that the Fed’s future reaction function may differ from market assumptions. He also addressed the U.S. labor market, AI and bond-market intervention.",
+      "why_now": "The item appeared inside the report window as market analysis.",
+      "why_important": "Changes in perceived Fed tolerance for inflation can reprice bonds, currencies and equity valuations.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan may be affected through U.S. yields, the dollar, technology valuations and global capital flows.",
+      "what_next": "Watch Fed speeches, inflation data and market-implied rate expectations.",
+      "quality_note": "Analysis signal; treat conclusions as interpretation rather than confirmed primary fact."
+    },
+    "20260901-a39cd09d0": {
+      "title": "SEMICON Taiwan 2026 spotlights AI-driven semiconductor transformation",
+      "what_happened": "SEMICON Taiwan 2026 is being promoted under the theme “Transform Tomorrow,” bringing industry leaders together to discuss how AI, semiconductor technology and partnerships may shape the sector over the next decade.",
+      "why_now": "The item appeared within the report window as an industry signal.",
+      "why_important": "AI-driven semiconductor investment can influence capacity, equipment demand and industry strategy.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "The topic is directly relevant to Taiwan’s semiconductor ecosystem, AI hardware supply chain and capital spending.",
+      "what_next": "Watch official SEMICON Taiwan programming, exhibitor announcements and concrete investment or technology disclosures.",
+      "quality_note": "Industry-analysis signal; verify claims against primary event and company sources."
+    },
+    "20260901-66c7695ef": {
+      "title": "AI stack wars: chips, models and developer control become core battlegrounds",
+      "what_happened": "This analysis examines competition over control of AI chips, models and developer tools, citing claims involving OpenAI, SpaceX and Cursor. Several transaction values, timelines and partnership details are not supported by primary records and should be treated as unverified analysis rather than confirmed fact.",
+      "why_now": "The item appeared within the report window as an AI-industry analysis signal.",
+      "why_important": "Control over chips, models and developer platforms can reshape compute demand, software productivity and supply-chain power.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan sits at the center of the global semiconductor and AI-hardware supply chain, making shifts in compute architecture and platform control strategically relevant.",
+      "what_next": "Watch primary company statements and independently verified details on platform access, acquisitions and capacity agreements.",
+      "quality_note": "Analysis signal containing unverified claims; primary-source confirmation is required."
+    },
+    "20260901-7047fbdc8": {
+      "title": "Global stagflation risks rise as monetary-policy room narrows",
+      "what_happened": "The analysis describes a volatile global macro environment in the first half of 2026, driven by trade fragmentation, diverging monetary-policy paths and simultaneous growth and inflation pressures.",
+      "why_now": "The item appeared within the report window as macroeconomic analysis.",
+      "why_important": "Stagflation risk can constrain central-bank policy and weigh on corporate margins, valuations and investment.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan could be affected through export demand, exchange rates, funding costs and technology-sector valuations.",
+      "what_next": "Watch official inflation, growth, trade and central-bank data rather than relying on the analysis alone.",
+      "quality_note": "Analysis signal; use official macro data for confirmation."
+    },
+    "20260901-5658c6aae": {
+      "title": "Hew Strachan: how arms races shape decisions to go to war",
+      "what_happened": "Material from the U.S. Army War College examines the relationship between arms races and decisions for war, extending the discussion to China, Taiwan, protracted conflict and great-power military competition. This is strategic analysis, not confirmation of a current event.",
+      "why_now": "The item appeared within the report window as strategic research and analysis.",
+      "why_important": "Strategic thinking about arms races can inform how policymakers interpret deterrence, escalation and long-term defense competition.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "The analysis is relevant to Taiwan’s deterrence planning and the wider balance of military power in the Indo-Pacific.",
+      "what_next": "Watch for official defense policy, force-structure changes and primary-source evidence of actual escalation.",
+      "quality_note": "Strategic analysis; do not present interpretive claims as current-event confirmation."
+    },
+    "20260901-e3ffcbda3": {
+      "title": "Strategist says Warsh’s hawkish stance offsets Treasury bond intervention",
+      "what_happened": "Standard Chartered research chief Eric Robertsen said the U.S. bond market is not yet in crisis but higher funding costs remain a concern. He argued that Warsh’s hawkish Jackson Hole signal offset some support from Treasury bond intervention and said Asian currencies may lag other emerging-market peers.",
+      "why_now": "The item appeared within the report window as market analysis.",
+      "why_important": "Bond-market stress and higher funding costs can affect global liquidity, currencies and asset valuations.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan could be affected through U.S. yields, Asian FX moves and valuation pressure on technology shares.",
+      "what_next": "Watch Treasury yields, Fed communication and Asian currency performance.",
+      "quality_note": "Market-analysis signal; conclusions reflect the strategist’s view."
+    },
+    "20260901-76831905d": {
+      "title": "Aug. 31 market open: Iran conflict and Fed-rate expectations dominate trading",
+      "what_happened": "CNBC’s market-open coverage grouped several investor concerns, including U.S.-Iran conflict developments, expectations for the Fed’s September decision, corporate transactions and supply-chain news. It is a collection of live market commentary and interviews rather than a single confirmed event.",
+      "why_now": "The item appeared within the report window as market commentary.",
+      "why_important": "Live market commentary can reveal which risks investors are repricing, but it should not be treated as primary evidence by itself.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan may be affected through global risk sentiment, energy prices, U.S. yields and technology-sector pricing.",
+      "what_next": "Verify individual claims against primary sources and watch actual market and policy data.",
+      "quality_note": "Market-analysis compilation; verify individual claims independently."
+    },
+    "20260901-3551f7b45": {
+      "title": "Portfolio manager says this Fed may have a different reaction function",
+      "what_happened": "Aristotle Pacific Capital portfolio manager Jeff Klingelhofer said the Fed could remain on hold while inflation risks persist, although supply shocks could eventually force tighter policy that slows the economy.",
+      "why_now": "The item appeared within the report window as market analysis.",
+      "why_important": "Changing expectations for the Fed reaction function can affect rates, currencies and risk-asset valuations.",
+      "winners_losers": "Available verified sources are not sufficient to identify clear winners and losers with confidence.",
+      "taiwan_impact": "Taiwan may be affected through dollar moves, funding conditions and technology-sector valuations.",
+      "what_next": "Watch Fed communication, inflation data and evidence of supply-side shocks.",
+      "quality_note": "Market-analysis signal; conclusions reflect the interviewee’s view."
+    }
+  }
+}
