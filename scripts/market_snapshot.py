@@ -6,7 +6,7 @@ import json
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timezone
 from pathlib import Path
 from typing import Callable
 from zoneinfo import ZoneInfo
@@ -26,13 +26,24 @@ STOOQ_SYMBOLS = [
     ("Gold", "xauusd", "commodity"),
 ]
 
+YAHOO_SYMBOLS = {
+    "S&P 500": "^GSPC",
+    "NASDAQ": "^IXIC",
+    "USD / TWD": "TWD=X",
+    "Brent Oil": "BZ=F",
+    "Gold": "GC=F",
+}
+
 FRED_30Y_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS30"
 
 
 def _http_get(url: str, timeout: int = 12) -> str:
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "SharBo-Globo/1.0 (+https://github.com/sidphoto/shrimp-intelligence)"},
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; SharBo-Globo/1.0; +https://github.com/sidphoto/shrimp-intelligence)",
+            "Accept": "application/json,text/csv,text/plain,*/*",
+        },
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return response.read().decode("utf-8", errors="replace")
@@ -48,6 +59,85 @@ def _fmt_number(value: float, kind: str) -> str:
     return f"{value:g}"
 
 
+def _change_row(name: str, value: float, previous: float | None, kind: str, as_of: str | None, source: str, source_url: str) -> dict:
+    if previous in (None, 0):
+        change_pct = 0.0
+    else:
+        change_pct = (value - previous) / previous * 100.0
+    direction = "up" if change_pct > 0.005 else "down" if change_pct < -0.005 else "flat"
+    sign = "+" if change_pct > 0 else ""
+    return {
+        "name": name,
+        "value": _fmt_number(value, kind),
+        "change": f"較前值 {sign}{change_pct:.2f}%",
+        "direction": direction,
+        "as_of": as_of,
+        "source": source,
+        "source_url": source_url,
+    }
+
+
+def parse_yahoo_chart(text: str, name: str, symbol: str, kind: str) -> dict | None:
+    try:
+        payload = json.loads(text)
+        result = (payload.get("chart", {}).get("result") or [None])[0]
+        if not result:
+            return None
+        meta = result.get("meta") or {}
+        value = meta.get("regularMarketPrice")
+        previous = meta.get("chartPreviousClose")
+        if previous is None:
+            previous = meta.get("previousClose")
+
+        if value is None:
+            quote = ((result.get("indicators") or {}).get("quote") or [{}])[0]
+            closes = [x for x in (quote.get("close") or []) if x is not None]
+            if not closes:
+                return None
+            value = closes[-1]
+            if previous is None and len(closes) >= 2:
+                previous = closes[-2]
+
+        market_time = meta.get("regularMarketTime")
+        as_of = None
+        if market_time:
+            as_of = datetime.fromtimestamp(int(market_time), timezone.utc).astimezone(TZ).isoformat(timespec="seconds")
+
+        source_url = (
+            "https://query1.finance.yahoo.com/v8/finance/chart/"
+            + urllib.parse.quote(symbol, safe="")
+            + "?range=5d&interval=1d&includePrePost=false"
+        )
+        return _change_row(
+            name=name,
+            value=float(value),
+            previous=float(previous) if previous is not None else None,
+            kind=kind,
+            as_of=as_of,
+            source="Yahoo Finance chart snapshot",
+            source_url=source_url,
+        )
+    except (json.JSONDecodeError, TypeError, ValueError, KeyError, IndexError):
+        return None
+
+
+def fetch_yahoo_quote(
+    name: str,
+    symbol: str,
+    kind: str,
+    fetcher: Callable[[str], str] = _http_get,
+) -> dict | None:
+    url = (
+        "https://query1.finance.yahoo.com/v8/finance/chart/"
+        + urllib.parse.quote(symbol, safe="")
+        + "?range=5d&interval=1d&includePrePost=false"
+    )
+    try:
+        return parse_yahoo_chart(fetcher(url), name, symbol, kind)
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
+        return None
+
+
 def parse_stooq_quote(text: str, name: str, symbol: str, kind: str) -> dict | None:
     rows = list(csv.DictReader(io.StringIO(text.strip())))
     if not rows:
@@ -61,22 +151,20 @@ def parse_stooq_quote(text: str, name: str, symbol: str, kind: str) -> dict | No
     except (KeyError, TypeError, ValueError):
         return None
 
-    change_pct = ((close_value - open_value) / open_value * 100.0) if open_value else 0.0
-    direction = "up" if change_pct > 0.005 else "down" if change_pct < -0.005 else "flat"
-    sign = "+" if change_pct > 0 else ""
     source_url = (
         "https://stooq.com/q/l/?"
         + urllib.parse.urlencode({"s": symbol, "f": "sd2t2ohlcv", "h": "", "e": "csv"})
     )
-    return {
-        "name": name,
-        "value": _fmt_number(close_value, kind),
-        "change": f"較開盤 {sign}{change_pct:.2f}%",
-        "direction": direction,
-        "as_of": " ".join(x for x in [row.get("Date", ""), row.get("Time", "")] if x).strip(),
-        "source": "Stooq quote snapshot",
-        "source_url": source_url,
-    }
+    as_of = " ".join(x for x in [row.get("Date", ""), row.get("Time", "")] if x).strip()
+    return _change_row(
+        name=name,
+        value=close_value,
+        previous=open_value,
+        kind=kind,
+        as_of=as_of,
+        source="Stooq quote snapshot",
+        source_url=source_url,
+    )
 
 
 def fetch_stooq_quote(
@@ -93,6 +181,15 @@ def fetch_stooq_quote(
         return parse_stooq_quote(fetcher(url), name, symbol, kind)
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
         return None
+
+
+def fetch_market_quote(name: str, stooq_symbol: str, kind: str) -> dict | None:
+    yahoo_symbol = YAHOO_SYMBOLS.get(name)
+    if yahoo_symbol:
+        item = fetch_yahoo_quote(name, yahoo_symbol, kind)
+        if item is not None:
+            return item
+    return fetch_stooq_quote(name, stooq_symbol, kind)
 
 
 def parse_fred_30y(text: str) -> dict | None:
@@ -141,7 +238,7 @@ def build_snapshot(now: datetime | None = None) -> dict:
 
     market = []
     for name, symbol, kind in STOOQ_SYMBOLS:
-        item = fetch_stooq_quote(name, symbol, kind)
+        item = fetch_market_quote(name, symbol, kind)
         if item is None:
             item = {
                 "name": name,
@@ -149,7 +246,7 @@ def build_snapshot(now: datetime | None = None) -> dict:
                 "change": "快照來源暫時無資料",
                 "direction": "flat",
                 "as_of": None,
-                "source": "Stooq quote snapshot",
+                "source": "Yahoo Finance / Stooq fallback",
                 "source_url": None,
             }
         market.append(item)
@@ -201,8 +298,9 @@ def load_market_for_report(report_date: date, cutoff: datetime, path: Path = SNA
 def main() -> int:
     snapshot = build_snapshot()
     write_snapshot(snapshot)
+    populated = sum(1 for x in snapshot["market"] if x.get("value") not in (None, "", "—"))
     print(
-        f"[market] captured {len(snapshot['market'])} metrics for {snapshot['report_date']} "
+        f"[market] captured {populated}/{len(snapshot['market'])} metrics for {snapshot['report_date']} "
         f"at {snapshot['captured_at']}"
     )
     return 0
