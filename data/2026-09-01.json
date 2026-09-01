@@ -1,6 +1,6 @@
 {
   "date": "2026-09-01",
-  "generated_at": "2026-09-01T10:29:03+08:00",
+  "generated_at": "2026-09-01T10:31:39+08:00",
   "engine_version": "m2.6-tavily-live-market-v1",
   "window": {
     "start": "2026-08-31 00:00",
@@ -257,45 +257,6 @@
       "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
     },
     {
-      "id": "20260901-292613a1d",
-      "title": "Tencent’s AI Strategy: Dominating AI as Frontier AI Lab with Hunyuan Ecosystem [In-Depth Analysis, 2026]",
-      "score": 70,
-      "source_class": "ANALYSIS",
-      "source_label": "www.klover.ai",
-      "categories": [
-        "ai",
-        "technology",
-        "semiconductor",
-        "developer"
-      ],
-      "regions": [
-        "global",
-        "taiwan"
-      ],
-      "what_happened": "While maintaining a dominant open-source presence in the United States and Europe via developer platforms like Hugging Face and OpenRouter, Tencent is executing a highly targeted commercial expansion across the fastest-growing digital economies in Asia. This localized approach allows Tencent to embed its AI agents and cloud infrastructure deeply into the core operations of massive international conglomerates, establishing an insurmountable commercial moat before Western competitors can adapt. [...] ## Conclusion…",
-      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
-      "why_important": "AI、開發工具與半導體變化可能改變算力需求、軟體生產力與供應鏈競爭。",
-      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
-      "taiwan_impact": "台灣位於全球半導體與 AI 硬體供應鏈核心，需關注需求、產能與技術路線變化。",
-      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
-      "impact_chain": [],
-      "sources": [
-        {
-          "class": "ANALYSIS",
-          "name": "www.klover.ai",
-          "url": "https://www.klover.ai/tencents_ai_strategy_dominating_ai_as_frontier_ai_lab_with_hunyuan_ecosystem_indpeth_analysis_2026",
-          "published_at": "2026-08-31T10:13:56+08:00",
-          "cutoff_status": "within",
-          "note": "Tavily discovery"
-        }
-      ],
-      "observed_at": null,
-      "window_verified": false,
-      "emerging_signal": false,
-      "emerging_reason": "",
-      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
-    },
-    {
       "id": "20260901-cfcfa9792",
       "title": "The Strait, the Ledger, and the Long Summer: Wealth, Power ...",
       "score": 69,
@@ -361,6 +322,120 @@
           "url": "https://www.cnbc.com/video/2026/08/31/warsh-jackson-hole-inflation-rate.html",
           "published_at": "2026-08-31T13:09:52+08:00",
           "cutoff_status": "within",
+          "note": "Tavily discovery"
+        }
+      ],
+      "observed_at": null,
+      "window_verified": false,
+      "emerging_signal": false,
+      "emerging_reason": "",
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
+    },
+    {
+      "id": "20260901-a39cd09d0",
+      "title": "SEMICON Taiwan 2026 Highlights AI-Driven ...",
+      "score": 69,
+      "source_class": "ANALYSIS",
+      "source_label": "www.linkedin.com",
+      "categories": [
+        "business",
+        "automation",
+        "productivity"
+      ],
+      "regions": [
+        "global"
+      ],
+      "what_happened": "Under the theme \"Transform Tomorrow\", the exhibition will bring together leaders to explore technologies and partnerships shaping the industry's next decade. As",
+      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
+      "why_important": "企業營運模式與生產力工具的變化可形成可複製的管理與投資訊號。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
+      "taiwan_impact": "可作為台灣企業導入自動化、AI 與流程改善時的外部案例觀察。",
+      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
+      "impact_chain": [],
+      "sources": [
+        {
+          "class": "ANALYSIS",
+          "name": "www.linkedin.com",
+          "url": "https://www.linkedin.com/posts/hk-business-wire_semicon-taiwan-2026-highlights-ai-driven-activity-7495680926513963008--vQY",
+          "published_at": null,
+          "cutoff_status": "uncertain",
+          "note": "Tavily discovery"
+        }
+      ],
+      "observed_at": null,
+      "window_verified": false,
+      "emerging_signal": false,
+      "emerging_reason": "",
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
+    },
+    {
+      "id": "20260901-66c7695ef",
+      "title": "AI Stack Wars: Chips, Models and Developer Control - Debug",
+      "score": 69,
+      "source_class": "ANALYSIS",
+      "source_label": "debuglies.com",
+      "categories": [
+        "ai",
+        "technology",
+        "semiconductor",
+        "developer"
+      ],
+      "regions": [
+        "global",
+        "taiwan"
+      ],
+      "what_happened": "OpenAI subsequently notified SpaceX that it intended to wind down model access through Cursor, proposing 12 November 2026 as the shutoff date. Our decision on Cursor following its acquisition by SpaceX – OpenAI – August 2026 The alleged USD 60 billion valuation, June signing, early-August closing and Anthropic capacity commitment are not supported by the verified primary record and are excluded. [...] > Artificial Intelligence and the Evolution of Strategic Stability: Geopolitical Risks, Nuclear Integration and…",
+      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
+      "why_important": "AI、開發工具與半導體變化可能改變算力需求、軟體生產力與供應鏈競爭。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
+      "taiwan_impact": "台灣位於全球半導體與 AI 硬體供應鏈核心，需關注需求、產能與技術路線變化。",
+      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
+      "impact_chain": [],
+      "sources": [
+        {
+          "class": "ANALYSIS",
+          "name": "debuglies.com",
+          "url": "https://debuglies.com/2026/08/31/ai-stack-wars-chips-models-and-developer-control",
+          "published_at": "2026-08-31T20:41:12+08:00",
+          "cutoff_status": "within",
+          "note": "Tavily discovery"
+        }
+      ],
+      "observed_at": null,
+      "window_verified": false,
+      "emerging_signal": false,
+      "emerging_reason": "",
+      "quality_note": "已依來源等級、時間窗與事件去重規則整理。"
+    },
+    {
+      "id": "20260901-7047fbdc8",
+      "title": "Global Stagflation and Monetary Policy Exhaustion",
+      "score": 69,
+      "source_class": "ANALYSIS",
+      "source_label": "www.linkedin.com",
+      "categories": [
+        "economy",
+        "markets",
+        "finance"
+      ],
+      "regions": [
+        "global",
+        "taiwan"
+      ],
+      "what_happened": "The global macroeconomic environment remained volatile in the first half of 2026, amid continued trade fragmentation and divergent monetary policy trajectories,",
+      "why_now": "此事件出現在本期資料窗內；目前彙整 1 個不同來源，其中 0 筆來自既有可信來源名單的驗證搜尋。",
+      "why_important": "總體經濟、利率與市場變化會直接影響資金成本、估值與企業投資決策。",
+      "winners_losers": "目前可驗證來源不足以可靠判定明確受益與受損方。",
+      "taiwan_impact": "可能透過匯率、利率、出口需求與科技股估值傳導至台灣。",
+      "what_next": "持續追蹤原始官方來源、第二獨立可靠來源與後續可量化資料。",
+      "impact_chain": [],
+      "sources": [
+        {
+          "class": "ANALYSIS",
+          "name": "www.linkedin.com",
+          "url": "https://www.linkedin.com/posts/ramkrishan-kumar-aa1a00249_global-stagflation-and-monetary-policy-exhaustion-activity-7496589005589737472-9l6F",
+          "published_at": null,
+          "cutoff_status": "uncertain",
           "note": "Tavily discovery"
         }
       ],
@@ -529,7 +604,7 @@
       "zh": "全球要聞",
       "en": "World News",
       "icon": "🌐",
-      "count": 13,
+      "count": 15,
       "color": "#2f86dd"
     },
     {
@@ -543,7 +618,7 @@
       "zh": "經濟與市場",
       "en": "Economy & Markets",
       "icon": "📈",
-      "count": 9,
+      "count": 10,
       "color": "#2ea66f"
     },
     {
@@ -592,7 +667,7 @@
       "zh": "商業變革",
       "en": "Business Transform",
       "icon": "🏢",
-      "count": 0,
+      "count": 1,
       "color": "#d65b98"
     },
     {
@@ -606,7 +681,7 @@
       "zh": "台灣相關",
       "en": "Taiwan",
       "icon": "🇹🇼",
-      "count": 10,
+      "count": 11,
       "color": "#22a8bc"
     }
   ],
@@ -631,10 +706,10 @@
     },
     {
       "name": "USD / TWD",
-      "value": "31.6000",
+      "value": "31.6010",
       "change": "較前值 -0.76%",
       "direction": "down",
-      "as_of": "2026-09-01T10:28:20+08:00",
+      "as_of": "2026-09-01T10:31:25+08:00",
       "source": "Yahoo Finance chart snapshot",
       "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?range=5d&interval=1d&includePrePost=false"
     },
@@ -649,10 +724,10 @@
     },
     {
       "name": "Gold",
-      "value": "4,494.40",
-      "change": "較前值 -2.26%",
+      "value": "4,496.10",
+      "change": "較前值 -2.22%",
       "direction": "down",
-      "as_of": "2026-09-01T10:18:29+08:00",
+      "as_of": "2026-09-01T10:21:25+08:00",
       "source": "Yahoo Finance chart snapshot",
       "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?range=5d&interval=1d&includePrePost=false"
     },
@@ -673,7 +748,7 @@
   "business_cases": [],
   "market_meta": {
     "mode": "live",
-    "captured_at": "2026-09-01T10:28:31+08:00",
+    "captured_at": "2026-09-01T10:31:26+08:00",
     "timezone": "Asia/Taipei",
     "note": "市場快覽為獨立即時快照，不改變新聞情報 06:00 截止視窗。"
   }
