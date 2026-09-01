@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "min_history_days": 2,
+  "full_window_days": 7,
+  "max_emerging_signals": 4,
+  "entities": [
+    {
+      "id": "iran-energy-risk",
+      "icon": "🛢️",
+      "labels": {
+        "zh-TW": "伊朗與能源風險",
+        "en": "Iran & Energy Risk",
+        "vi-VN": "Rủi ro Iran và năng lượng"
+      },
+      "all_groups": [
+        ["iran", "iranian", "伊朗"],
+        ["oil", "energy", "brent", "crude", "strike", "attack", "rocket", "hormuz", "能源", "原油", "攻擊", "霍爾木茲"]
+      ],
+      "any_phrases": ["strait of hormuz", "霍爾木茲海峽"]
+    },
+    {
+      "id": "japan-rates-yen",
+      "icon": "💴",
+      "labels": {
+        "zh-TW": "日本利率與日圓",
+        "en": "Japan Rates & Yen",
+        "vi-VN": "Lãi suất Nhật Bản và đồng yên"
+      },
+      "all_groups": [
+        ["japan", "japanese", "bank of japan", "boj", "日本", "日銀", "日本央行"],
+        ["yen", "rate", "yield", "hike", "currency", "日圓", "利率", "升息", "殖利率"]
+      ],
+      "any_phrases": ["bank of japan", "日本央行"]
+    },
+    {
+      "id": "china-trade-friction",
+      "icon": "🚢",
+      "labels": {
+        "zh-TW": "中國貿易摩擦",
+        "en": "China Trade Friction",
+        "vi-VN": "Căng thẳng thương mại Trung Quốc"
+      },
+      "all_groups": [
+        ["china", "chinese", "中國", "中方"],
+        ["trade", "tariff", "barrier", "export", "import", "貿易", "關稅", "壁壘", "出口", "進口"]
+      ],
+      "any_phrases": ["trade barriers with china", "對中國貿易壁壘"]
+    },
+    {
+      "id": "fed-rates-inflation",
+      "icon": "🏦",
+      "labels": {
+        "zh-TW": "Fed 利率與通膨",
+        "en": "Fed Rates & Inflation",
+        "vi-VN": "Lãi suất Fed và lạm phát"
+      },
+      "all_groups": [
+        ["federal reserve", "fed", "fomc", "聯準會", "美國央行"],
+        ["rate", "inflation", "yield", "hike", "cut", "利率", "通膨", "殖利率", "升息", "降息"]
+      ],
+      "any_phrases": ["federal reserve", "聯準會"]
+    },
+    {
+      "id": "ai-macro-policy",
+      "icon": "🧠",
+      "labels": {
+        "zh-TW": "AI 與總體政策風險",
+        "en": "AI & Macro Policy Risk",
+        "vi-VN": "AI và rủi ro chính sách vĩ mô"
+      },
+      "all_groups": [
+        ["artificial intelligence", " ai ", "ai future", "ai risk", "人工智慧", "AI"],
+        ["central bank", "policy", "productivity", "labor", "economy", "央行", "政策", "生產力", "勞動", "經濟"]
+      ],
+      "any_phrases": ["dystopian ai", "ai productivity"]
+    },
+    {
+      "id": "supply-chain-resilience",
+      "icon": "🏭",
+      "labels": {
+        "zh-TW": "供應鏈韌性",
+        "en": "Supply Chain Resilience",
+        "vi-VN": "Khả năng chống chịu chuỗi cung ứng"
+      },
+      "all_groups": [],
+      "any_phrases": ["supply chain", "supply chains", "rare earth", "reshoring", "friendshoring", "供應鏈", "稀土", "回流製造"]
+    },
+    {
+      "id": "semiconductor-ai-infrastructure",
+      "icon": "💾",
+      "labels": {
+        "zh-TW": "半導體與 AI 基礎設施",
+        "en": "Semiconductors & AI Infrastructure",
+        "vi-VN": "Bán dẫn và hạ tầng AI"
+      },
+      "all_groups": [],
+      "any_phrases": ["semiconductor", "chip", "gpu", "data center", "datacenter", "ai infrastructure", "半導體", "晶片", "資料中心", "算力"]
+    },
+    {
+      "id": "taiwan-security",
+      "icon": "🛡️",
+      "labels": {
+        "zh-TW": "台灣安全與防衛",
+        "en": "Taiwan Security & Defense",
+        "vi-VN": "An ninh và quốc phòng Đài Loan"
+      },
+      "all_groups": [
+        ["taiwan", "taipei", "台灣", "臺灣"],
+        ["defense", "military", "drone", "security", "china", "國防", "軍事", "無人機", "安全", "中國"]
+      ],
+      "any_phrases": ["taiwan defense", "台灣國防", "台灣安全"]
+    }
+  ]
+}
