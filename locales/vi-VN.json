@@ -34,7 +34,10 @@
     "sourceFallback": "Đang hiển thị nội dung gốc bằng tiếng Hoa phồn thể"
   },
   "quick": {
-    "title": "Bộ lọc nhanh"
+    "title": "Bộ lọc nhanh",
+    "all": "Tất cả",
+    "showing": "Đang hiển thị {shown} / {total} tín hiệu",
+    "empty": "Không có tín hiệu phù hợp với bộ lọc nhanh hiện tại."
   },
   "window": {
     "title": "Khung dữ liệu (Asia/Taipei)",
@@ -111,6 +114,7 @@
     "allTopics": "Tất cả chủ đề",
     "allRegions": "Tất cả khu vực",
     "allSeverity": "Mọi mức độ quan trọng",
+    "customSeverity": "Mức độ quan trọng tùy chỉnh",
     "empty": "Không có tín hiệu phù hợp với bộ lọc."
   },
   "business": {
