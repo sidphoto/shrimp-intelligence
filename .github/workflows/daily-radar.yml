@@ -1,0 +1,106 @@
+name: Generate daily global intelligence radar
+
+on:
+  schedule:
+    # 06:15 Asia/Taipei = 22:15 UTC on the previous calendar day.
+    # The intelligence cutoff remains fixed at 06:00 Asia/Taipei.
+    - cron: "15 22 * * *"
+  workflow_dispatch:
+    inputs:
+      report_date:
+        description: "Optional report date in Asia/Taipei (YYYY-MM-DD) for a backfill"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-radar
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      TZ: Asia/Taipei
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+      OPENAI_SEARCH_MODEL: ${{ vars.OPENAI_SEARCH_MODEL || 'gpt-5.6' }}
+      OPENAI_FINAL_MODEL: ${{ vars.OPENAI_FINAL_MODEL || 'gpt-5.6' }}
+      REPORT_DATE: ${{ inputs.report_date }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate intelligence report
+        run: python scripts/build_report.py
+
+      - name: Validate generated report
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        run: python scripts/validate_report.py data/latest.json
+
+      - name: Commit report data
+        run: |
+          git config user.name "Shrimp Intelligence Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit. Existing latest.json remains in place."
+            exit 0
+          fi
+          git commit -m "data: daily global radar $(date +%F)"
+          git push origin main
+
+
+      # Commits made with GITHUB_TOKEN do not normally trigger another push workflow.
+      # Deploy from this same run so the site is refreshed immediately.
+      - name: Configure GitHub Pages
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy updated site
+        if: ${{ env.OPENAI_API_KEY != '' }}
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Job summary
+        run: |
+          echo "## Shrimp Intelligence daily run" >> "$GITHUB_STEP_SUMMARY"
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY is not configured, so the run safely skipped generation and preserved the previous report." >> "$GITHUB_STEP_SUMMARY"
+          else
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          p=Path('data/latest.json')
+          if p.exists():
+              r=json.loads(p.read_text())
+              print(f"- Report date: **{r.get('date')}**")
+              print(f"- Signals: **{len(r.get('signals', []))}**")
+              print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")
+              print(f"- Window: `{r.get('window', {}).get('start')}` → `{r.get('window', {}).get('end')}` Asia/Taipei")
+          PY
+          fi

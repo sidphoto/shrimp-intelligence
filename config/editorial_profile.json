@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "primary_lens": [
+    "Taiwan impact",
+    "global chain effects",
+    "AI and agent ecosystem",
+    "technology and semiconductors",
+    "economy and markets",
+    "business transformation",
+    "supply-chain resilience"
+  ],
+  "delivery": {
+    "language": "Traditional Chinese",
+    "target_signal_count": "10-20",
+    "top_signal_count": 5
+  },
+  "exclusions": [
+    "三商壽 × 玉山金換股價差"
+  ]
+}

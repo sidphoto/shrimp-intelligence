@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "timezone": "Asia/Taipei",
+  "blocked_domains": [
+    "reddit.com",
+    "x.com",
+    "twitter.com",
+    "facebook.com",
+    "instagram.com",
+    "quora.com",
+    "wikipedia.org"
+  ],
+  "sectors": {
+    "global_discovery": {
+      "label": "Global discovery",
+      "search_context_size": "low",
+      "allowed_domains": [],
+      "topics": [
+        "global breaking news",
+        "politics and policy",
+        "geopolitics and military",
+        "major economic and societal developments"
+      ]
+    },
+    "world_geo": {
+      "label": "World / Geo",
+      "search_context_size": "medium",
+      "allowed_domains": [
+        "reuters.com",
+        "apnews.com",
+        "un.org",
+        "nato.int",
+        "state.gov",
+        "defense.gov",
+        "whitehouse.gov",
+        "consilium.europa.eu",
+        "ec.europa.eu",
+        "gov.uk",
+        "mofa.go.jp",
+        "mfa.gov.cn"
+      ],
+      "topics": [
+        "major political and policy decisions",
+        "wars, military activity, sanctions, diplomacy",
+        "US China EU Japan ASEAN Middle East Russia Ukraine Taiwan Strait"
+      ]
+    },
+    "economy_market": {
+      "label": "Economy / Markets",
+      "search_context_size": "medium",
+      "allowed_domains": [
+        "reuters.com",
+        "apnews.com",
+        "federalreserve.gov",
+        "treasury.gov",
+        "bls.gov",
+        "bea.gov",
+        "ecb.europa.eu",
+        "boj.or.jp",
+        "imf.org",
+        "worldbank.org",
+        "bis.org"
+      ],
+      "topics": [
+        "central banks, rates, inflation, jobs, GDP, debt",
+        "global equity bond FX commodity market signals",
+        "economic policy with cross-border consequences"
+      ]
+    },
+    "ai_tech": {
+      "label": "AI / Developer / Semiconductor",
+      "search_context_size": "medium",
+      "allowed_domains": [
+        "openai.com",
+        "anthropic.com",
+        "deepmind.google",
+        "blog.google",
+        "nvidia.com",
+        "github.blog",
+        "github.com",
+        "huggingface.co",
+        "arxiv.org",
+        "tsmc.com",
+        "intel.com",
+        "amd.com",
+        "microsoft.com",
+        "about.meta.com",
+        "aws.amazon.com",
+        "reuters.com"
+      ],
+      "topics": [
+        "AI model and product releases",
+        "agents developer tools GitHub open source",
+        "AI infrastructure datacenters GPUs networking power",
+        "semiconductor manufacturing memory packaging export controls"
+      ]
+    },
+    "industry_science": {
+      "label": "Industry / Supply Chain / Research",
+      "search_context_size": "medium",
+      "allowed_domains": [
+        "reuters.com",
+        "apnews.com",
+        "nasa.gov",
+        "who.int",
+        "nih.gov",
+        "nature.com",
+        "science.org",
+        "iea.org",
+        "eia.gov",
+        "worldbank.org"
+      ],
+      "topics": [
+        "industry supply chain logistics energy commodities",
+        "science research biotech space climate",
+        "population labor migration and social trends"
+      ]
+    },
+    "business_transformation": {
+      "label": "Business Transformation",
+      "search_context_size": "medium",
+      "allowed_domains": [
+        "reuters.com",
+        "apnews.com",
+        "mckinsey.com",
+        "bcg.com",
+        "bain.com",
+        "a16z.com",
+        "strategy-business.com",
+        "hbr.org"
+      ],
+      "topics": [
+        "companies redesigning processes or operations",
+        "automation AI productivity capacity cost reduction",
+        "measurable business transformation cases"
+      ]
+    },
+    "taiwan": {
+      "label": "Taiwan",
+      "search_context_size": "medium",
+      "allowed_domains": [
+        "gov.tw",
+        "president.gov.tw",
+        "mnd.gov.tw",
+        "moea.gov.tw",
+        "cbc.gov.tw",
+        "ndc.gov.tw",
+        "twse.com.tw",
+        "cna.com.tw",
+        "reuters.com"
+      ],
+      "topics": [
+        "Taiwan government economic technology defense policy",
+        "Taiwan semiconductor energy trade and financial impact",
+        "external global events with material Taiwan implications"
+      ]
+    }
+  }
+}
