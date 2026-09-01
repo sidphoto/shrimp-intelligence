@@ -28,10 +28,14 @@ jobs:
           node --check i18n.js
           node --check personalization.js
           node --check quick_filters.js
+          node --check topic_catalog.js
+          node --check exploration.js
       - name: Test personal radar matching
         run: node tests/test_personalization.mjs
       - name: Test quick severity filters
         run: node tests/test_quick_filters.mjs
+      - name: Test topic drilldown classification
+        run: node tests/test_topics.mjs
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
       - name: Validate multilingual contract
