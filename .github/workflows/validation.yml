@@ -30,6 +30,7 @@ jobs:
           node --check quick_filters.js
           node --check topic_catalog.js
           node --check exploration.js
+          node --check insight_widgets.js
       - name: Test personal radar matching
         run: node tests/test_personalization.mjs
       - name: Test quick severity filters
@@ -38,6 +39,8 @@ jobs:
         run: node tests/test_topics.mjs
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
+      - name: Smoke-build emerging signals and impact chains
+        run: python scripts/apply_intelligence_extensions.py
       - name: Validate multilingual contract
         run: python scripts/validate_i18n.py
       - name: Validate latest report contract
@@ -50,6 +53,8 @@ jobs:
           paths = [
               Path('config/sources.json'),
               Path('config/editorial_profile.json'),
+              Path('config/trend_entities.json'),
+              Path('config/impact_rules.json'),
               Path('data/index.json'),
               Path('data/latest.json'),
               Path('locales/zh-TW.json'),
