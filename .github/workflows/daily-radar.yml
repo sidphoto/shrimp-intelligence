@@ -32,6 +32,8 @@ jobs:
       TZ: Asia/Taipei
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+      TAVILY_PROJECT: ${{ vars.TAVILY_PROJECT }}
+      NEWS_DISCOVERY_PROVIDER: ${{ vars.NEWS_DISCOVERY_PROVIDER || 'tavily' }}
       OPENAI_SEARCH_MODEL: ${{ vars.OPENAI_SEARCH_MODEL || 'gpt-5.6' }}
       OPENAI_FINAL_MODEL: ${{ vars.OPENAI_FINAL_MODEL || 'gpt-5.6' }}
       REPORT_DATE: ${{ inputs.report_date }}
@@ -45,10 +47,10 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Compile Python
         run: python -m compileall -q scripts tests
-      - name: Run cutoff regression tests
+      - name: Run cutoff and provider regression tests
         run: python -m unittest discover -s tests -v
       - name: Generate intelligence report
-        run: python scripts/build_report.py
+        run: python scripts/run_daily_radar.py
       - name: Validate generated report
         if: ${{ env.OPENAI_API_KEY != '' }}
         run: python scripts/validate_report.py data/latest.json
@@ -78,6 +80,7 @@ jobs:
       - name: Job summary
         run: |
           echo "## SharBo Globo daily run" >> "$GITHUB_STEP_SUMMARY"
+          echo "- News discovery provider: **$NEWS_DISCOVERY_PROVIDER**" >> "$GITHUB_STEP_SUMMARY"
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "OPENAI_API_KEY is not configured, so generation was skipped and the previous report was preserved." >> "$GITHUB_STEP_SUMMARY"
           else
