@@ -30,30 +30,42 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     env:
       TZ: Asia/Taipei
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-      TAVILY_PROJECT: ${{ vars.TAVILY_PROJECT }}
-      NEWS_DISCOVERY_PROVIDER: ${{ vars.NEWS_DISCOVERY_PROVIDER || 'tavily' }}
-      OPENAI_SEARCH_MODEL: ${{ vars.OPENAI_SEARCH_MODEL || 'gpt-5.6' }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      NEWS_DISCOVERY_PROVIDER: tavily
+      INTELLIGENCE_MODE: ${{ vars.INTELLIGENCE_MODE || 'deterministic' }}
       OPENAI_FINAL_MODEL: ${{ vars.OPENAI_FINAL_MODEL || 'gpt-5.6' }}
       REPORT_DATE: ${{ inputs.report_date }}
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+
       - run: pip install -r requirements.txt
+
+      - name: Check required Tavily secret
+        run: |
+          if [ -z "$TAVILY_API_KEY" ]; then
+            echo "TAVILY_API_KEY is required. Existing latest.json has not been changed."
+            exit 1
+          fi
+
       - name: Compile Python
         run: python -m compileall -q scripts tests
-      - name: Run cutoff and provider regression tests
+
+      - name: Run regression tests
         run: python -m unittest discover -s tests -v
+
       - name: Generate intelligence report
         run: python scripts/run_daily_radar.py
+
       - name: Validate generated report
-        if: ${{ env.OPENAI_API_KEY != '' }}
         run: python scripts/validate_report.py data/latest.json
+
       - name: Commit report data
         run: |
           git config user.name "SharBo Globo Bot"
@@ -65,35 +77,36 @@ jobs:
           fi
           git commit -m "data: daily SharBo Globo radar $(date +%F)"
           git push origin main
+
+      # Commits made with GITHUB_TOKEN do not normally trigger another push workflow.
+      # Deploy from this same run so the site is refreshed immediately.
       - name: Configure GitHub Pages
-        if: ${{ env.OPENAI_API_KEY != '' }}
         uses: actions/configure-pages@v5
+
       - name: Upload Pages artifact
-        if: ${{ env.OPENAI_API_KEY != '' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy updated site
-        if: ${{ env.OPENAI_API_KEY != '' }}
         id: deployment
         uses: actions/deploy-pages@v4
+
       - name: Job summary
         run: |
           echo "## SharBo Globo daily run" >> "$GITHUB_STEP_SUMMARY"
-          echo "- News discovery provider: **$NEWS_DISCOVERY_PROVIDER**" >> "$GITHUB_STEP_SUMMARY"
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "OPENAI_API_KEY is not configured, so generation was skipped and the previous report was preserved." >> "$GITHUB_STEP_SUMMARY"
-          else
-            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          echo "- Discovery provider: **Tavily**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Intelligence mode: **${INTELLIGENCE_MODE}**" >> "$GITHUB_STEP_SUMMARY"
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           from pathlib import Path
           p=Path('data/latest.json')
           if p.exists():
               r=json.loads(p.read_text())
               print(f"- Report date: **{r.get('date')}**")
+              print(f"- Engine: **{r.get('engine_version', 'n/a')}**")
               print(f"- Signals: **{len(r.get('signals', []))}**")
               print(f"- Top 5: **{len(r.get('top5_ids', []))}**")
               print(f"- Quality: **{r.get('quality', {}).get('grade', 'n/a')}**")
               print(f"- Window: `{r.get('window', {}).get('start')}` → `{r.get('window', {}).get('end')}` Asia/Taipei")
           PY
-          fi
