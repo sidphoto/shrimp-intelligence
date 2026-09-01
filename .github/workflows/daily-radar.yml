@@ -95,6 +95,18 @@ jobs:
       - name: Refresh independent live market snapshot
         run: python scripts/market_live.py
 
+      - name: Commit live market snapshot independently
+        run: |
+          git config user.name "SharBo Globo Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/market-live.json
+          if git diff --cached --quiet; then
+            echo "No live market changes."
+          else
+            git commit -m "data: refresh live market snapshot $(date +%F)"
+            git push origin main
+          fi
+
       - name: Generate intelligence report
         run: python scripts/run_daily_radar.py
 
