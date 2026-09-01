@@ -34,7 +34,10 @@
     "sourceFallback": "目前使用繁體中文原始內容"
   },
   "quick": {
-    "title": "快速篩選"
+    "title": "快速篩選",
+    "all": "全部",
+    "showing": "目前顯示 {shown} / {total} 項訊號",
+    "empty": "目前快速篩選沒有符合的訊號。"
   },
   "window": {
     "title": "資料視窗（Asia/Taipei）",
@@ -111,6 +114,7 @@
     "allTopics": "全部主題",
     "allRegions": "全部地區",
     "allSeverity": "全部重要度",
+    "customSeverity": "自訂重要度",
     "empty": "沒有符合條件的訊號。"
   },
   "business": {
