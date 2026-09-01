@@ -137,7 +137,7 @@ def parse_time(value: Optional[str]) -> Optional[datetime]:
     except (ValueError, TypeError):
         return None
     if parsed.tzinfo is None:
-        return None
+        raise ValueError(f"Timestamp is missing timezone offset: {value}")
     return parsed.astimezone(TZ)
 
 
@@ -332,7 +332,11 @@ def verify_and_normalize(draft: RadarDraft, report_date: date, start: datetime, 
             notes.append(f"Excluded configured topic: {signal.title}")
             continue
 
-        observed = parse_time(signal.observed_at)
+        try:
+            observed = parse_time(signal.observed_at)
+        except ValueError as exc:
+            notes.append(f"Rejected invalid timestamp on '{signal.title}': {exc}")
+            continue
         if observed and not (start <= observed <= end):
             notes.append(f"Dropped look-ahead/out-of-window signal: {signal.title}")
             continue
@@ -342,7 +346,11 @@ def verify_and_normalize(draft: RadarDraft, report_date: date, start: datetime, 
         has_authoritative_anchor = False
 
         for src in signal.sources:
-            published = parse_time(src.published_at)
+            try:
+                published = parse_time(src.published_at)
+            except ValueError as exc:
+                notes.append(f"Rejected invalid source timestamp for '{signal.title}' ({src.name}): {exc}")
+                continue
             if published and published > end:
                 notes.append(f"Removed post-cutoff source from '{signal.title}': {src.name}")
                 continue
@@ -517,7 +525,10 @@ def build_market(draft: RadarDraft, end: datetime) -> list[dict]:
         if not metric:
             result.append({"name": name, "value": "—", "change": "資料窗內未取得可靠值", "direction": "flat"})
             continue
-        as_of = parse_time(metric.as_of)
+        try:
+            as_of = parse_time(metric.as_of)
+        except ValueError:
+            as_of = None
         valid = metric.cutoff_status == "within" and (as_of is None or as_of <= end)
         result.append({
             "name": name,
