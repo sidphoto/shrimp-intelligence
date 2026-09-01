@@ -1,2 +1,2 @@
-M2.6 operator rerun requested after live-market + Claude i18n handoff integration.
-Reason: refresh 2026-09-01 market overview and rerun the complete Tavily verification pipeline.
+M2.6.1 rerun after resilient market provider fallback.
+Reason: refresh 2026-09-01 live market overview first, then rerun the complete Tavily verification pipeline.
