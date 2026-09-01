@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from market_snapshot import STOOQ_SYMBOLS, fetch_fred_30y, fetch_stooq_quote
+from market_snapshot import STOOQ_SYMBOLS, fetch_fred_30y, fetch_market_quote
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
@@ -18,7 +18,7 @@ def build_live_snapshot(now: datetime | None = None) -> dict:
     market = []
 
     for name, symbol, kind in STOOQ_SYMBOLS:
-        item = fetch_stooq_quote(name, symbol, kind)
+        item = fetch_market_quote(name, symbol, kind)
         if item is None:
             item = {
                 "name": name,
@@ -26,7 +26,7 @@ def build_live_snapshot(now: datetime | None = None) -> dict:
                 "change": "目前來源暫時無資料",
                 "direction": "flat",
                 "as_of": None,
-                "source": "Stooq quote snapshot",
+                "source": "Yahoo Finance / Stooq fallback",
                 "source_url": None,
             }
         market.append(item)
