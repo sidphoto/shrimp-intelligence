@@ -1,0 +1,63 @@
+import { getLocale } from './i18n.js';
+
+const REPO_URL = 'https://github.com/sidphoto/shrimp-intelligence';
+const REPO_NAME = 'sidphoto/shrimp-intelligence';
+
+const COPY = {
+  'zh-TW': {
+    label: '專案來源',
+    hint: 'GitHub 開源專案'
+  },
+  en: {
+    label: 'Project source',
+    hint: 'Open-source on GitHub'
+  },
+  'vi-VN': {
+    label: 'Nguồn dự án',
+    hint: 'Mã nguồn mở trên GitHub'
+  }
+};
+
+let scheduled = false;
+
+function copy() {
+  return COPY[getLocale()] || COPY['zh-TW'];
+}
+
+function mount() {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar || sidebar.querySelector('[data-github-source]')) return;
+
+  const c = copy();
+  const block = document.createElement('div');
+  block.className = 'sidebar-github-source';
+  block.dataset.githubSource = '';
+  block.innerHTML = `
+    <div class="sidebar-github-label">${c.label}</div>
+    <a class="sidebar-github-link" href="${REPO_URL}" target="_blank" rel="noopener noreferrer" aria-label="GitHub ${REPO_NAME}">
+      <span class="sidebar-github-icon" aria-hidden="true">GH</span>
+      <span class="sidebar-github-copy">
+        <strong>${REPO_NAME}</strong>
+        <small>${c.hint} ↗</small>
+      </span>
+    </a>
+  `;
+  sidebar.appendChild(block);
+}
+
+function scheduleMount() {
+  if (scheduled) return;
+  scheduled = true;
+  queueMicrotask(() => {
+    scheduled = false;
+    mount();
+  });
+}
+
+const app = document.querySelector('#app');
+if (app) {
+  new MutationObserver(scheduleMount).observe(app, { childList: true, subtree: true });
+}
+window.addEventListener('hashchange', scheduleMount);
+window.addEventListener('popstate', scheduleMount);
+scheduleMount();
