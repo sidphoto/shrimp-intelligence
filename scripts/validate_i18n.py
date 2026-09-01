@@ -83,6 +83,13 @@ def validate_overlay(path: Path, locale: str) -> None:
         raise AssertionError(f"Locale mismatch in {path}: {declared_locale} != {locale}")
 
     canonical = canonical_report_for_overlay(path)
+    canonical_date = canonical.get("date")
+    overlay_date = overlay.get("date")
+    if path.stem != "latest" and overlay_date is not None and overlay_date != path.stem:
+        raise AssertionError(f"Dated overlay date mismatch in {path}: {overlay_date} != {path.stem}")
+    if overlay_date is not None and canonical_date is not None and overlay_date != canonical_date:
+        raise AssertionError(f"Overlay/canonical report date mismatch in {path}: {overlay_date} != {canonical_date}")
+
     signal_ids = {signal.get("id") for signal in canonical.get("signals", [])}
     signals = overlay.get("signals", {})
     if signals is not None and not isinstance(signals, dict):
@@ -115,8 +122,6 @@ def validate_localized_overlays() -> None:
     if not localized_root.exists():
         return
     for locale in SUPPORTED:
-        if locale == DEFAULT:
-            continue
         directory = localized_root / locale
         if not directory.exists():
             continue
@@ -127,7 +132,7 @@ def validate_localized_overlays() -> None:
 def main() -> int:
     validate_locale_files()
     validate_localized_overlays()
-    print("i18n validation PASS: locale parity, non-empty strings, and canonical overlay safety")
+    print("i18n validation PASS: locale parity, non-empty strings, dated overlays, and canonical overlay safety")
     return 0
 
 
