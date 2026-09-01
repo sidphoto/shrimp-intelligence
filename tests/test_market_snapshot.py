@@ -15,12 +15,38 @@ from market_snapshot import (  # noqa: E402
     load_market_for_report,
     parse_fred_30y,
     parse_stooq_quote,
+    parse_yahoo_chart,
 )
 
 TZ = ZoneInfo("Asia/Taipei")
 
 
 class MarketSnapshotTests(unittest.TestCase):
+    def test_parse_yahoo_chart(self):
+        text = json.dumps(
+            {
+                "chart": {
+                    "result": [
+                        {
+                            "meta": {
+                                "regularMarketPrice": 6840.0,
+                                "chartPreviousClose": 6800.0,
+                                "regularMarketTime": 1788238800,
+                            },
+                            "indicators": {"quote": [{"close": [6800.0, 6840.0]}]},
+                        }
+                    ],
+                    "error": None,
+                }
+            }
+        )
+        row = parse_yahoo_chart(text, "S&P 500", "^GSPC", "index")
+        self.assertIsNotNone(row)
+        self.assertEqual(row["value"], "6,840.00")
+        self.assertEqual(row["direction"], "up")
+        self.assertIn("+0.59%", row["change"])
+        self.assertEqual(row["source"], "Yahoo Finance chart snapshot")
+
     def test_parse_stooq_quote(self):
         text = (
             "Symbol,Date,Time,Open,High,Low,Close,Volume\n"
