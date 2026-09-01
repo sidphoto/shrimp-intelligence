@@ -31,7 +31,6 @@ const COPY = {
   }
 };
 
-let reportPromise;
 let scheduled = false;
 
 function esc(value = '') {
@@ -47,8 +46,6 @@ function copy() {
 }
 
 async function localizedReport() {
-  // Refetch when the locale changes because the app updates the query string
-  // and rerenders the DOM without reloading the page.
   const base = await fetch('./data/latest.json', {cache:'no-store'}).then(r => r.json());
   const overlay = await loadLocalizedOverlay(getLocale(), base.date);
   return applyLocalizedOverlay(base, overlay);
@@ -70,8 +67,13 @@ function enhanceEmerging(report) {
   const items = report.emerging_signals || [];
   const meta = report.trend_meta || {};
   const c = copy();
+  const locale = getLocale();
+  const signature = `${locale}:${meta.status || 'none'}:${meta.available_history_days || 0}:${items.map(x=>x.id).join(',')}`;
 
   for (const list of lists) {
+    if (list.dataset.insightSignature === signature) continue;
+    list.dataset.insightSignature = signature;
+
     if (!items.length) {
       const days = Number(meta.available_history_days || 0);
       const min = Number(meta.min_history_days || 2);
@@ -120,15 +122,20 @@ function enhanceImpact(report) {
   const nodes = report.impact_chain || [];
   if (!nodes.length) return;
 
+  const featured = (report.impact_chains || []).find(item => item.id === report.featured_impact_chain_id) || report.impact_chains?.[0];
+  const signature = `${getLocale()}:${featured?.id || 'featured'}:${nodes.map(x=>x.id).join(',')}`;
+  if (container.dataset.insightSignature === signature) return;
+  container.dataset.insightSignature = signature;
+
   container.innerHTML = nodes.map((node,index) => `${index ? '<span class="arrow">→</span>' : ''}<div class="impact-node"><div class="bubble">${esc(node.icon || '•')}</div>${esc(localizedLabel(node))}</div>`).join('');
 
   const parent = container.parentElement;
   if (!parent) return;
   parent.querySelector('.impact-policy-note')?.remove();
   const c = copy();
-  const featured = (report.impact_chains || []).find(item => item.id === report.featured_impact_chain_id) || report.impact_chains?.[0];
   const note = document.createElement('div');
   note.className = 'impact-policy-note';
+  note.dataset.insightSignature = signature;
   note.innerHTML = `<span>${esc(c.impactNote)}</span>${featured?.anchor_signal_id ? `<button class="pill-btn" data-impact-anchor="${esc(featured.anchor_signal_id)}">${esc(c.anchor)}</button>` : ''}`;
   parent.appendChild(note);
   note.querySelector('[data-impact-anchor]')?.addEventListener('click', event => {
