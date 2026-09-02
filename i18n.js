@@ -223,10 +223,10 @@ function localizeFields(target, localized, allowed) {
 
 function localizeNodes(nodes, localizedNodes) {
   if (!Array.isArray(nodes) || !localizedNodes || typeof localizedNodes !== 'object') return;
-  for (const node of nodes) {
-    const localized = localizedNodes[node.id] || localizedNodes[String(nodes.indexOf(node))];
+  nodes.forEach((node, index) => {
+    const localized = localizedNodes[node?.id] || localizedNodes[`n${index}`] || localizedNodes[String(index)];
     localizeFields(node, localized, LOCALIZABLE_NODE_FIELDS);
-  }
+  });
 }
 
 export function applyLocalizedOverlay(baseReport, overlay) {
@@ -240,8 +240,7 @@ export function applyLocalizedOverlay(baseReport, overlay) {
   if (localizedSignals && typeof localizedSignals === 'object' && !Array.isArray(localizedSignals)) {
     const byId = new Map((report.signals || []).map(signal => [signal.id, signal]));
     for (const [id, localized] of Object.entries(localizedSignals)) {
-      const target = byId.get(id);
-      localizeFields(target, localized, LOCALIZABLE_SIGNAL_FIELDS);
+      localizeFields(byId.get(id), localized, LOCALIZABLE_SIGNAL_FIELDS);
     }
   }
 
@@ -261,6 +260,9 @@ export function applyLocalizedOverlay(baseReport, overlay) {
       localizeFields(target, localized, LOCALIZABLE_CHAIN_FIELDS);
       localizeNodes(target?.nodes, localized?.nodes);
     }
+
+    const featured = report.featured_impact_chain_id && localizedChains[report.featured_impact_chain_id];
+    if (featured?.nodes) localizeNodes(report.impact_chain, featured.nodes);
   }
 
   if (overlay.impact_chain && typeof overlay.impact_chain === 'object') {
