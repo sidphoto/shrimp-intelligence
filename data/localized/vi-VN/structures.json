@@ -1,0 +1,16 @@
+{
+  "emerging_signals": {
+    "trend-geopolitics": {"name":"Rủi ro địa chính trị","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu rủi ro địa chính trị đang cao hơn đường cơ sở gần đây."},
+    "trend-markets": {"name":"Thị trường tài chính","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu thị trường tài chính đang cao hơn đường cơ sở gần đây."},
+    "trend-economy": {"name":"Kinh tế & Chính sách","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu kinh tế và chính sách đang cao hơn đường cơ sở gần đây."},
+    "trend-ai": {"name":"AI & Mô hình","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu liên quan đến AI và mô hình đang cao hơn đường cơ sở gần đây."},
+    "trend-taiwan": {"name":"Tín hiệu trọng yếu Đài Loan","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu liên quan đến Đài Loan đang cao hơn đường cơ sở gần đây."},
+    "trend-business": {"name":"Chuyển đổi kinh doanh","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu chuyển đổi kinh doanh đang cao hơn đường cơ sở gần đây."}
+  },
+  "impact_chains": {
+    "geo-energy-market": {"title":"Địa chính trị → Năng lượng → Lạm phát & Thị trường","nodes":{"n0":{"label":"Rủi ro địa chính trị và năng lượng gia tăng"},"n1":{"label":"Rủi ro nguồn cung năng lượng"},"n2":{"label":"Áp lực giá dầu"},"n3":{"label":"Áp lực lạm phát và lãi suất"},"n4":{"label":"Thị trường châu Á và Đài Loan"}}},
+    "china-trade-supply": {"title":"Ma sát thương mại Trung Quốc → Chuỗi cung ứng → Xuất khẩu Đài Loan","nodes":{"n0":{"label":"Ma sát thương mại hoặc chính sách của Trung Quốc"},"n1":{"label":"Tái cấu trúc chuỗi cung ứng"},"n2":{"label":"Chi phí sản xuất và lựa chọn địa điểm"},"n3":{"label":"Xuất khẩu và chuỗi cung ứng Đài Loan"}}},
+    "ai-capex-taiwan": {"title":"Thay đổi cấu trúc AI → CapEx → Chất bán dẫn Đài Loan","nodes":{"n0":{"label":"Thay đổi đầu tư hoặc hạ tầng AI"},"n1":{"label":"Đầu tư hạ tầng AI"},"n2":{"label":"Chi tiêu vốn công nghệ"},"n3":{"label":"Chuỗi cung ứng bán dẫn Đài Loan"}}}
+  },
+  "impact_chain": {"n0":{"label":"Rủi ro địa chính trị và năng lượng gia tăng"},"n1":{"label":"Rủi ro nguồn cung năng lượng"},"n2":{"label":"Áp lực giá dầu"},"n3":{"label":"Áp lực lạm phát và lãi suất"},"n4":{"label":"Thị trường châu Á và Đài Loan"}}
+}
