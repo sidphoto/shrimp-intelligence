@@ -11,7 +11,8 @@ const COPY = {
     shortWindow: '短期趨勢 · {days} 個完整資料日',
     fullWindow: '過去 {days} 日異常升溫',
     impactNote: '第一段關係由目前事件支持；後續箭頭為規則式「可能傳導」，不是已發生的因果宣稱。',
-    anchor: '查看錨定事件 →'
+    anchor: '查看錨定事件 →',
+    archiveSummary: '當日全球重要事件依 06:00 截止資料窗與可信來源驗證後整理。'
   },
   en: {
     collectingTitle: 'Building trend history',
@@ -19,7 +20,8 @@ const COPY = {
     shortWindow: 'Short-window trend · {days} complete days',
     fullWindow: 'Unusual acceleration over the past {days} days',
     impactNote: 'The first relationship is supported by current evidence; downstream arrows are rule-based potential transmission, not claims of observed causality.',
-    anchor: 'View anchor event →'
+    anchor: 'View anchor event →',
+    archiveSummary: 'Key global events for the day, verified from trusted sources within the 06:00 cutoff window.'
   },
   'vi-VN': {
     collectingTitle: 'Đang tích lũy dữ liệu xu hướng',
@@ -27,7 +29,8 @@ const COPY = {
     shortWindow: 'Xu hướng ngắn hạn · {days} ngày dữ liệu hoàn chỉnh',
     fullWindow: 'Tăng tốc bất thường trong {days} ngày qua',
     impactNote: 'Quan hệ đầu tiên được hỗ trợ bởi bằng chứng hiện tại; các mũi tên sau là kịch bản truyền dẫn tiềm năng theo quy tắc, không phải quan hệ nhân quả đã quan sát.',
-    anchor: 'Xem sự kiện neo →'
+    anchor: 'Xem sự kiện neo →',
+    archiveSummary: 'Các sự kiện toàn cầu quan trọng trong ngày, được xác minh từ nguồn đáng tin cậy trong khung thời gian đến 06:00.'
   }
 };
 
@@ -123,7 +126,7 @@ function enhanceImpact(report) {
   if (!nodes.length) return;
 
   const featured = (report.impact_chains || []).find(item => item.id === report.featured_impact_chain_id) || report.impact_chains?.[0];
-  const signature = `${getLocale()}:${featured?.id || 'featured'}:${nodes.map(x=>x.id).join(',')}`;
+  const signature = `${getLocale()}:${featured?.id || 'featured'}:${nodes.map((x,index)=>x.id || index).join(',')}`;
   if (container.dataset.insightSignature === signature) return;
   container.dataset.insightSignature = signature;
 
@@ -143,10 +146,19 @@ function enhanceImpact(report) {
   });
 }
 
+function enhanceArchive() {
+  if (!(location.hash || '#/today').startsWith('#/archive')) return;
+  const c = copy();
+  document.querySelectorAll('.archive-item small').forEach(node => {
+    node.textContent = `　${c.archiveSummary}`;
+  });
+}
+
 async function enhance() {
   const report = await localizedReport();
   enhanceEmerging(report);
   enhanceImpact(report);
+  enhanceArchive();
 }
 
 function schedule() {
