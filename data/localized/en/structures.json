@@ -1,0 +1,16 @@
+{
+  "emerging_signals": {
+    "trend-geopolitics": {"name":"Geopolitical Risk","label":"Building history","reason":"Geopolitical risk signals are running above their recent baseline."},
+    "trend-markets": {"name":"Financial Markets","label":"Building history","reason":"Financial-market signals are running above their recent baseline."},
+    "trend-economy": {"name":"Economy & Policy","label":"Building history","reason":"Economic and policy signals are running above their recent baseline."},
+    "trend-ai": {"name":"AI & Models","label":"Building history","reason":"AI and model-related signals are running above their recent baseline."},
+    "trend-taiwan": {"name":"Taiwan Key Signals","label":"Building history","reason":"Taiwan-related signals are running above their recent baseline."},
+    "trend-business": {"name":"Business Transformation","label":"Building history","reason":"Business-transformation signals are running above their recent baseline."}
+  },
+  "impact_chains": {
+    "geo-energy-market": {"title":"Geopolitics → Energy → Inflation & Markets","nodes":{"n0":{"label":"Rising geopolitical and energy risk"},"n1":{"label":"Energy-supply risk"},"n2":{"label":"Oil-price pressure"},"n3":{"label":"Inflation and rate pressure"},"n4":{"label":"Asian and Taiwan markets"}}},
+    "china-trade-supply": {"title":"China Trade Friction → Supply Chain → Taiwan Exports","nodes":{"n0":{"label":"China trade or policy friction"},"n1":{"label":"Supply-chain restructuring"},"n2":{"label":"Manufacturing cost and location"},"n3":{"label":"Taiwan exports and supply chain"}}},
+    "ai-capex-taiwan": {"title":"AI Structural Change → CapEx → Taiwan Semiconductors","nodes":{"n0":{"label":"AI investment or infrastructure change"},"n1":{"label":"AI infrastructure investment"},"n2":{"label":"Technology capital expenditure"},"n3":{"label":"Taiwan semiconductor supply chain"}}}
+  },
+  "impact_chain": {"n0":{"label":"Rising geopolitical and energy risk"},"n1":{"label":"Energy-supply risk"},"n2":{"label":"Oil-price pressure"},"n3":{"label":"Inflation and rate pressure"},"n4":{"label":"Asian and Taiwan markets"}}
+}
