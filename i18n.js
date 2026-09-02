@@ -28,6 +28,10 @@ const LOCALIZABLE_SIGNAL_FIELDS = new Set([
   'quality_note'
 ]);
 
+const LOCALIZABLE_TREND_FIELDS = new Set(['name', 'label', 'reason']);
+const LOCALIZABLE_CHAIN_FIELDS = new Set(['title']);
+const LOCALIZABLE_NODE_FIELDS = new Set(['label']);
+
 export function normalizeLocale(value) {
   if (!value) return null;
   const raw = String(value).trim();
@@ -189,13 +193,40 @@ async function fetchOptionalJSON(url) {
   }
 }
 
+function mergeOverlay(structural, dated) {
+  if (!structural) return dated;
+  if (!dated) return structural;
+  return {
+    ...structural,
+    ...dated,
+    signals: {...(structural.signals || {}), ...(dated.signals || {})},
+    emerging_signals: {...(structural.emerging_signals || {}), ...(dated.emerging_signals || {})},
+    impact_chains: {...(structural.impact_chains || {}), ...(dated.impact_chains || {})}
+  };
+}
+
 export async function loadLocalizedOverlay(locale, reportDate) {
   const normalized = resolveLocale(locale);
-  if (reportDate) {
-    const dated = await fetchOptionalJSON(`./data/localized/${normalized}/${reportDate}.json`);
-    if (dated) return dated;
+  const structural = await fetchOptionalJSON(`./data/localized/${normalized}/structures.json`);
+  let dated = null;
+  if (reportDate) dated = await fetchOptionalJSON(`./data/localized/${normalized}/${reportDate}.json`);
+  if (!dated) dated = await fetchOptionalJSON(`./data/localized/${normalized}/latest.json`);
+  return mergeOverlay(structural, dated);
+}
+
+function localizeFields(target, localized, allowed) {
+  if (!target || !localized || typeof localized !== 'object') return;
+  for (const [field, value] of Object.entries(localized)) {
+    if (allowed.has(field) && typeof value === 'string') target[field] = value;
   }
-  return fetchOptionalJSON(`./data/localized/${normalized}/latest.json`);
+}
+
+function localizeNodes(nodes, localizedNodes) {
+  if (!Array.isArray(nodes) || !localizedNodes || typeof localizedNodes !== 'object') return;
+  for (const node of nodes) {
+    const localized = localizedNodes[node.id] || localizedNodes[String(nodes.indexOf(node))];
+    localizeFields(node, localized, LOCALIZABLE_NODE_FIELDS);
+  }
 }
 
 export function applyLocalizedOverlay(baseReport, overlay) {
@@ -207,14 +238,33 @@ export function applyLocalizedOverlay(baseReport, overlay) {
 
   const localizedSignals = overlay.signals;
   if (localizedSignals && typeof localizedSignals === 'object' && !Array.isArray(localizedSignals)) {
-    const byId = new Map(report.signals.map(signal => [signal.id, signal]));
+    const byId = new Map((report.signals || []).map(signal => [signal.id, signal]));
     for (const [id, localized] of Object.entries(localizedSignals)) {
       const target = byId.get(id);
-      if (!target || !localized || typeof localized !== 'object') continue;
-      for (const [field, value] of Object.entries(localized)) {
-        if (LOCALIZABLE_SIGNAL_FIELDS.has(field) && typeof value === 'string') target[field] = value;
-      }
+      localizeFields(target, localized, LOCALIZABLE_SIGNAL_FIELDS);
     }
+  }
+
+  const localizedTrends = overlay.emerging_signals;
+  if (localizedTrends && typeof localizedTrends === 'object' && !Array.isArray(localizedTrends)) {
+    const byId = new Map((report.emerging_signals || []).map(item => [item.id, item]));
+    for (const [id, localized] of Object.entries(localizedTrends)) {
+      localizeFields(byId.get(id), localized, LOCALIZABLE_TREND_FIELDS);
+    }
+  }
+
+  const localizedChains = overlay.impact_chains;
+  if (localizedChains && typeof localizedChains === 'object' && !Array.isArray(localizedChains)) {
+    const byId = new Map((report.impact_chains || []).map(item => [item.id, item]));
+    for (const [id, localized] of Object.entries(localizedChains)) {
+      const target = byId.get(id);
+      localizeFields(target, localized, LOCALIZABLE_CHAIN_FIELDS);
+      localizeNodes(target?.nodes, localized?.nodes);
+    }
+  }
+
+  if (overlay.impact_chain && typeof overlay.impact_chain === 'object') {
+    localizeNodes(report.impact_chain, overlay.impact_chain);
   }
 
   if (Array.isArray(overlay.taiwan_radar) && overlay.taiwan_radar.every(item => typeof item === 'string')) {
