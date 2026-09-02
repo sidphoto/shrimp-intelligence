@@ -1,3 +1,8 @@
+> [!NOTE]
+> **Legacy repository:** active public development has moved to [sidphoto/sharbo-globo](https://github.com/sidphoto/sharbo-globo), the canonical public source-available repository.
+>
+> This repository is retained for historical reference. New issues, pull requests, and documentation should target the canonical repository.
+
 # SharBo Globo｜蝦報全球
 
 **Source Available · Free for Non-Commercial Use · Commercial License Available**
