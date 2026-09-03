@@ -1,4 +1,5 @@
 {
+  "demo": true,
   "emerging_signals": {
     "trend-geopolitics": {"name":"Geopolitical Risk","label":"Building history","reason":"Geopolitical risk signals are running above their recent baseline."},
     "trend-markets": {"name":"Financial Markets","label":"Building history","reason":"Financial-market signals are running above their recent baseline."},
