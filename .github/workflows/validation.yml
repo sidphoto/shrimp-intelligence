@@ -31,6 +31,7 @@ jobs:
           node --check topic_catalog.js
           node --check exploration.js
           node --check insight_widgets.js
+          node --check home_dashboard.js
           node --check github_source.js
       - name: Run JavaScript regressions
         run: |

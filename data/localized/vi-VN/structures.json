@@ -1,4 +1,5 @@
 {
+  "demo": true,
   "emerging_signals": {
     "trend-geopolitics": {"name":"Rủi ro địa chính trị","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu rủi ro địa chính trị đang cao hơn đường cơ sở gần đây."},
     "trend-markets": {"name":"Thị trường tài chính","label":"Đang tích lũy dữ liệu","reason":"Các tín hiệu thị trường tài chính đang cao hơn đường cơ sở gần đây."},

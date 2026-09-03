@@ -126,6 +126,10 @@ def validate_localized_overlays() -> None:
         if not directory.exists():
             continue
         for path in sorted(directory.glob("*.json")):
+            # structures.json localizes Emerging Signals / Impact Chains and is
+            # intentionally not a canonical signal overlay.
+            if path.name == "structures.json":
+                continue
             validate_overlay(path, locale)
 
 
