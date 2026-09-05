@@ -136,7 +136,16 @@
   },
   "archive": {
     "title": "歷史存檔",
-    "description": "每日資料窗固定封存，方便回查當時可觀察到的世界，而不是用事後資訊回填。"
+    "description": "每日資料窗固定封存，方便回查當時可觀察到的世界，而不是用事後資訊回填。",
+    "back": "← 回歷史存檔",
+    "loading": "載入中…",
+    "notFound": "找不到這一天的存檔資料。",
+    "topSignals": "當日重點",
+    "taiwanRadar": "台灣關聯",
+    "market": "市場快照",
+    "impactChain": "當日影響鏈",
+    "notice": "歷史存檔僅保留當日重點摘要，完整訊號細節僅提供於「今日」頁面。",
+    "topics": "主題分布"
   },
   "detail": {
     "whatHappened": "發生什麼事",
