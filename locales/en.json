@@ -136,7 +136,16 @@
   },
   "archive": {
     "title": "Archive",
-    "description": "Each daily window is frozen so you can revisit what was knowable at the time instead of backfilling later information."
+    "description": "Each daily window is frozen so you can revisit what was knowable at the time instead of backfilling later information.",
+    "back": "← Back to Archive",
+    "loading": "Loading…",
+    "notFound": "No archived data found for this day.",
+    "topSignals": "Top signals that day",
+    "taiwanRadar": "Taiwan relevance",
+    "market": "Market snapshot",
+    "impactChain": "Impact chain that day",
+    "notice": "Archive keeps only that day's key data; full signal detail is available on Today only.",
+    "topics": "Topic distribution"
   },
   "detail": {
     "whatHappened": "What happened",

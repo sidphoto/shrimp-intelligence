@@ -136,7 +136,16 @@
   },
   "archive": {
     "title": "Lưu trữ",
-    "description": "Mỗi khung dữ liệu hằng ngày được đóng cố định để có thể xem lại những gì đã biết tại thời điểm đó, thay vì bổ sung thông tin về sau."
+    "description": "Mỗi khung dữ liệu hằng ngày được đóng cố định để có thể xem lại những gì đã biết tại thời điểm đó, thay vì bổ sung thông tin về sau.",
+    "back": "← Quay lại Lưu trữ",
+    "loading": "Đang tải…",
+    "notFound": "Không tìm thấy dữ liệu lưu trữ cho ngày này.",
+    "topSignals": "Tín hiệu nổi bật hôm đó",
+    "taiwanRadar": "Liên quan đến Đài Loan",
+    "market": "Ảnh chụp nhanh thị trường",
+    "impactChain": "Chuỗi tác động hôm đó",
+    "notice": "Lưu trữ chỉ giữ dữ liệu quan trọng của ngày đó; chi tiết đầy đủ chỉ có ở trang Hôm nay.",
+    "topics": "Phân bổ chủ đề"
   },
   "detail": {
     "whatHappened": "Điều gì đã xảy ra",
