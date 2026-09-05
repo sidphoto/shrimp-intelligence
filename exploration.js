@@ -79,7 +79,7 @@ let scheduled = false;
 
 function copy(){ return COPY[getLocale()] || COPY['zh-TW']; }
 function fmt(template, values){ return template.replace(/\{(\w+)\}/g,(_,key)=>values[key] ?? ''); }
-function esc(value=''){ return String(value).replace(/[&<>\"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[ch])); }
+function esc(value=''){ return String(value).replace(/[&<>\"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;','`':'&#96;'}[ch])); }
 function scoreClass(score){ return Number(score)>=95?'critical':Number(score)>=85?'important':'emerging'; }
 function localizedTopicName(topic){ return TOPIC_LABELS[getLocale()]?.[topic?.slug] || topicName(topic); }
 
@@ -174,7 +174,7 @@ function renderTopicPage(report,slug){
   const sourceText=breakdown.sources.slice(0,4).map(([source,count])=>`${sourceClassLabel(source)} ${count}`).join(' · ') || '—';
   const importance=`${severityLabel('critical')} ${breakdown.severity.critical} · ${severityLabel('important')} ${breakdown.severity.important} · ${severityLabel('emerging')} ${breakdown.severity.emerging}`;
   const footer=content.querySelector('.footer')?.outerHTML || '';
-  content.innerHTML=`<div class="topic-detail" data-topic-page="${esc(slug)}"><button class="pill-btn topic-back">${esc(c.topicBack)}</button><div class="topic-detail-hero" style="--accent:${esc(topic.color)}"><div class="topic-detail-icon">${topic.icon}</div><div><div class="eyeline">${esc(c.topicSignals)}</div><h1>${esc(localizedTopicName(topic))}</h1><p>${esc(c.topicDescription)}</p><small>${esc(fmt(c.quickFiltered,{shown:visible.length,total:all.length}))}</small></div></div><div class="topic-stats">${statPill(c.total,String(visible.length))}${statPill(c.importance,importance)}${statPill(c.regions,regionText)}${statPill(c.sources,sourceText)}</div><div class="radar-grid topic-results">${visible.map(topicSignalCard).join('') || `<div class="card empty">${esc(c.empty)}</div>`}</div></div>${footer}`;
+  content.innerHTML=`<div class="topic-detail" data-topic-page="${esc(slug)}"><button class="pill-btn topic-back">${esc(c.topicBack)}</button><div class="topic-detail-hero" style="--accent:${esc(topic.color)}"><div class="topic-detail-icon">${esc(topic.icon)}</div><div><div class="eyeline">${esc(c.topicSignals)}</div><h1>${esc(localizedTopicName(topic))}</h1><p>${esc(c.topicDescription)}</p><small>${esc(fmt(c.quickFiltered,{shown:visible.length,total:all.length}))}</small></div></div><div class="topic-stats">${statPill(c.total,String(visible.length))}${statPill(c.importance,importance)}${statPill(c.regions,regionText)}${statPill(c.sources,sourceText)}</div><div class="radar-grid topic-results">${visible.map(topicSignalCard).join('') || `<div class="card empty">${esc(c.empty)}</div>`}</div></div>${footer}`;
   content.querySelector('.topic-back').onclick=()=>{location.hash='#/today';};
   content.querySelectorAll('[data-explore-signal]').forEach(card=>card.onclick=()=>{location.hash=`#/signal/${card.dataset.exploreSignal}`;});
 }
