@@ -39,6 +39,20 @@
     "showing": "Showing {shown} / {total} signals",
     "empty": "No signals match the current quick filters."
   },
+  "todaySummary": {
+    "title": "Daily Brief",
+    "subtitle": "Signals in this report window",
+    "signals": "Signals",
+    "focus": "Focus events",
+    "emerging": "Emerging trends",
+    "quality": "Data quality",
+    "taiwan": "Taiwan-linked",
+    "count": "{count} signals",
+    "window": "Window verified",
+    "matches": "signals match your watchlist",
+    "focusLabel": "Worth watching",
+    "noTaiwan": "No Taiwan-linked brief is available."
+  },
   "window": {
     "title": "Data window (Asia/Taipei)",
     "verified": "Verified: {value}",
@@ -49,8 +63,11 @@
     "disclaimer": "SharBo Globo · Intelligence is decision support and does not replace official notices or professional financial or legal advice."
   },
   "hero": {
-    "eyeline": "World in one line",
+    "eyeline": "Today's key takeaways",
     "title": "Global Intelligence Radar",
+    "critical": "High risk",
+    "important": "Important",
+    "emerging": "Emerging",
     "mapAria": "Soft watercolor-style global intelligence illustration"
   },
   "severity": {
@@ -69,7 +86,8 @@
     "chain": "Impact chain"
   },
   "top5": {
-    "title": "Global Top 5 Signals"
+    "title": "Global Top 5 Signals",
+    "open": "View full analysis"
   },
   "topics": {
     "title": "Explore Topics",
@@ -87,11 +105,15 @@
   },
   "focus": {
     "title": "Top Story Today",
+    "subtitle": "Editorial Intelligence",
+    "eyeline": "FOCUS",
+    "whyImportant": "Why it matters",
     "readFull": "Read full analysis →",
     "windowVerified": "Window verified"
   },
   "market": {
     "title": "Market Snapshot",
+    "sourceNote": "Verifiable snapshots only",
     "subtitle": "Latest verifiable close / indicator",
     "asOf": "As of {time}",
     "vsPrevious": "vs previous",

@@ -39,6 +39,20 @@
     "showing": "Đang hiển thị {shown} / {total} tín hiệu",
     "empty": "Không có tín hiệu phù hợp với bộ lọc nhanh hiện tại."
   },
+  "todaySummary": {
+    "title": "Tóm tắt hôm nay",
+    "subtitle": "Tín hiệu trong khung báo cáo này",
+    "signals": "Tín hiệu",
+    "focus": "Sự kiện trọng tâm",
+    "emerging": "Xu hướng mới nổi",
+    "quality": "Chất lượng dữ liệu",
+    "taiwan": "Liên quan Đài Loan",
+    "count": "{count} tín hiệu",
+    "window": "Xác minh khung dữ liệu",
+    "matches": "tín hiệu phù hợp với radar của bạn",
+    "focusLabel": "Đáng chú ý nhất",
+    "noTaiwan": "Hiện chưa có tóm tắt liên quan đến Đài Loan."
+  },
   "window": {
     "title": "Khung dữ liệu (Asia/Taipei)",
     "verified": "Đã xác minh: {value}",
@@ -49,8 +63,11 @@
     "disclaimer": "SharBo Globo · Thông tin chỉ hỗ trợ đánh giá và không thay thế thông báo chính thức hay tư vấn tài chính, pháp lý chuyên nghiệp."
   },
   "hero": {
-    "eyeline": "Thế giới trong một câu",
+    "eyeline": "Tóm tắt trọng điểm hôm nay",
     "title": "Radar thông tin toàn cầu",
+    "critical": "Rủi ro cao",
+    "important": "Quan trọng",
+    "emerging": "Mới nổi",
     "mapAria": "Minh họa radar thông tin toàn cầu theo phong cách màu nước nhẹ"
   },
   "severity": {
@@ -69,7 +86,8 @@
     "chain": "Chuỗi tác động"
   },
   "top5": {
-    "title": "Top 5 tín hiệu toàn cầu"
+    "title": "Top 5 tín hiệu toàn cầu",
+    "open": "Xem phân tích đầy đủ"
   },
   "topics": {
     "title": "Khám phá chủ đề",
@@ -87,11 +105,15 @@
   },
   "focus": {
     "title": "Sự kiện trọng tâm hôm nay",
+    "subtitle": "Editorial Intelligence",
+    "eyeline": "FOCUS",
+    "whyImportant": "Vì sao quan trọng",
     "readFull": "Đọc phân tích đầy đủ →",
     "windowVerified": "Đã xác minh khung dữ liệu"
   },
   "market": {
     "title": "Tổng quan thị trường",
+    "sourceNote": "Chỉ hiển thị snapshot có thể kiểm chứng",
     "subtitle": "Mức đóng cửa / chỉ báo gần nhất có thể xác minh",
     "asOf": "Cập nhật lúc {time}",
     "vsPrevious": "so với kỳ trước",

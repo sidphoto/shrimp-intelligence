@@ -30,6 +30,10 @@ const COPY = {
     nodeDetail: '節點說明',
     nodeType: '節點類型',
     relationDetail: '傳導依據',
+    judgementTitle: '目前判斷',
+    judgementBody: '目前有 {supported} 段事件支持；{potential} 段仍屬可能傳導，未視為已發生因果。',
+    nextTitle: '下一步觀察',
+    watchEmpty: '沿著後續節點持續觀察。',
     impactNote: '實線代表有事件支持；虛線代表規則式「可能傳導」，不是已發生的因果宣稱。',
     anchor: '查看錨定事件 →',
     archiveSummary: '當日全球重要事件摘要。'
@@ -59,6 +63,10 @@ const COPY = {
     nodeDetail: 'Node details',
     nodeType: 'Node type',
     relationDetail: 'Why these nodes are connected',
+    judgementTitle: 'Current read',
+    judgementBody: '{supported} relationship(s) are event-supported; {potential} remain potential transmission and are not treated as observed causality.',
+    nextTitle: 'Watch next',
+    watchEmpty: 'Continue monitoring the downstream nodes.',
     impactNote: 'Solid connectors are event-supported; dashed connectors are rule-based potential transmission, not claims of observed causality.',
     anchor: 'View anchor event →',
     archiveSummary: 'Key global events for that day.'
@@ -88,6 +96,10 @@ const COPY = {
     nodeDetail: 'Chi tiết nút',
     nodeType: 'Loại nút',
     relationDetail: 'Vì sao các nút được nối',
+    judgementTitle: 'Nhận định hiện tại',
+    judgementBody: '{supported} mối liên hệ có sự kiện hỗ trợ; {potential} mối liên hệ vẫn là truyền dẫn tiềm năng và không được xem là quan hệ nhân quả đã quan sát.',
+    nextTitle: 'Theo dõi tiếp',
+    watchEmpty: 'Tiếp tục theo dõi các nút ở phía sau.',
     impactNote: 'Đường liền biểu thị có sự kiện hỗ trợ; đường đứt biểu thị truyền dẫn tiềm năng theo quy tắc, không phải quan hệ nhân quả đã quan sát.',
     anchor: 'Xem sự kiện neo →',
     archiveSummary: 'Các sự kiện toàn cầu quan trọng trong ngày.'
@@ -323,11 +335,29 @@ function renderImpactDetail(featured, report, selection) {
 
   const node = nodes[selection?.index ?? 0];
   if (!node) return '';
+  const relatedIds = edges
+    .filter(edge => edge.from === node.id || edge.to === node.id)
+    .flatMap(edge => edge.evidence_signal_ids || []);
   return `<div class="impact-detail-card node">
     <div class="impact-detail-kicker">${iconSvg(nodeIcon(node, selection?.index ?? 0))}${esc(c.nodeDetail)}</div>
     <div class="impact-detail-title">${esc(localizedLabel(node))}</div>
     <div class="impact-node-type">${esc(c.nodeType)} · ${esc(node.type || 'signal')}</div>
+    ${relatedIds.length ? `<div class="insight-panel-title">${esc(c.evidence)}</div><div class="insight-event-list">${renderRelatedEvents(relatedIds, report)}</div>` : ''}
   </div>`;
+}
+
+function renderImpactBrief(featured) {
+  const c = copy();
+  const nodes = featured?.nodes || [];
+  const edges = featured?.edges || [];
+  const supported = edges.filter(edge => String(edge?.relation || '').toUpperCase() === 'SUPPORTED').length;
+  const potential = edges.filter(edge => String(edge?.relation || '').toUpperCase() !== 'SUPPORTED').length;
+  const watchLabels = [...new Set(edges
+    .filter(edge => String(edge?.relation || '').toUpperCase() !== 'SUPPORTED')
+    .map(edge => nodes.find(node => node.id === edge.to))
+    .filter(Boolean)
+    .map(localizedLabel))].slice(0, 4);
+  return `<div class="impact-brief"><div class="impact-brief-column"><div class="impact-brief-title">${iconSvg('info')}${esc(c.judgementTitle)}</div><p>${esc(fmt(c.judgementBody,{supported,potential}))}</p></div><div class="impact-brief-column"><div class="impact-brief-title">${iconSvg('radar')}${esc(c.nextTitle)}</div>${watchLabels.length ? `<ul>${watchLabels.map(label => `<li>${esc(label)}</li>`).join('')}</ul>` : `<p>${esc(c.watchEmpty)}</p>`}</div></div>`;
 }
 
 function enhanceImpact(report) {
@@ -346,7 +376,7 @@ function enhanceImpact(report) {
 
   container.innerHTML = `<div class="impact-track">${nodes.map((node,index) =>
     `${index ? renderImpactConnector(edges[index-1] || {relation:'POTENTIAL'}, index-1) : ''}${renderImpactNode(node,index)}`
-  ).join('')}</div><div class="impact-detail-slot"></div>`;
+  ).join('')}</div>${renderImpactBrief(featured)}<div class="impact-detail-slot"></div>`;
 
   const detailSlot = container.querySelector('.impact-detail-slot');
   const showDetail = selection => {

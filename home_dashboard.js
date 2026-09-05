@@ -16,7 +16,7 @@ function enhanceHomeDashboard() {
   }
 
   const content = document.querySelector('.content');
-  if (!content || content.dataset.homeDashboardLayout === 'v1') return;
+  if (!content || content.dataset.homeDashboardLayout) return;
 
   const heroGrid = content.querySelector(':scope > .hero-grid');
   const hero = heroGrid?.querySelector(':scope > .hero');

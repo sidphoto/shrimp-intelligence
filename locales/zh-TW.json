@@ -39,6 +39,20 @@
     "showing": "目前顯示 {shown} / {total} 項訊號",
     "empty": "目前快速篩選沒有符合的訊號。"
   },
+  "todaySummary": {
+    "title": "今日總覽",
+    "subtitle": "以本日資料窗整理",
+    "signals": "情報訊號",
+    "focus": "焦點事件",
+    "emerging": "新興趨勢",
+    "quality": "資料品質",
+    "taiwan": "台灣關聯",
+    "count": "{count} 項訊號",
+    "window": "資料窗驗證",
+    "matches": "個符合你關注條件的訊號",
+    "focusLabel": "最值得注意",
+    "noTaiwan": "目前沒有台灣相關摘要。"
+  },
   "window": {
     "title": "資料視窗（Asia/Taipei）",
     "verified": "已驗證：{value}",
@@ -49,8 +63,11 @@
     "disclaimer": "SharBo Globo · 情報為輔助判讀，不取代官方公告、專業財務或法律意見。"
   },
   "hero": {
-    "eyeline": "一句話世界總結",
+    "eyeline": "今日重點摘要",
     "title": "全球情報雷達",
+    "critical": "高風險",
+    "important": "重要",
+    "emerging": "新興",
     "mapAria": "柔和水彩風全球情報示意圖"
   },
   "severity": {
@@ -69,7 +86,8 @@
     "chain": "影響鏈"
   },
   "top5": {
-    "title": "全球 Top 5 Signals"
+    "title": "全球 Top 5 Signals",
+    "open": "查看完整分析"
   },
   "topics": {
     "title": "探索主題",
@@ -87,11 +105,15 @@
   },
   "focus": {
     "title": "今日重點事件",
+    "subtitle": "Editorial Intelligence",
+    "eyeline": "FOCUS",
+    "whyImportant": "為什麼重要",
     "readFull": "閱讀完整分析 →",
     "windowVerified": "資料窗已驗證"
   },
   "market": {
     "title": "市場快覽",
+    "sourceNote": "只顯示可驗證快照",
     "subtitle": "最近可驗證收盤 / 指標",
     "asOf": "市場快照：{time}",
     "vsPrevious": "較前值",
