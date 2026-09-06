@@ -291,7 +291,12 @@ function structuredHeadline(item){
 function structuredFacts(item){
   const m = item.metrics || {};
   const out = [];
-  if(m.magnitude != null) out.push(`${t('structured.magnitude')} M${m.magnitude}`);
+  // USGS reports magnitude as a number; EONET reports it as {value, unit} for storms
+  // and wildfires. They are different quantities and must not share a label.
+  if(typeof m.magnitude === 'number') out.push(`${t('structured.magnitude')} M${m.magnitude}`);
+  else if(m.magnitude && typeof m.magnitude === 'object' && m.magnitude.value != null){
+    out.push(`${m.magnitude.value}${m.magnitude.unit ? ' ' + m.magnitude.unit : ''}`);
+  }
   if(m.depth_km != null) out.push(`${t('structured.depth')} ${m.depth_km} km`);
   if(m.tsunami) out.push(t('structured.tsunami'));
   if(m.precipitation_24h_mm != null) out.push(`${t('structured.rain24h')} ${m.precipitation_24h_mm} mm`);
