@@ -237,5 +237,27 @@
     "asia": "Châu Á",
     "middle-east": "Trung Đông",
     "vietnam": "Việt Nam"
+  },
+  "structured": {
+    "title": "Quan sát chính thức",
+    "subtitle": "Dữ liệu có cấu trúc trực tiếp từ cơ quan chính thức, không qua tin tức",
+    "count": "quan sát",
+    "earthquake": "động đất",
+    "weatherAnomaly": "Thời tiết bất thường",
+    "magnitude": "Cường độ",
+    "depth": "Độ sâu",
+    "tsunami": "Có cảnh báo sóng thần",
+    "rain24h": "Lượng mưa 24 giờ",
+    "gust": "Gió giật mạnh nhất",
+    "apparentTemp": "Nhiệt độ cảm nhận",
+    "footnote": "Số liệu và địa danh giữ nguyên như nguồn công bố, nên cả ba ngôn ngữ đọc cùng một dữ kiện.",
+    "degraded": "Một số nguồn tạm thời không khả dụng: {providers}",
+    "band": {
+      "breaking": "Khẩn cấp",
+      "high": "Cao",
+      "candidate": "Đáng chú ý",
+      "watch": "Theo dõi",
+      "drop": "Theo dõi"
+    }
   }
 }
