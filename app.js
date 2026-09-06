@@ -263,6 +263,83 @@ function heroStatusCount(r,severity){
   return r.counts?.[severity] ?? r.signals.filter(s=>scoreClass(s.score)===severity).length;
 }
 
+const STRUCTURED_ICONS = {
+  earthquake:'radar', weather_anomaly:'trend', severeStorms:'globe', wildfires:'trend',
+  volcanoes:'radar', floods:'globe', landslides:'radar', dustHaze:'globe',
+  drought:'trend', tempExtremes:'trend', manmade:'business', fx:'trend'
+};
+
+function structuredHeadline(item){
+  // Facts stay canonical — the numbers and place names come straight from the provider.
+  // Only the wording around them is localized, so no language can disagree about a magnitude.
+  const m = item.metrics || {};
+  if(item.category === 'earthquake' && m.magnitude != null){
+    const place = (item.geography && item.geography.region) || '';
+    return `M${m.magnitude} ${t('structured.earthquake')}${place ? ' — ' + place : ''}`;
+  }
+  if(item.category === 'weather_anomaly'){
+    const place = (item.geography && item.geography.region) || '';
+    return `${t('structured.weatherAnomaly')}${place ? ' — ' + place : ''}`;
+  }
+  if(item.category === 'fx' && m.pair){
+    const change = m.change_pct == null ? '' : ` ${m.change_pct > 0 ? '+' : ''}${m.change_pct}%`;
+    return `${m.pair}${change}`;
+  }
+  return item.title || '';
+}
+
+function structuredFacts(item){
+  const m = item.metrics || {};
+  const out = [];
+  if(m.magnitude != null) out.push(`${t('structured.magnitude')} M${m.magnitude}`);
+  if(m.depth_km != null) out.push(`${t('structured.depth')} ${m.depth_km} km`);
+  if(m.tsunami) out.push(t('structured.tsunami'));
+  if(m.precipitation_24h_mm != null) out.push(`${t('structured.rain24h')} ${m.precipitation_24h_mm} mm`);
+  if(m.wind_gust_max_kmh != null) out.push(`${t('structured.gust')} ${m.wind_gust_max_kmh} km/h`);
+  if(m.apparent_temperature_max_c != null) out.push(`${t('structured.apparentTemp')} ${m.apparent_temperature_max_c}°C`);
+  if(m.value != null && m.pair) out.push(`${m.pair} ${m.value}`);
+  return out;
+}
+
+function structuredRow(item){
+  const band = item.signal && item.signal.band;
+  const severity = band === 'breaking' || band === 'high' ? 'critical' : band === 'candidate' ? 'important' : 'emerging';
+  const facts = structuredFacts(item).map(f=>`<span class="tag">${esc(f)}</span>`).join('');
+  const src = (item.source && item.source.name) || '';
+  const url = (item.source && item.source.url) || '';
+  return `<div class="structured-row">
+    <span class="structured-icon">${uiIcon(STRUCTURED_ICONS[item.category] || 'radar')}</span>
+    <div class="structured-main">
+      <b>${esc(structuredHeadline(item))}</b>
+      <div class="tags">${facts}</div>
+    </div>
+    <div class="structured-meta">
+      <span class="severity ${severity}">${esc(t('structured.band.' + (band || 'watch')))}</span>
+      ${url ? `<a class="structured-source" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(src)} →</a>` : `<span class="structured-source">${esc(src)}</span>`}
+    </div>
+  </div>`;
+}
+
+function structuredPanel(r){
+  const block = r.structured_signals;
+  if(!block) return '';
+  const buckets = block.buckets || {};
+  const items = Object.keys(buckets).reduce((all, key)=>all.concat(buckets[key] || []), []);
+  if(!items.length) return '';
+  items.sort((a,b)=>((b.signal && b.signal.score) || 0) - ((a.signal && a.signal.score) || 0));
+
+  const degraded = (block.providers || []).filter(p=>p.status === 'degraded').map(p=>p.provider);
+  const note = degraded.length
+    ? `<span class="sub">${esc(t('structured.degraded', {providers: degraded.join(', ')}))}</span>`
+    : `<span class="sub">${esc(t('structured.subtitle'))}</span>`;
+
+  return `<section class="card card-pad today-panel structured-panel" aria-labelledby="structured-title">
+    <div class="section-title"><div><h2 id="structured-title">${esc(t('structured.title'))}</h2>${note}</div><span class="summary-inline"><b>${items.length}</b> ${esc(t('structured.count'))}</span></div>
+    <div class="structured-list">${items.map(structuredRow).join('')}</div>
+    <p class="structured-footnote">${esc(t('structured.footnote'))}</p>
+  </section>`;
+}
+
 function today(){
   const r=state.report;
   const top=quickSignals(topSignals(r));
@@ -274,6 +351,7 @@ function today(){
     ${todaySummary(r)}
   </div>
   <section class="card today-panel top5-panel"><div class="card-pad" style="padding-bottom:8px"><div class="section-title"><h2>${esc(t('top5.title'))}</h2><button class="pill-btn" data-route="#/radar">${esc(t('common.viewAll'))}</button></div></div><div class="signal-list">${top.map((s,i)=>signalRow(s,i+1)).join('')||`<div class="empty">${esc(t('quick.empty'))}</div>`}</div></section>
+  ${structuredPanel(r)}
   <section class="grid home-grid insight-grid">
     <section class="card card-pad today-panel"><div class="section-title"><h2>${esc(t('emerging.title'))}</h2><span class="sub">${esc(t('emerging.subtitle'))}</span></div><div class="emerging-list">${(r.emerging_signals||[]).map(x=>`<div class="emerging-row"><div class="signal-icon">${esc(x.icon)}</div><div class="emerging-name"><b>${esc(x.name)}</b><small>${esc(x.label||x.reason||'')}</small></div>${sparkline(x.series||[0,0])}<div class="trend">▲ ${x.change||0}%</div></div>`).join('')}</div></section>
     <section class="card card-pad today-panel"><div class="section-title"><h2>${esc(t('impact.title'))}</h2><span class="sub">${esc(t('impact.subtitle'))}</span></div>${impactChain(r.impact_chain||[])}</section>

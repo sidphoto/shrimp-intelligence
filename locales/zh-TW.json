@@ -237,5 +237,27 @@
     "asia": "亞洲",
     "middle-east": "中東",
     "vietnam": "越南"
+  },
+  "structured": {
+    "title": "官方觀測",
+    "subtitle": "來自官方機構的結構化資料，不經新聞轉述",
+    "count": "筆觀測",
+    "earthquake": "地震",
+    "weatherAnomaly": "天氣異常",
+    "magnitude": "規模",
+    "depth": "深度",
+    "tsunami": "已發布海嘯注意",
+    "rain24h": "24 小時雨量",
+    "gust": "最大陣風",
+    "apparentTemp": "體感高溫",
+    "footnote": "數值與地名維持原始資料，三種語言讀到的是同一組事實。",
+    "degraded": "部分資料來源暫時無法取得：{providers}",
+    "band": {
+      "breaking": "重大",
+      "high": "高",
+      "candidate": "值得注意",
+      "watch": "觀察",
+      "drop": "觀察"
+    }
   }
 }

@@ -237,5 +237,27 @@
     "asia": "Asia",
     "middle-east": "Middle East",
     "vietnam": "Vietnam"
+  },
+  "structured": {
+    "title": "Official observations",
+    "subtitle": "Structured data straight from official agencies, not relayed through news",
+    "count": "observations",
+    "earthquake": "earthquake",
+    "weatherAnomaly": "Weather anomaly",
+    "magnitude": "Magnitude",
+    "depth": "Depth",
+    "tsunami": "Tsunami flag set",
+    "rain24h": "24h rainfall",
+    "gust": "Peak gust",
+    "apparentTemp": "Apparent temperature",
+    "footnote": "Readings and place names stay as published, so all three languages read the same facts.",
+    "degraded": "Some sources are temporarily unavailable: {providers}",
+    "band": {
+      "breaking": "Breaking",
+      "high": "High",
+      "candidate": "Notable",
+      "watch": "Watch",
+      "drop": "Watch"
+    }
   }
 }
