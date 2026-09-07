@@ -270,8 +270,11 @@ const STRUCTURED_ICONS = {
 };
 
 function structuredHeadline(item){
-  // Facts stay canonical — the numbers and place names come straight from the provider.
-  // Only the wording around them is localized, so no language can disagree about a magnitude.
+  // The pipeline renders one sentence per language from the same numbers, so prefer that.
+  // Facts stay canonical underneath: every locale is generated from a single set of metrics
+  // and cannot disagree about a magnitude.
+  const rendered = item.text && item.text[getLocale()];
+  if(rendered) return rendered;
   const m = item.metrics || {};
   if(item.category === 'earthquake' && m.magnitude != null){
     const place = (item.geography && item.geography.region) || '';
