@@ -57,7 +57,9 @@
     "title": "Khung dữ liệu (Asia/Taipei)",
     "verified": "Đã xác minh: {value}",
     "dataWindow": "Khung dữ liệu: {start} → {end}",
-    "cutoff": "Mốc chốt dữ liệu: 06:00 (giờ Đài Bắc)"
+    "cutoff": "Mốc chốt dữ liệu: 06:00 (giờ Đài Bắc)",
+    "updated": "Cập nhật {time}",
+    "updatedUnknown": "Không có thời gian cập nhật"
   },
   "footer": {
     "disclaimer": "SharBo Globo · Thông tin chỉ hỗ trợ đánh giá và không thay thế thông báo chính thức hay tư vấn tài chính, pháp lý chuyên nghiệp."
