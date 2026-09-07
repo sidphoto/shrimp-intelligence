@@ -18,3 +18,7 @@ a.structured-source:hover{color:var(--blue);text-decoration:underline}
 }
 /* SI units must not be uppercased by the generic tag style: mm, km, km/h, °C. */
 .structured-main .tags .tag{text-transform:none}
+/* When the report was produced, next to the window it covers: a reader judging a claim
+   needs both, and only the window was ever shown. */
+.top-meta .data-updated{font-size:11px;color:var(--muted);white-space:nowrap}
+@media(max-width:900px){.top-meta .data-updated{display:none}}

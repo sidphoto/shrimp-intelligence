@@ -57,7 +57,9 @@
     "title": "Data window (Asia/Taipei)",
     "verified": "Verified: {value}",
     "dataWindow": "Data window: {start} → {end}",
-    "cutoff": "Data cutoff: 06:00 Asia/Taipei"
+    "cutoff": "Data cutoff: 06:00 Asia/Taipei",
+    "updated": "Updated {time}",
+    "updatedUnknown": "Update time unavailable"
   },
   "footer": {
     "disclaimer": "SharBo Globo · Intelligence is decision support and does not replace official notices or professional financial or legal advice."

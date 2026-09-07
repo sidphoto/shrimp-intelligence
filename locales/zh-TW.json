@@ -57,7 +57,9 @@
     "title": "資料視窗（Asia/Taipei）",
     "verified": "已驗證：{value}",
     "dataWindow": "資料視窗：{start} → {end}",
-    "cutoff": "資料截止：06:00（台北時間）"
+    "cutoff": "資料截止：06:00（台北時間）",
+    "updated": "更新於 {time}",
+    "updatedUnknown": "更新時間未提供"
   },
   "footer": {
     "disclaimer": "SharBo Globo · 情報為輔助判讀，不取代官方公告、專業財務或法律意見。"
