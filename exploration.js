@@ -24,19 +24,19 @@ const COPY = {
   'zh-TW': {
     focusTitle:'今日全球焦點分布', focusSub:'依目前訊號與快速篩選', focusEmpty:'目前沒有可顯示的地區訊號。',
     topicBack:'← 返回今日總覽', topicSignals:'相關訊號', topicDescription:'從主題查看事件、地區、來源與重要度分布。',
-    total:'訊號總數', regions:'主要地區', sources:'來源結構', importance:'重要度', empty:'這個主題目前沒有符合快速篩選的訊號。',
+    structuredSources:'官方觀測', sourceOfficial:'官方機構', sourceCentralBank:'中央銀行', observationCard:'官方觀測', total:'訊號總數', regions:'主要地區', sources:'來源結構', importance:'重要度', empty:'這個主題目前沒有符合快速篩選的訊號。',
     quickFiltered:'快速篩選後 {shown} / {total} 項', count:'{count} 項訊號 →'
   },
   en: {
     focusTitle:'Today’s Global Focus', focusSub:'Based on current signals and quick filters', focusEmpty:'No regional signals are currently visible.',
     topicBack:'← Back to Today', topicSignals:'Related signals', topicDescription:'Explore events, regions, sources, and importance within this topic.',
-    total:'Total signals', regions:'Top regions', sources:'Source mix', importance:'Importance', empty:'No signals in this topic match the current quick filters.',
+    structuredSources:'Official observations', sourceOfficial:'Official agency', sourceCentralBank:'Central bank', observationCard:'Official observation', total:'Total signals', regions:'Top regions', sources:'Source mix', importance:'Importance', empty:'No signals in this topic match the current quick filters.',
     quickFiltered:'{shown} / {total} after quick filters', count:'{count} signals →'
   },
   'vi-VN': {
     focusTitle:'Phân bố trọng tâm toàn cầu hôm nay', focusSub:'Theo tín hiệu hiện tại và bộ lọc nhanh', focusEmpty:'Hiện không có tín hiệu khu vực để hiển thị.',
     topicBack:'← Quay lại tổng quan hôm nay', topicSignals:'Tín hiệu liên quan', topicDescription:'Xem sự kiện, khu vực, nguồn và mức độ quan trọng theo chủ đề.',
-    total:'Tổng số tín hiệu', regions:'Khu vực chính', sources:'Cơ cấu nguồn', importance:'Mức độ quan trọng', empty:'Không có tín hiệu trong chủ đề này phù hợp với bộ lọc nhanh hiện tại.',
+    structuredSources:'Quan sát chính thức', sourceOfficial:'Cơ quan chính thức', sourceCentralBank:'Ngân hàng trung ương', observationCard:'Quan sát chính thức', total:'Tổng số tín hiệu', regions:'Khu vực chính', sources:'Cơ cấu nguồn', importance:'Mức độ quan trọng', empty:'Không có tín hiệu trong chủ đề này phù hợp với bộ lọc nhanh hiện tại.',
     quickFiltered:'{shown} / {total} sau bộ lọc nhanh', count:'{count} tín hiệu →'
   }
 };
@@ -169,14 +169,46 @@ function renderTopicPage(report,slug){
   const all=topicSignals(report.signals || [],slug).sort((a,b)=>b.score-a.score);
   const visible=applyQuickSeverityFilter(all,currentQuickSeverities());
   const breakdown=topicBreakdown(visible,slug,scoreClass,focusRegions);
+  const observations=structuredForTopic(report,slug);
   const c=copy();
   const regionText=breakdown.regions.slice(0,4).map(([region,count])=>`${regionLabel(region)} ${count}`).join(' · ') || '—';
-  const sourceText=breakdown.sources.slice(0,4).map(([source,count])=>`${sourceClassLabel(source)} ${count}`).join(' · ') || '—';
+  const observationSources=new Map();
+  for(const item of observations){
+    const label=structuredSourceLabel(item.source && item.source.type,c);
+    observationSources.set(label,(observationSources.get(label)||0)+1);
+  }
+  const sourceParts=breakdown.sources.slice(0,4).map(([source,count])=>`${sourceClassLabel(source)} ${count}`)
+    .concat([...observationSources.entries()].map(([label,count])=>`${label} ${count}`));
+  const sourceText=sourceParts.join(' · ') || '—';
   const importance=`${severityLabel('critical')} ${breakdown.severity.critical} · ${severityLabel('important')} ${breakdown.severity.important} · ${severityLabel('emerging')} ${breakdown.severity.emerging}`;
   const footer=content.querySelector('.footer')?.outerHTML || '';
-  content.innerHTML=`<div class="topic-detail" data-topic-page="${esc(slug)}"><button class="pill-btn topic-back">${esc(c.topicBack)}</button><div class="topic-detail-hero" style="--accent:${esc(topic.color)}"><div class="topic-detail-icon">${esc(topic.icon)}</div><div><div class="eyeline">${esc(c.topicSignals)}</div><h1>${esc(localizedTopicName(topic))}</h1><p>${esc(c.topicDescription)}</p><small>${esc(fmt(c.quickFiltered,{shown:visible.length,total:all.length}))}</small></div></div><div class="topic-stats">${statPill(c.total,String(visible.length))}${statPill(c.importance,importance)}${statPill(c.regions,regionText)}${statPill(c.sources,sourceText)}</div><div class="radar-grid topic-results">${visible.map(topicSignalCard).join('') || `<div class="card empty">${esc(c.empty)}</div>`}</div></div>${footer}`;
+  content.innerHTML=`<div class="topic-detail" data-topic-page="${esc(slug)}"><button class="pill-btn topic-back">${esc(c.topicBack)}</button><div class="topic-detail-hero" style="--accent:${esc(topic.color)}"><div class="topic-detail-icon">${esc(topic.icon)}</div><div><div class="eyeline">${esc(c.topicSignals)}</div><h1>${esc(localizedTopicName(topic))}</h1><p>${esc(c.topicDescription)}</p><small>${esc(fmt(c.quickFiltered,{shown:visible.length + observations.length,total:all.length + observations.length}))}</small></div></div><div class="topic-stats">${statPill(c.total,String(visible.length + observations.length))}${statPill(c.importance,importance)}${statPill(c.regions,regionText)}${statPill(c.sources,sourceText)}</div><div class="radar-grid topic-results">${(visible.map(topicSignalCard).join('') + observations.map(item=>observationCard(item,c)).join('')) || `<div class="card empty">${esc(c.empty)}</div>`}</div></div>${footer}`;
   content.querySelector('.topic-back').onclick=()=>{location.hash='#/today';};
   content.querySelectorAll('[data-explore-signal]').forEach(card=>card.onclick=()=>{location.hash=`#/signal/${card.dataset.exploreSignal}`;});
+}
+
+function structuredForTopic(report, slug){
+  // Topic statistics must reflect every channel that published today, not just news.
+  const block = report && report.structured_signals;
+  if(!block || !block.buckets) return [];
+  // The pipeline writes the topic slug onto every observation, so nothing here depends
+  // on topic_summary being populated: a topic missing from that list must not make
+  // observations silently disappear.
+  return Object.keys(block.buckets)
+    .reduce((all, key)=>all.concat(block.buckets[key] || []), [])
+    .filter(item=>item.topic_slug === slug);
+}
+
+function structuredSourceLabel(type, c){
+  if(type === 'central_bank') return c.sourceCentralBank;
+  return c.sourceOfficial;
+}
+
+function observationCard(item, c){
+  const text = (item.text && item.text[getLocale()]) || item.title || '';
+  const url = (item.source && item.source.url) || '';
+  const name = (item.source && item.source.name) || '';
+  return `<article class="radar-card topic-observation-card"><div class="radar-top"><span class="quality">${esc(c.observationCard)}</span><span class="quality">${esc(structuredSourceLabel(item.source && item.source.type, c))}</span></div><h3>${esc(text)}</h3>${url ? `<p><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(name)} →</a></p>` : `<p>${esc(name)}</p>`}</article>`;
 }
 
 function applyPendingRegion(){
